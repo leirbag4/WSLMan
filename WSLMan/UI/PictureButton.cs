@@ -10,6 +10,9 @@ namespace WSLMan.UI
     public class PictureButton : Button
     {
         private bool _isOver = false;
+        private Label _assignedLabel = null;
+        private int _animMoveX = 1;
+        private int _animMoveY = 0;
 
         public PictureButton() 
         {
@@ -17,10 +20,22 @@ namespace WSLMan.UI
             FlatAppearance.BorderSize = 0;
         }
 
+        public void AssignClickableLabel(Label label)
+        {
+            _assignedLabel = label;
+            _assignedLabel.Click += (s, e) => { PerformClick(); };
+            _assignedLabel.MouseEnter += (s, e) => { OnMouseEnter(EventArgs.Empty); };
+            _assignedLabel.MouseLeave += (s, e) => { OnMouseLeave(EventArgs.Empty); };
+        }
+
         protected override void OnMouseEnter(EventArgs e)
         {
             Cursor = Cursors.Hand;
             _isOver = true;
+
+            if (_assignedLabel != null)
+                _assignedLabel.Location = new Point(_assignedLabel.Location.X + _animMoveX, _assignedLabel.Location.Y + _animMoveY);
+
             base.OnMouseEnter(e);
         }
 
@@ -28,7 +43,21 @@ namespace WSLMan.UI
         {
             Cursor = Cursors.Default;
             _isOver = false;
+
+            if (_assignedLabel != null)
+                _assignedLabel.Location = new Point(_assignedLabel.Location.X - _animMoveX, _assignedLabel.Location.Y + _animMoveY);
+
+
             base.OnMouseLeave(e);
+        }
+
+        protected override void OnEnabledChanged(EventArgs e)
+        {
+            
+            if(_assignedLabel != null)
+                _assignedLabel.Enabled = Enabled;
+
+            base.OnEnabledChanged(e);
         }
 
         private Image GrayScaleImg(Image originalImage)
@@ -72,7 +101,7 @@ namespace WSLMan.UI
                     img = GrayScaleImg(Image);
 
                 if (_isOver)
-                    e.Graphics.DrawImage(img, x + 1, y + 1, img.Width, img.Height);
+                    e.Graphics.DrawImage(img, x + _animMoveX, y + _animMoveY, img.Width, img.Height);
                 else
                     e.Graphics.DrawImage(img, x, y, img.Width, img.Height);
             }

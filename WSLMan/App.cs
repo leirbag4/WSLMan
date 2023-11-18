@@ -35,7 +35,10 @@ namespace WSLMan
 
             wsl = new WSL();
 
-            
+            startButton.AssignClickableLabel(startLabel);
+            stopButton.AssignClickableLabel(stopLabel);
+            configButton.AssignClickableLabel(configLabel);
+            createNewButton.AssignClickableLabel(createNewLabel);
 
             base.OnLoad(e);
         }
@@ -81,7 +84,7 @@ namespace WSLMan
                 stateLabel.Text =       "";
                 versionLabel.Text =     "";
                 uidLabel.Text =         "";
-                playButton.Enabled =    false;
+                startButton.Enabled =    false;
                 stopButton.Enabled =    false;
                 configButton.Enabled =  false;
             }
@@ -93,7 +96,7 @@ namespace WSLMan
                 stateLabel.Text =       distro.State.ToString();
                 versionLabel.Text =     distro.Version.ToString();
                 uidLabel.Text =         distro.DefaultUid.ToString();
-                playButton.Enabled =    true;
+                startButton.Enabled =    true;
                 stopButton.Enabled =    true;
                 configButton.Enabled =  true;
             }

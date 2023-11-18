@@ -49,13 +49,13 @@
             this.label2 = new System.Windows.Forms.Label();
             this.pathOutp = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.playButton = new WSLMan.UI.PictureButton();
+            this.startButton = new WSLMan.UI.PictureButton();
             this.stopButton = new WSLMan.UI.PictureButton();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
+            this.startLabel = new System.Windows.Forms.Label();
+            this.stopLabel = new System.Windows.Forms.Label();
             this.configButton = new WSLMan.UI.PictureButton();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.configLabel = new System.Windows.Forms.Label();
+            this.createNewLabel = new System.Windows.Forms.Label();
             this.createNewButton = new WSLMan.UI.PictureButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -294,17 +294,17 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Path";
             // 
-            // playButton
+            // startButton
             // 
-            this.playButton.Enabled = false;
-            this.playButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.playButton.Image = global::WSLMan.Properties.Resources.play_button_med;
-            this.playButton.Location = new System.Drawing.Point(414, 171);
-            this.playButton.Name = "playButton";
-            this.playButton.Size = new System.Drawing.Size(40, 40);
-            this.playButton.TabIndex = 9;
-            this.playButton.UseVisualStyleBackColor = true;
-            this.playButton.Click += new System.EventHandler(this.OnStartPressed);
+            this.startButton.Enabled = false;
+            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.startButton.Image = global::WSLMan.Properties.Resources.play_button_med;
+            this.startButton.Location = new System.Drawing.Point(414, 171);
+            this.startButton.Name = "startButton";
+            this.startButton.Size = new System.Drawing.Size(40, 40);
+            this.startButton.TabIndex = 9;
+            this.startButton.UseVisualStyleBackColor = true;
+            this.startButton.Click += new System.EventHandler(this.OnStartPressed);
             // 
             // stopButton
             // 
@@ -318,27 +318,31 @@
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.OnStopPressed);
             // 
-            // label5
+            // startLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label5.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label5.Location = new System.Drawing.Point(460, 181);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(88, 20);
-            this.label5.TabIndex = 11;
-            this.label5.Text = "Start distro";
+            this.startLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.startLabel.Enabled = false;
+            this.startLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.startLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.startLabel.Location = new System.Drawing.Point(460, 171);
+            this.startLabel.Name = "startLabel";
+            this.startLabel.Size = new System.Drawing.Size(88, 40);
+            this.startLabel.TabIndex = 11;
+            this.startLabel.Text = "Start distro";
+            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label7
+            // stopLabel
             // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label7.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label7.Location = new System.Drawing.Point(460, 227);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(86, 20);
-            this.label7.TabIndex = 12;
-            this.label7.Text = "Stop distro";
+            this.stopLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.stopLabel.Enabled = false;
+            this.stopLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.stopLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.stopLabel.Location = new System.Drawing.Point(460, 217);
+            this.stopLabel.Name = "stopLabel";
+            this.stopLabel.Size = new System.Drawing.Size(86, 40);
+            this.stopLabel.TabIndex = 12;
+            this.stopLabel.Text = "Stop distro";
+            this.stopLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // configButton
             // 
@@ -352,31 +356,33 @@
             this.configButton.UseVisualStyleBackColor = true;
             this.configButton.Click += new System.EventHandler(this.OnConfigPressed);
             // 
-            // label9
+            // configLabel
             // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label9.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label9.Location = new System.Drawing.Point(460, 274);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(122, 20);
-            this.label9.TabIndex = 14;
-            this.label9.Text = "Configuration ...";
+            this.configLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.configLabel.Enabled = false;
+            this.configLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.configLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.configLabel.Location = new System.Drawing.Point(460, 264);
+            this.configLabel.Name = "configLabel";
+            this.configLabel.Size = new System.Drawing.Size(122, 40);
+            this.configLabel.TabIndex = 14;
+            this.configLabel.Text = "Configuration ...";
+            this.configLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label10
+            // createNewLabel
             // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.label10.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label10.Location = new System.Drawing.Point(663, 181);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(93, 20);
-            this.label10.TabIndex = 16;
-            this.label10.Text = "Create NEW";
+            this.createNewLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.createNewLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.createNewLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.createNewLabel.Location = new System.Drawing.Point(663, 171);
+            this.createNewLabel.Name = "createNewLabel";
+            this.createNewLabel.Size = new System.Drawing.Size(93, 40);
+            this.createNewLabel.TabIndex = 16;
+            this.createNewLabel.Text = "Create NEW";
+            this.createNewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // createNewButton
             // 
-            this.createNewButton.Enabled = false;
             this.createNewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createNewButton.Image = global::WSLMan.Properties.Resources.add_button_med;
             this.createNewButton.Location = new System.Drawing.Point(617, 171);
@@ -392,14 +398,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(791, 654);
-            this.Controls.Add(this.label10);
+            this.Controls.Add(this.createNewLabel);
             this.Controls.Add(this.createNewButton);
-            this.Controls.Add(this.label9);
+            this.Controls.Add(this.configLabel);
             this.Controls.Add(this.configButton);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.stopLabel);
+            this.Controls.Add(this.startLabel);
             this.Controls.Add(this.stopButton);
-            this.Controls.Add(this.playButton);
+            this.Controls.Add(this.startButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.outp);
@@ -411,7 +417,6 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -438,13 +443,13 @@
         private Label label8;
         private TextBox nameOutp;
         private Label label4;
-        private UI.PictureButton playButton;
+        private UI.PictureButton startButton;
         private UI.PictureButton stopButton;
-        private Label label5;
-        private Label label7;
+        private Label startLabel;
+        private Label stopLabel;
         private UI.PictureButton configButton;
-        private Label label9;
-        private Label label10;
+        private Label configLabel;
+        private Label createNewLabel;
         private UI.PictureButton createNewButton;
     }
 }
