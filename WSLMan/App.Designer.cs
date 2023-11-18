@@ -35,7 +35,6 @@
             this.colState = new System.Windows.Forms.ColumnHeader();
             this.colVersion = new System.Windows.Forms.ColumnHeader();
             this.outp = new System.Windows.Forms.RichTextBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.nameOutp = new System.Windows.Forms.TextBox();
@@ -134,15 +133,6 @@
             this.outp.Size = new System.Drawing.Size(767, 120);
             this.outp.TabIndex = 2;
             this.outp.Text = "";
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(580, 23);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(150, 104);
-            this.listBox1.TabIndex = 3;
             // 
             // button3
             // 
@@ -385,7 +375,6 @@
             this.Controls.Add(this.playButton);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.listBox1);
             this.Controls.Add(this.outp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listButton);
@@ -404,7 +393,6 @@
         private Button listButton;
         private GroupBox groupBox1;
         private RichTextBox outp;
-        private ListBox listBox1;
         private Button button3;
         private ListView distroList;
         private ColumnHeader colName;
