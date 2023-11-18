@@ -27,15 +27,23 @@ namespace WSLMan
             base.OnLoad(e);
         }
 
-        private void OnFindInstalledDistros(object sender, EventArgs e)
+        private void FillDistroList(List<DistroInfo> distros)
         {
+            distroList.Items.Clear();
 
 
+            foreach (DistroInfo distro in distros)
+            {
+                ListViewItem item = new ListViewItem();
+                item.Text = distro.Name;
+                item.SubItems.Add(distro.State.ToString());
+                item.SubItems.Add(distro.Version.ToString());
+                item.Tag = distro;
 
+                distroList.Items.Add(item);
+            }
 
         }
-
-
         
         private void Println(string str)
         {
@@ -55,30 +63,15 @@ namespace WSLMan
             {
                 Println(" -> " + distro.ToString() + " Path: " + distro.Path);
             }
+
+            FillDistroList(distros);
         }
 
-        private void OnReadListPressed(object sender, EventArgs e)
-        {
-            foreach (var distro in wsl.Distros)
-            {
-                Println(" -> " + distro.ToString());
-            }
-        }
 
         private void OnClearPressed(object sender, EventArgs e)
         {
             Clear();
         }
 
-        private void OnListRegistryPressed(object sender, EventArgs e)
-        {
-            var distros = RegDistroLister.GetAll();
-
-            foreach(var distro in distros) 
-            {
-                Println(distro.ToString());
-            }
-
-        }
     }
 }

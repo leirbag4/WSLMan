@@ -23,6 +23,9 @@ namespace WSLMan.Register
             DistributionName =  distributionName;
             State =             int.Parse(state);
             Version =           int.Parse(version);
+
+            if (BasePath.StartsWith(@"\\?\"))
+                BasePath = BasePath.Substring(@"\\?\".Length);
         }
 
         public override string ToString()
