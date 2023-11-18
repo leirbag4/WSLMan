@@ -15,6 +15,11 @@ namespace WSLMan
             _outp = outp;
         }
 
+        public static void Alert(string str)
+        { 
+            MessageBox.Show(str);
+        }
+
         public static void Clear()
         {
             if (_outp.InvokeRequired)
@@ -85,7 +90,7 @@ namespace WSLMan
 
         public static void PrintError(String str)
         {
-            _Println(str, Color.Red);
+            Println(str, Color.Red);
         }
 
         private static void _Println(String str, Color color)
