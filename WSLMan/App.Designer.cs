@@ -30,10 +30,6 @@
         {
             this.listButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.distroList = new System.Windows.Forms.ListView();
-            this.colName = new System.Windows.Forms.ColumnHeader();
-            this.colState = new System.Windows.Forms.ColumnHeader();
-            this.colVersion = new System.Windows.Forms.ColumnHeader();
             this.outp = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -57,6 +53,10 @@
             this.configLabel = new System.Windows.Forms.Label();
             this.createNewLabel = new System.Windows.Forms.Label();
             this.createNewButton = new WSLMan.UI.PictureButton();
+            this.distroList2 = new WSLMan.UI.SimpleListView();
+            this._colName = new System.Windows.Forms.ColumnHeader();
+            this._colState = new System.Windows.Forms.ColumnHeader();
+            this._colVersion = new System.Windows.Forms.ColumnHeader();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +79,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.distroList);
+            this.groupBox1.Controls.Add(this.distroList2);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 1);
             this.groupBox1.Name = "groupBox1";
@@ -87,41 +87,6 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Distros";
-            // 
-            // distroList
-            // 
-            this.distroList.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.distroList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.distroList.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.distroList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.colName,
-            this.colState,
-            this.colVersion});
-            this.distroList.ForeColor = System.Drawing.Color.White;
-            this.distroList.FullRowSelect = true;
-            this.distroList.Location = new System.Drawing.Point(15, 26);
-            this.distroList.MultiSelect = false;
-            this.distroList.Name = "distroList";
-            this.distroList.Size = new System.Drawing.Size(365, 280);
-            this.distroList.TabIndex = 7;
-            this.distroList.UseCompatibleStateImageBehavior = false;
-            this.distroList.View = System.Windows.Forms.View.Details;
-            this.distroList.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
-            // 
-            // colName
-            // 
-            this.colName.Text = "Name";
-            this.colName.Width = 180;
-            // 
-            // colState
-            // 
-            this.colState.Text = "State";
-            this.colState.Width = 120;
-            // 
-            // colVersion
-            // 
-            this.colVersion.Text = "Version";
             // 
             // outp
             // 
@@ -392,6 +357,38 @@
             this.createNewButton.UseVisualStyleBackColor = true;
             this.createNewButton.Click += new System.EventHandler(this.OnCreateNewPressed);
             // 
+            // distroList2
+            // 
+            this.distroList2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.distroList2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._colName,
+            this._colState,
+            this._colVersion});
+            this.distroList2.ForeColor = System.Drawing.Color.White;
+            this.distroList2.FullRowSelect = true;
+            this.distroList2.Location = new System.Drawing.Point(15, 36);
+            this.distroList2.MultiSelect = false;
+            this.distroList2.Name = "distroList2";
+            this.distroList2.Size = new System.Drawing.Size(365, 280);
+            this.distroList2.TabIndex = 17;
+            this.distroList2.UseCompatibleStateImageBehavior = false;
+            this.distroList2.View = System.Windows.Forms.View.Details;
+            this.distroList2.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
+            // 
+            // _colName
+            // 
+            this._colName.Text = "Name";
+            this._colName.Width = 180;
+            // 
+            // _colState
+            // 
+            this._colState.Text = "State";
+            this._colState.Width = 120;
+            // 
+            // _colVersion
+            // 
+            this._colVersion.Text = "Version";
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
@@ -426,10 +423,6 @@
         private GroupBox groupBox1;
         private RichTextBox outp;
         private Button button3;
-        private ListView distroList;
-        private ColumnHeader colName;
-        private ColumnHeader colState;
-        private ColumnHeader colVersion;
         private GroupBox groupBox2;
         private TextBox pathOutp;
         private Label label1;
@@ -451,5 +444,9 @@
         private Label configLabel;
         private Label createNewLabel;
         private UI.PictureButton createNewButton;
+        private UI.SimpleListView distroList2;
+        private ColumnHeader _colName;
+        private ColumnHeader _colState;
+        private ColumnHeader _colVersion;
     }
 }

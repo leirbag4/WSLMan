@@ -15,10 +15,7 @@ namespace WSLMan
         { 
             get 
             {
-                if (distroList.SelectedItems.Count > 0)
-                    return (distroList.SelectedItems[0].Tag as DistroInfo);
-                else
-                    return null;
+                return distroList2.GetSelectedItem<DistroInfo>();
             } 
         }
 
@@ -41,37 +38,29 @@ namespace WSLMan
             createNewButton.AssignClickableLabel(createNewLabel);
 
 
-            //createNewButton.PerformClick();
+            createNewButton.PerformClick();
 
             base.OnLoad(e);
         }
 
         private void FillDistroList(List<DistroInfo> distros)
         {
-            distroList.Items.Clear();
-
+            distroList2.ClearItems();
 
             foreach (DistroInfo distro in distros)
             {
-                ListViewItem item = new ListViewItem();
-                item.Text = distro.Name;
-                item.SubItems.Add(distro.State.ToString());
-                item.SubItems.Add(distro.Version.ToString());
-                item.Tag = distro;
-
-                distroList.Items.Add(item);
+                distroList2.AddItem(distro, distro.Name, distro.State.ToString(), distro.Version.ToString());
             }
 
         }
 
         private void SelectDistroIndex(DistroInfo distro)
         {
-            for (int a = 0; a < distroList.Items.Count; a++)
+            for (int a = 0; a < distroList2.Items.Count; a++)
             {
-                if ((distroList.Items[a].Tag as DistroInfo).Hash == distro.Hash)
+                if ((distroList2.Items[a].Tag as DistroInfo).Hash == distro.Hash)
                 {
-                    distroList.SelectedIndices.Clear();
-                    distroList.SelectedIndices.Add(a);
+                    distroList2.SelectByIndex(a);
                     break;
                 }
             }
