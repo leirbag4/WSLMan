@@ -55,6 +55,8 @@
             this.label7 = new System.Windows.Forms.Label();
             this.configButton = new WSLMan.UI.PictureButton();
             this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.createNewButton = new WSLMan.UI.PictureButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -361,12 +363,37 @@
             this.label9.TabIndex = 14;
             this.label9.Text = "Configuration ...";
             // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.label10.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label10.Location = new System.Drawing.Point(663, 181);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(93, 20);
+            this.label10.TabIndex = 16;
+            this.label10.Text = "Create NEW";
+            // 
+            // createNewButton
+            // 
+            this.createNewButton.Enabled = false;
+            this.createNewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.createNewButton.Image = global::WSLMan.Properties.Resources.add_button_med;
+            this.createNewButton.Location = new System.Drawing.Point(617, 171);
+            this.createNewButton.Name = "createNewButton";
+            this.createNewButton.Size = new System.Drawing.Size(40, 40);
+            this.createNewButton.TabIndex = 15;
+            this.createNewButton.UseVisualStyleBackColor = true;
+            this.createNewButton.Click += new System.EventHandler(this.OnCreateNewPressed);
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(791, 654);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.createNewButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.configButton);
             this.Controls.Add(this.label7);
@@ -417,5 +444,7 @@
         private Label label7;
         private UI.PictureButton configButton;
         private Label label9;
+        private Label label10;
+        private UI.PictureButton createNewButton;
     }
 }

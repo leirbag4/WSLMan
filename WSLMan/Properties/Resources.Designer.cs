@@ -63,6 +63,16 @@ namespace WSLMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap add_button_med {
+            get {
+                object obj = ResourceManager.GetObject("add_button_med", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap edit_button_med {
             get {
                 object obj = ResourceManager.GetObject("edit_button_med", resourceCulture);

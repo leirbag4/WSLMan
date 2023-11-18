@@ -156,6 +156,11 @@ namespace WSLMan
 
         }
 
+        private void OnCreateNewPressed(object sender, EventArgs e)
+        {
+
+        }
+
         private void Println(string str)
         {
             XConsole.Println(str);
