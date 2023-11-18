@@ -35,5 +35,10 @@ namespace WSLMan
             }
             return base.ProcessDialogKey(keyData);
         }
+
+        private void listButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,7 +41,7 @@ namespace WSLMan
             createNewButton.AssignClickableLabel(createNewLabel);
 
 
-            createNewButton.PerformClick();
+            //createNewButton.PerformClick();
 
             base.OnLoad(e);
         }
