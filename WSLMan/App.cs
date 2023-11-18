@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using WSLMan.Register;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WSLMan
@@ -52,7 +53,7 @@ namespace WSLMan
 
             foreach (var distro in distros)
             {
-                Println(" -> " + distro.ToString());
+                Println(" -> " + distro.ToString() + " Path: " + distro.Path);
             }
         }
 
@@ -67,6 +68,17 @@ namespace WSLMan
         private void OnClearPressed(object sender, EventArgs e)
         {
             Clear();
+        }
+
+        private void OnListRegistryPressed(object sender, EventArgs e)
+        {
+            var distros = RegDistroLister.GetAll();
+
+            foreach(var distro in distros) 
+            {
+                Println(distro.ToString());
+            }
+
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Register;
 
 namespace WSLMan
 {
@@ -15,19 +16,26 @@ namespace WSLMan
         private CmdRun proc;
 
         private bool _cmd_list_allowed = false;
+        private bool _matchWithRegister = true;
 
         public WSL() 
         {
             Distros = new List<DistroInfo>();
         }
 
-        public async Task<List<DistroInfo>> ListDistrosAsync()
+        /// <summary>
+        /// Get the list of all the installed distros
+        /// </summary>
+        /// <param name="matchWithRegister">merge and match info with windows registry to find for example installed path of distros but at the cost of speed. Set to 'false' to refresh only state.</param>
+        /// <returns></returns>
+        public async Task<List<DistroInfo>> ListDistrosAsync(bool matchWithRegister = true)
         {
             TaskCompletionSource<List<DistroInfo>> tcs = new TaskCompletionSource<List<DistroInfo>>();
 
             Distros = new List<DistroInfo>();
 
             _cmd_list_allowed =         false;
+            _matchWithRegister =        matchWithRegister;
 
             proc =                      new CmdRun(CmdType.WSL, "wsl", "-l -v");
             proc.DataReceived +=        OnListDataReceived;
@@ -85,12 +93,9 @@ namespace WSLMan
                     }
 
 
-                    //Println("\n---");
                 }
             }
 
-
-            //Println("=" + data + " length: " + parts.Length);
         }
 
         private void OnListDataErrorReceived(string data)
@@ -104,7 +109,32 @@ namespace WSLMan
         }*/
         private void OnComplete(TaskCompletionSource<List<DistroInfo>> tcs)
         {
-            //Println("[ENDS]");
+            if (_matchWithRegister)
+            {
+                // find distros on windows registry first
+                List<RegDistroInfo> regDistros = RegDistroLister.GetAll().ToList();
+
+                // now compare them with the returned by 'wsl --list -v' and do a mix
+                foreach (var distro in Distros)
+                {
+                    foreach (var regDistro in regDistros)
+                    {
+                        // found one coincidence between a registry distro and the wls command 'list'
+                        if (distro.Name == regDistro.DistributionName)
+                        {
+                            distro.SetRegDistroInfo(regDistro);
+                            regDistros.Remove(regDistro);       // remove the selected registry distro
+                            break;                              // and break the loop to speed up
+                        }
+                    }
+                }
+
+                // if not 0, then registry distros do not match with wls command 'list'
+                if (regDistros.Count > 0)
+                    CallError("There was an error while merging registry distros with 'wsl --list -v' command.");
+            }
+
+
             tcs.SetResult(Distros);
         }
 
