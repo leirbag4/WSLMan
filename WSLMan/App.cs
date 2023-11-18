@@ -40,6 +40,9 @@ namespace WSLMan
             configButton.AssignClickableLabel(configLabel);
             createNewButton.AssignClickableLabel(createNewLabel);
 
+
+            createNewButton.PerformClick();
+
             base.OnLoad(e);
         }
 
@@ -161,7 +164,8 @@ namespace WSLMan
 
         private void OnCreateNewPressed(object sender, EventArgs e)
         {
-
+            InstallNew installNew= new InstallNew();
+            installNew.ShowMe(this);
         }
 
         private void Println(string str)
