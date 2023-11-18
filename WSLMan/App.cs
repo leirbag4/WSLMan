@@ -87,7 +87,7 @@ namespace WSLMan
             }
             else
             {
-                nameOutp.Text +=        distro.Name;
+                nameOutp.Text =         distro.Name;
                 hashOutp.Text =         distro.Hash;
                 pathOutp.Text =         distro.Path;
                 stateLabel.Text =       distro.State.ToString();
@@ -138,49 +138,16 @@ namespace WSLMan
 
         private void OnStartPressed(object sender, EventArgs e)
         {
-            string fullCommand = "-d " + CurrentDistro.Name;
-
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "wsl",
-                Arguments = fullCommand,
-                //RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = false,
-                //RedirectStandardOutput = true,
-                //RedirectStandardError = true
-            };
-
-            Process process = new Process { StartInfo = psi };
-            process.Start();
+            wsl.StartDistro(CurrentDistro);
 
             Println("start distro -> " + CurrentDistro.Name);
         }
 
         private async void OnStopPressed(object sender, EventArgs e)
         {
-            string fullCommand = "--terminate " + CurrentDistro.Name;
-
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "wsl",
-                Arguments = fullCommand,
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                StandardOutputEncoding = System.Text.Encoding.Unicode,
-                StandardErrorEncoding = System.Text.Encoding.Unicode
-        };
-
-            Process process = new Process { StartInfo = psi };
-            process.Start();
-
-            string output = process.StandardOutput.ReadToEnd();
-            string errors = process.StandardError.ReadToEnd();
-
+            string output = wsl.StopDistro(CurrentDistro);
+            
             Println(output);
-
             await RefreshDistrosList();
         }
 

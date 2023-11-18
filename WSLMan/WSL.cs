@@ -1,6 +1,7 @@
 ﻿using CommandLauncher;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,50 @@ namespace WSLMan
         public WSL() 
         {
             Distros = new List<DistroInfo>();
+        }
+
+        public void StartDistro(DistroInfo distro)
+        {
+            string fullCommand = "-d " + distro.Name;
+
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "wsl",
+                Arguments = fullCommand,
+                //RedirectStandardInput = true,
+                UseShellExecute = false,
+                CreateNoWindow = false,
+                //RedirectStandardOutput = true,
+                //RedirectStandardError = true
+            };
+
+            Process process = new Process { StartInfo = psi };
+            process.Start();
+        }
+
+        public string StopDistro(DistroInfo distro)
+        {
+            string fullCommand = "--terminate " + distro.Name;
+
+            ProcessStartInfo psi = new ProcessStartInfo
+            {
+                FileName = "wsl",
+                Arguments = fullCommand,
+                CreateNoWindow = true,
+                UseShellExecute = false,
+                RedirectStandardOutput = true,
+                RedirectStandardError = true,
+                StandardOutputEncoding = System.Text.Encoding.Unicode,
+                StandardErrorEncoding = System.Text.Encoding.Unicode
+            };
+
+            Process process = new Process { StartInfo = psi };
+            process.Start();
+
+            string output = process.StandardOutput.ReadToEnd();
+            string errors = process.StandardError.ReadToEnd();
+
+            return output;
         }
 
         /// <summary>
