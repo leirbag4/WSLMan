@@ -129,6 +129,13 @@ namespace WSLMan
         private async void OnListDistrosPressed(object sender, EventArgs e)
         {
             await RefreshDistrosList();
+
+            /*var distros = await wsl.ListOnlineDistrosAsync();
+
+            foreach (var distro in distros)
+            {
+                Println(distro.ToString());
+            }*/
         }
 
 
@@ -165,7 +172,7 @@ namespace WSLMan
         private void OnCreateNewPressed(object sender, EventArgs e)
         {
             InstallNew installNew= new InstallNew();
-            installNew.ShowMe(this);
+            installNew.ShowMe(this, wsl);
         }
 
         private void Println(string str)

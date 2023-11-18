@@ -13,13 +13,17 @@ namespace WSLMan
 {
     public partial class InstallNew : Form
     {
+        private WSL wsl = null;
+
         public InstallNew()
         {
             InitializeComponent();
         }
 
-        public void ShowMe(ContainerControl parent)
+        public void ShowMe(ContainerControl parent, WSL wsl)
         {
+            this.wsl = wsl;
+
             if (parent != null) SimpleOverlay.ShowFX(parent);
             this.ShowDialog(parent);
             if (parent != null) SimpleOverlay.HideFX();
@@ -36,9 +40,9 @@ namespace WSLMan
             return base.ProcessDialogKey(keyData);
         }
 
-        private void listButton_Click(object sender, EventArgs e)
+        private async void listButton_Click(object sender, EventArgs e)
         {
-
+            await wsl.ListOnlineDistrosAsync();
         }
     }
 }

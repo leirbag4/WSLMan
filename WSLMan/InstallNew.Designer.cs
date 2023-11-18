@@ -32,8 +32,9 @@
             this.preinstalledRDButton = new System.Windows.Forms.RadioButton();
             this.customRDButton = new System.Windows.Forms.RadioButton();
             this.browseRDButton = new System.Windows.Forms.RadioButton();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.preinstalledList = new System.Windows.Forms.ListBox();
             this.listButton = new System.Windows.Forms.Button();
+            this.onlineRDButton = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -76,7 +77,7 @@
             // 
             this.browseRDButton.AutoSize = true;
             this.browseRDButton.ForeColor = System.Drawing.Color.Silver;
-            this.browseRDButton.Location = new System.Drawing.Point(245, 82);
+            this.browseRDButton.Location = new System.Drawing.Point(245, 109);
             this.browseRDButton.Name = "browseRDButton";
             this.browseRDButton.Size = new System.Drawing.Size(154, 24);
             this.browseRDButton.TabIndex = 5;
@@ -84,14 +85,17 @@
             this.browseRDButton.Text = "Browse new tag.gz";
             this.browseRDButton.UseVisualStyleBackColor = true;
             // 
-            // listBox1
+            // preinstalledList
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 20;
-            this.listBox1.Location = new System.Drawing.Point(258, 220);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(167, 124);
-            this.listBox1.TabIndex = 6;
+            this.preinstalledList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
+            this.preinstalledList.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.preinstalledList.ForeColor = System.Drawing.Color.Silver;
+            this.preinstalledList.FormattingEnabled = true;
+            this.preinstalledList.ItemHeight = 20;
+            this.preinstalledList.Location = new System.Drawing.Point(245, 167);
+            this.preinstalledList.Name = "preinstalledList";
+            this.preinstalledList.Size = new System.Drawing.Size(197, 180);
+            this.preinstalledList.TabIndex = 6;
             // 
             // listButton
             // 
@@ -107,14 +111,27 @@
             this.listButton.UseVisualStyleBackColor = false;
             this.listButton.Click += new System.EventHandler(this.listButton_Click);
             // 
+            // onlineRDButton
+            // 
+            this.onlineRDButton.AutoSize = true;
+            this.onlineRDButton.ForeColor = System.Drawing.Color.Silver;
+            this.onlineRDButton.Location = new System.Drawing.Point(245, 79);
+            this.onlineRDButton.Name = "onlineRDButton";
+            this.onlineRDButton.Size = new System.Drawing.Size(73, 24);
+            this.onlineRDButton.TabIndex = 8;
+            this.onlineRDButton.TabStop = true;
+            this.onlineRDButton.Text = "Online";
+            this.onlineRDButton.UseVisualStyleBackColor = true;
+            // 
             // InstallNew
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(889, 503);
+            this.Controls.Add(this.onlineRDButton);
             this.Controls.Add(this.listButton);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.preinstalledList);
             this.Controls.Add(this.browseRDButton);
             this.Controls.Add(this.customRDButton);
             this.Controls.Add(this.preinstalledRDButton);
@@ -134,7 +151,8 @@
         private RadioButton preinstalledRDButton;
         private RadioButton customRDButton;
         private RadioButton browseRDButton;
-        private ListBox listBox1;
+        private ListBox preinstalledList;
         private Button listButton;
+        private RadioButton onlineRDButton;
     }
 }

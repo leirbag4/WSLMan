@@ -6,10 +6,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WSLMan.Commands;
+using WSLMan.Commands.Results;
 using WSLMan.Register;
 
 namespace WSLMan
 {
+    // https://learn.microsoft.com/en-us/windows/wsl/basic-commands
+
     public class WSL
     {
         public List<DistroInfo> Distros;
@@ -49,11 +52,20 @@ namespace WSLMan
         {
             ListCmd cmd = new ListCmd();
             var result = await cmd.ListDistrosAsync(matchWithRegister);
+            Distros = result;
             CheckCmd(cmd);
 
             return result;
         }
 
+        public async Task<List<OnlineDistro>> ListOnlineDistrosAsync()
+        { 
+            ListOnlineCmd cmd = new ListOnlineCmd();
+            var result = await cmd.ListOnlineAsync();
+            CheckCmd(cmd);
+
+            return result;
+        }
 
         private void CheckCmd(BaseCmd cmd)
         {

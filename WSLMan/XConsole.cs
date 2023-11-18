@@ -93,6 +93,10 @@ namespace WSLMan
             Println(str, Color.Red);
         }
 
+        public static void PrintError(ErrorInfo error)
+        {
+            XConsole.PrintError(error.ToString());
+        }
         private static void _Println(String str, Color color)
         {
             int length = _outp.TextLength;  // at end of text

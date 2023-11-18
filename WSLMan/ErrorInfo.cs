@@ -10,16 +10,28 @@ namespace WSLMan
     public class ErrorInfo
     {
         public string Message { get; private set; } = "";
+        public Exception Exception { get; private set; } = null;
 
         public static ErrorInfo Create(string message)
         { 
-            ErrorInfo error = new ErrorInfo() { Message = message };
+            ErrorInfo error = new ErrorInfo() { Message = message, Exception = null };
+            return error;
+        }
+
+        public static ErrorInfo Create(string message, Exception exception)
+        {
+            ErrorInfo error = new ErrorInfo() { Message = message, Exception = exception };
             return error;
         }
 
         public override string ToString()
         {
-            return "Error -> msg: " + Message;
+            string str = "Error: " + Message;
+
+            if (Exception != null)
+                str += "\nException Msg: " + Exception.Message + "\nStackTrace: " + Exception.StackTrace;
+
+            return str;
         }
     }
 }

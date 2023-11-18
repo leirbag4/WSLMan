@@ -10,9 +10,7 @@ namespace WSLMan.Commands
 {
     public class ListCmd : BaseCmd
     {
-        public List<DistroInfo> Distros;
-        private CmdRun proc;
-
+        private List<DistroInfo> _distros;
         private bool _cmd_list_allowed = false;
         private bool _matchWithRegister = true;
 
@@ -25,7 +23,7 @@ namespace WSLMan.Commands
         {
             TaskCompletionSource<List<DistroInfo>> tcs = new TaskCompletionSource<List<DistroInfo>>();
 
-            Distros = new List<DistroInfo>();
+            _distros = new List<DistroInfo>();
 
             _cmd_list_allowed = false;
             _matchWithRegister = matchWithRegister;
@@ -63,7 +61,7 @@ namespace WSLMan.Commands
                         try
                         {
                             DistroInfo dinfo = new DistroInfo(parts[1], parts[2], parts[3], true);
-                            Distros.Add(dinfo);
+                            _distros.Add(dinfo);
                         }
                         catch (Exception e)
                         {
@@ -75,11 +73,11 @@ namespace WSLMan.Commands
                         try
                         {
                             DistroInfo dinfo = new DistroInfo(parts[0], parts[1], parts[2], false);
-                            Distros.Add(dinfo);
+                            _distros.Add(dinfo);
                         }
                         catch (Exception e)
                         {
-                            CallError("Can't parse all the distros. Line -> " + parts);
+                            CallError("Can't parse all the distros. Line -> " + parts, e);
                         }
                     }
 
@@ -91,13 +89,9 @@ namespace WSLMan.Commands
 
         private void OnListDataErrorReceived(string data)
         {
-            CallError("ERROR:" + data);
+            CallError("DataReceivedError -> " + data);
         }
 
-        /*private void OnComplete()
-        {
-            Println("[ENDS]");
-        }*/
         private void OnComplete(TaskCompletionSource<List<DistroInfo>> tcs)
         {
             if (_matchWithRegister)
@@ -106,7 +100,7 @@ namespace WSLMan.Commands
                 List<RegDistroInfo> regDistros = RegDistroLister.GetAll().ToList();
 
                 // now compare them with the returned by 'wsl --list -v' and do a mix
-                foreach (var distro in Distros)
+                foreach (var distro in _distros)
                 {
                     foreach (var regDistro in regDistros)
                     {
@@ -126,7 +120,7 @@ namespace WSLMan.Commands
             }
 
 
-            tcs.SetResult(Distros);
+            tcs.SetResult(_distros);
         }
     }
 }
