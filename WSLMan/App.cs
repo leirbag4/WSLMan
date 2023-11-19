@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
+using WSLMan.Distro;
 using WSLMan.Register;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -15,7 +16,7 @@ namespace WSLMan
         { 
             get 
             {
-                return distroList2.GetSelectedItem<DistroInfo>();
+                return distroList.GetSelectedItem<DistroInfo>();
             } 
         }
 
@@ -28,6 +29,8 @@ namespace WSLMan
 
         protected override void OnLoad(EventArgs e)
         {
+            SaveData.Initialize();
+
             XConsole.Setup(outp);
 
             wsl = new WSL();
@@ -36,31 +39,31 @@ namespace WSLMan
             stopButton.AssignClickableLabel(stopLabel);
             configButton.AssignClickableLabel(configLabel);
             createNewButton.AssignClickableLabel(createNewLabel);
+            removeButton.AssignClickableLabel(removeLabel);
 
-
-            createNewButton.PerformClick();
+            //createNewButton.PerformClick();
 
             base.OnLoad(e);
         }
 
         private void FillDistroList(List<DistroInfo> distros)
         {
-            distroList2.ClearItems();
+            distroList.ClearItems();
 
             foreach (DistroInfo distro in distros)
             {
-                distroList2.AddItem(distro, distro.Name, distro.State.ToString(), distro.Version.ToString());
+                distroList.AddItem(distro, distro.Name, distro.State.ToString(), distro.Version.ToString());
             }
 
         }
 
         private void SelectDistroIndex(DistroInfo distro)
         {
-            for (int a = 0; a < distroList2.Items.Count; a++)
+            for (int a = 0; a < distroList.Items.Count; a++)
             {
-                if ((distroList2.Items[a].Tag as DistroInfo).Hash == distro.Hash)
+                if ((distroList.Items[a].Tag as DistroInfo).Hash == distro.Hash)
                 {
-                    distroList2.SelectByIndex(a);
+                    distroList.SelectByIndex(a);
                     break;
                 }
             }
@@ -76,9 +79,10 @@ namespace WSLMan
                 stateLabel.Text =       "";
                 versionLabel.Text =     "";
                 uidLabel.Text =         "";
-                startButton.Enabled =    false;
+                startButton.Enabled =   false;
                 stopButton.Enabled =    false;
                 configButton.Enabled =  false;
+                removeButton.Enabled =  false;
             }
             else
             {
@@ -88,9 +92,10 @@ namespace WSLMan
                 stateLabel.Text =       distro.State.ToString();
                 versionLabel.Text =     distro.Version.ToString();
                 uidLabel.Text =         distro.DefaultUid.ToString();
-                startButton.Enabled =    true;
+                startButton.Enabled =   true;
                 stopButton.Enabled =    true;
                 configButton.Enabled =  true;
+                removeButton.Enabled =  true;
             }
         }
 
@@ -151,6 +156,11 @@ namespace WSLMan
             
             Println(output);
             await RefreshDistrosList();
+        }
+
+        private void OnRemovePressed(object sender, EventArgs e)
+        {
+
         }
 
         private void OnConfigPressed(object sender, EventArgs e)

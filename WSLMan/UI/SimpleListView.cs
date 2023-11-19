@@ -22,6 +22,11 @@ namespace WSLMan.UI
             //set; 
         }
 
+        public void ClearSelection()
+        { 
+            SelectedItems.Clear();
+        }
+
         public SimpleListView()
         {
             BackColor =     Color.FromArgb(50, 50, 50);

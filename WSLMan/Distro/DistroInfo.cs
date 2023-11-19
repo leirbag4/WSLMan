@@ -5,11 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using WSLMan.Register;
 
-namespace WSLMan
+namespace WSLMan.Distro
 {
-    public class DistroInfo
+    public class DistroInfo : DistroBase
     {
-        public string Name { get; private set; }
         public DistroState State { get; private set; }
         public int Version { get; private set; }
         public bool Default { get; private set; }
@@ -24,7 +23,7 @@ namespace WSLMan
 
         public DistroInfo(string name, string state, string version, bool isDefault)
         {
-            Name =      name;
+            Name = name;
 
             int ver = -1;
             if (int.TryParse(version, out ver))

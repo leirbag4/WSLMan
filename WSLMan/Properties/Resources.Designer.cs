@@ -83,9 +83,29 @@ namespace WSLMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap folder_button_mini {
+            get {
+                object obj = ResourceManager.GetObject("folder_button_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap play_button_med {
             get {
                 object obj = ResourceManager.GetObject("play_button_med", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap remove_button_med {
+            get {
+                object obj = ResourceManager.GetObject("remove_button_med", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

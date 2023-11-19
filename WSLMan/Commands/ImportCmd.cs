@@ -8,12 +8,11 @@ using WSLMan.Distro;
 
 namespace WSLMan.Commands
 {
-    public class StartCmd : BaseCmd
+    public class ImportCmd : BaseCmd
     {
-
-        public void StartDistro(DistroInfo distro)
+        public void Import(string customName, string destinationFolder, string inputFilename)
         {
-            string fullCommand = "-d " + distro.Name;
+            string fullCommand = "--import " + customName + " " + destinationFolder + " " + inputFilename;
 
             ProcessStartInfo psi = new ProcessStartInfo
             {
@@ -26,10 +25,10 @@ namespace WSLMan.Commands
                 //RedirectStandardError = true
             };
 
+            Println("wsl " + fullCommand);
+
             Process process = new Process { StartInfo = psi };
             process.Start();
         }
-
-
     }
 }

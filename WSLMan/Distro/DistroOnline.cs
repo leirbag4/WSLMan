@@ -4,14 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace WSLMan.Commands.Results
+namespace WSLMan.Distro
 {
-    public class OnlineDistro
+    public class DistroOnline : DistroBase
     {
-        public string Name { get; private set; }
         public string FriendlyName { get; private set; }
 
-        public OnlineDistro(string name, string friendlyName)
+        public DistroOnline(string name, string friendlyName)
         {
             Name = name;
             FriendlyName = friendlyName;

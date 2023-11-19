@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WSLMan.Commands;
-using WSLMan.Commands.Results;
+using WSLMan.Distro;
 using WSLMan.Register;
 
 namespace WSLMan
@@ -58,13 +58,46 @@ namespace WSLMan
             return result;
         }
 
-        public async Task<List<OnlineDistro>> ListOnlineDistrosAsync()
+        public async Task<List<DistroOnline>> ListOnlineDistrosAsync()
         { 
             ListOnlineCmd cmd = new ListOnlineCmd();
             var result = await cmd.ListOnlineAsync();
             CheckCmd(cmd);
 
             return result;
+        }
+
+        public List<DistroPackage> GetCustomDistroPackages()
+        {
+            var packages = new List<DistroPackage>();
+            string path = SaveData.CustomPackageDirPath;
+
+            if (path.Trim() == "")
+            {
+                // do nothing
+            }
+            else if (!Directory.Exists(path))
+            {
+                // do nothing
+            }
+            else
+            {
+                string[] distroFiles = Directory.GetFiles(path);
+
+                foreach (var fullFilename in distroFiles)
+                {
+                    packages.Add(new DistroPackage(Path.GetFileName(fullFilename), fullFilename));
+                }
+            }
+
+            return packages;
+        }
+
+        public void ImportDistro(string customName, string destinationFolder, string inputFilename)
+        {
+            ImportCmd cmd = new ImportCmd();
+            cmd.Import(customName, destinationFolder, inputFilename);
+            CheckCmd(cmd);
         }
 
         private void CheckCmd(BaseCmd cmd)

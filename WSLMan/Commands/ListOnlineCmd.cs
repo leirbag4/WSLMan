@@ -4,21 +4,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WSLMan.Commands.Results;
+using WSLMan.Distro;
 using WSLMan.Register;
 
 namespace WSLMan.Commands
 {
     public class ListOnlineCmd : BaseCmd
     {
-        List<OnlineDistro> _distros;
+        List<DistroOnline> _distros;
         private bool _cmd_list_allowed = false;
 
-        public async Task<List<OnlineDistro>> ListOnlineAsync()
+        public async Task<List<DistroOnline>> ListOnlineAsync()
         {
-            TaskCompletionSource<List<OnlineDistro>> tcs = new TaskCompletionSource<List<OnlineDistro>>();
+            TaskCompletionSource<List<DistroOnline>> tcs = new TaskCompletionSource<List<DistroOnline>>();
 
-            _distros = new List<OnlineDistro>();
+            _distros = new List<DistroOnline>();
 
             _cmd_list_allowed = false;
             //_matchWithRegister = matchWithRegister;
@@ -49,15 +49,15 @@ namespace WSLMan.Commands
                     }
                     else if (_cmd_list_allowed)
                     {
-                        OnlineDistro distro;
+                        DistroOnline distro;
 
                         if (parts.Length >= 2)
                         {
-                            distro = new OnlineDistro(parts[0].Trim(), string.Join(" ", parts.Skip(1)).Trim());
+                            distro = new DistroOnline(parts[0].Trim(), string.Join(" ", parts.Skip(1)).Trim());
                         }
                         else
                         {
-                            distro = new OnlineDistro(parts[0].Trim(), parts[1].Trim());
+                            distro = new DistroOnline(parts[0].Trim(), parts[1].Trim());
                         }
 
                         _distros.Add(distro);
@@ -74,7 +74,7 @@ namespace WSLMan.Commands
             CallError("DataReceivedError -> " + data);
         }
 
-        private void OnComplete(TaskCompletionSource<List<OnlineDistro>> tcs)
+        private void OnComplete(TaskCompletionSource<List<DistroOnline>> tcs)
         {
             tcs.SetResult(_distros);
         }

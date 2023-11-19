@@ -30,6 +30,10 @@
         {
             this.listButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.distroList = new WSLMan.UI.SimpleListView();
+            this._colName = new System.Windows.Forms.ColumnHeader();
+            this._colState = new System.Windows.Forms.ColumnHeader();
+            this._colVersion = new System.Windows.Forms.ColumnHeader();
             this.outp = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -53,10 +57,8 @@
             this.configLabel = new System.Windows.Forms.Label();
             this.createNewLabel = new System.Windows.Forms.Label();
             this.createNewButton = new WSLMan.UI.PictureButton();
-            this.distroList2 = new WSLMan.UI.SimpleListView();
-            this._colName = new System.Windows.Forms.ColumnHeader();
-            this._colState = new System.Windows.Forms.ColumnHeader();
-            this._colVersion = new System.Windows.Forms.ColumnHeader();
+            this.removeLabel = new System.Windows.Forms.Label();
+            this.removeButton = new WSLMan.UI.PictureButton();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -79,7 +81,7 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.Controls.Add(this.distroList2);
+            this.groupBox1.Controls.Add(this.distroList);
             this.groupBox1.ForeColor = System.Drawing.Color.White;
             this.groupBox1.Location = new System.Drawing.Point(12, 1);
             this.groupBox1.Name = "groupBox1";
@@ -87,6 +89,38 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Distros";
+            // 
+            // distroList
+            // 
+            this.distroList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.distroList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this._colName,
+            this._colState,
+            this._colVersion});
+            this.distroList.ForeColor = System.Drawing.Color.White;
+            this.distroList.FullRowSelect = true;
+            this.distroList.Location = new System.Drawing.Point(15, 36);
+            this.distroList.MultiSelect = false;
+            this.distroList.Name = "distroList";
+            this.distroList.Size = new System.Drawing.Size(365, 280);
+            this.distroList.TabIndex = 17;
+            this.distroList.UseCompatibleStateImageBehavior = false;
+            this.distroList.View = System.Windows.Forms.View.Details;
+            this.distroList.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
+            // 
+            // _colName
+            // 
+            this._colName.Text = "Name";
+            this._colName.Width = 180;
+            // 
+            // _colState
+            // 
+            this._colState.Text = "State";
+            this._colState.Width = 120;
+            // 
+            // _colVersion
+            // 
+            this._colVersion.Text = "Version";
             // 
             // outp
             // 
@@ -291,7 +325,7 @@
             this.startLabel.ForeColor = System.Drawing.Color.SlateBlue;
             this.startLabel.Location = new System.Drawing.Point(460, 171);
             this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(88, 40);
+            this.startLabel.Size = new System.Drawing.Size(96, 40);
             this.startLabel.TabIndex = 11;
             this.startLabel.Text = "Start distro";
             this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -304,7 +338,7 @@
             this.stopLabel.ForeColor = System.Drawing.Color.SlateBlue;
             this.stopLabel.Location = new System.Drawing.Point(460, 217);
             this.stopLabel.Name = "stopLabel";
-            this.stopLabel.Size = new System.Drawing.Size(86, 40);
+            this.stopLabel.Size = new System.Drawing.Size(94, 40);
             this.stopLabel.TabIndex = 12;
             this.stopLabel.Text = "Stop distro";
             this.stopLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -339,9 +373,9 @@
             this.createNewLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.createNewLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.createNewLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.createNewLabel.Location = new System.Drawing.Point(663, 171);
+            this.createNewLabel.Location = new System.Drawing.Point(657, 171);
             this.createNewLabel.Name = "createNewLabel";
-            this.createNewLabel.Size = new System.Drawing.Size(93, 40);
+            this.createNewLabel.Size = new System.Drawing.Size(116, 40);
             this.createNewLabel.TabIndex = 16;
             this.createNewLabel.Text = "Create NEW";
             this.createNewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -350,44 +384,37 @@
             // 
             this.createNewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createNewButton.Image = global::WSLMan.Properties.Resources.add_button_med;
-            this.createNewButton.Location = new System.Drawing.Point(617, 171);
+            this.createNewButton.Location = new System.Drawing.Point(611, 171);
             this.createNewButton.Name = "createNewButton";
             this.createNewButton.Size = new System.Drawing.Size(40, 40);
             this.createNewButton.TabIndex = 15;
             this.createNewButton.UseVisualStyleBackColor = true;
             this.createNewButton.Click += new System.EventHandler(this.OnCreateNewPressed);
             // 
-            // distroList2
+            // removeDistroLabel
             // 
-            this.distroList2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.distroList2.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._colName,
-            this._colState,
-            this._colVersion});
-            this.distroList2.ForeColor = System.Drawing.Color.White;
-            this.distroList2.FullRowSelect = true;
-            this.distroList2.Location = new System.Drawing.Point(15, 36);
-            this.distroList2.MultiSelect = false;
-            this.distroList2.Name = "distroList2";
-            this.distroList2.Size = new System.Drawing.Size(365, 280);
-            this.distroList2.TabIndex = 17;
-            this.distroList2.UseCompatibleStateImageBehavior = false;
-            this.distroList2.View = System.Windows.Forms.View.Details;
-            this.distroList2.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
+            this.removeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.removeLabel.Enabled = false;
+            this.removeLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.removeLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.removeLabel.Location = new System.Drawing.Point(657, 217);
+            this.removeLabel.Name = "removeDistroLabel";
+            this.removeLabel.Size = new System.Drawing.Size(116, 40);
+            this.removeLabel.TabIndex = 18;
+            this.removeLabel.Text = "Remove distro";
+            this.removeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // _colName
+            // removeButton
             // 
-            this._colName.Text = "Name";
-            this._colName.Width = 180;
-            // 
-            // _colState
-            // 
-            this._colState.Text = "State";
-            this._colState.Width = 120;
-            // 
-            // _colVersion
-            // 
-            this._colVersion.Text = "Version";
+            this.removeButton.Enabled = false;
+            this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.removeButton.Image = global::WSLMan.Properties.Resources.remove_button_med;
+            this.removeButton.Location = new System.Drawing.Point(611, 217);
+            this.removeButton.Name = "removeButton";
+            this.removeButton.Size = new System.Drawing.Size(40, 40);
+            this.removeButton.TabIndex = 17;
+            this.removeButton.UseVisualStyleBackColor = true;
+            this.removeButton.Click += new System.EventHandler(this.OnRemovePressed);
             // 
             // App
             // 
@@ -395,6 +422,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(791, 654);
+            this.Controls.Add(this.removeLabel);
+            this.Controls.Add(this.removeButton);
             this.Controls.Add(this.createNewLabel);
             this.Controls.Add(this.createNewButton);
             this.Controls.Add(this.configLabel);
@@ -444,9 +473,11 @@
         private Label configLabel;
         private Label createNewLabel;
         private UI.PictureButton createNewButton;
-        private UI.SimpleListView distroList2;
+        private UI.SimpleListView distroList;
         private ColumnHeader _colName;
         private ColumnHeader _colState;
         private ColumnHeader _colVersion;
+        private Label removeLabel;
+        private UI.PictureButton removeButton;
     }
 }
