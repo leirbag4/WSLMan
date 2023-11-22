@@ -9,10 +9,22 @@ namespace WSLMan
     public class XConsole
     {
         private static RichTextBox _outp;
+        private static RichTextBox _savedOutp;
 
-        public static void Setup(RichTextBox outp)
+
+        public static void SetOutput(RichTextBox outp)
         {
             _outp = outp;
+        }
+
+        public static void Push()
+        {
+            _savedOutp = _outp;
+        }
+
+        public static void Pop()
+        {
+            _outp = _savedOutp;
         }
 
         public static void Alert(string str)

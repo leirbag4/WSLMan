@@ -93,11 +93,29 @@ namespace WSLMan
             return packages;
         }
 
-        public void ImportDistro(string customName, string destinationFolder, string inputFilename)
+        /*public void ImportDistro(string customName, string destinationFolder, string inputFilename)
         {
             ImportCmd cmd = new ImportCmd();
             cmd.Import(customName, destinationFolder, inputFilename);
             CheckCmd(cmd);
+        }*/
+
+        public async Task<bool> ImportDistro(string customName, string destinationFolder, string inputFilename)
+        {
+            ImportCmd cmd = new ImportCmd();
+            var result = await cmd.Import(customName, destinationFolder, inputFilename);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<bool> Unregister(string distroName)
+        {
+            UnregisterCmd cmd = new UnregisterCmd();
+            var result = await cmd.Unregister(distroName);
+            CheckCmd(cmd);
+
+            return result;
         }
 
         private void CheckCmd(BaseCmd cmd)

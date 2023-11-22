@@ -4,7 +4,9 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using WSLMan.Distro;
+using WSLMan.Properties;
 using WSLMan.Register;
+using WSLMan.UI;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WSLMan
@@ -20,7 +22,15 @@ namespace WSLMan
             } 
         }
 
+        private bool Error { get; set; } = false;
+        private ErrorInfo ErrorInfo { get; set; } = null;
         private WSL wsl;
+        
+        private ContextMenuStrip ctxMenuDistroList;
+        private ToolStripMenuItem ctxDuplicateItem;
+        private ToolStripMenuItem ctxUnregisterItem;
+        private ToolStripMenuItem ctxOpenLocationItem;
+
 
         public App()
         {
@@ -31,7 +41,7 @@ namespace WSLMan
         {
             SaveData.Initialize();
 
-            XConsole.Setup(outp);
+            XConsole.SetOutput(outp);
 
             wsl = new WSL();
 
@@ -41,9 +51,68 @@ namespace WSLMan
             createNewButton.AssignClickableLabel(createNewLabel);
             removeButton.AssignClickableLabel(removeLabel);
 
+            distroList.MouseUp += OnDistroListMouseUp;
+
+            InitContextMenu();
+
             //createNewButton.PerformClick();
 
+
             base.OnLoad(e);
+        }
+
+        private void OnDistroListMouseUp(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                var distro = CurrentDistro;
+
+                if (distro != null)
+                {
+                    Point mousePos = distroList.PointToClient(Cursor.Position);
+                    ctxMenuDistroList.Show(distroList, mousePos);
+                }
+            }
+        }
+
+        private void InitContextMenu()
+        {
+            ctxDuplicateItem = new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
+            ctxUnregisterItem = new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
+            ctxOpenLocationItem = new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
+
+            ctxMenuDistroList = new ContextMenuStrip();
+            ctxMenuDistroList.ForeColor = Color.Silver;
+            ctxMenuDistroList.Renderer = new WSLMan.UI.Renderer.ToolStripRenderer();
+            
+            AddDefaultContextMenuItems();
+        }
+
+        public void AddDefaultContextMenuItems()
+        {
+            //this.ContextMenuStrip.Items.AddRange(new ToolStripMenuItem[] { ctxDuplicateItem, new ToolStripMenuItem("-"), ctxUnregisterItem});
+
+            ctxMenuDistroList.Items.Add(ctxDuplicateItem);
+            ctxMenuDistroList.Items.Add(new ToolStripSeparator());
+            ctxMenuDistroList.Items.Add(ctxUnregisterItem);
+            ctxMenuDistroList.Items.Add(ctxOpenLocationItem);
+
+        }
+
+        private void OnCtxRemovePressed(object sender, EventArgs e)
+        {
+            OnRemovePressed(null, EventArgs.Empty);
+        }
+
+        private void OnCtxDuplicatePressed(object sender, EventArgs e)
+        { 
+        
+        }
+
+        private void OnCtxOpenLocationPressed(object sender, EventArgs e)
+        {
+            string path = '"' + pathOutp.Text + '"';
+            Process.Start("Explorer.exe", path);
         }
 
         private void FillDistroList(List<DistroInfo> distros)
@@ -158,9 +227,29 @@ namespace WSLMan
             await RefreshDistrosList();
         }
 
-        private void OnRemovePressed(object sender, EventArgs e)
+        private async void OnRemovePressed(object sender, EventArgs e)
         {
+            var result = MessageBox.Show("Do you really want to remove '" + CurrentDistro.Name + "'?/nThis will unregister your distro and all your stored data will be deleted.", "Remove Distro", MessageBoxButtons.YesNoCancel);
 
+            if (result == DialogResult.Yes)
+            {
+                SimpleOverlay.ShowFX(this);
+                bool unregistered = await wsl.Unregister(CurrentDistro.Name);
+                if (unregistered)
+                {
+                    try
+                    {
+                        Directory.Delete(CurrentDistro.Path, true);
+                    }
+                    catch (Exception ex)
+                    {
+                        CallError("Can't delete directory '" + CurrentDistro.Path + "'", ex);
+                    }
+                }
+
+                await RefreshDistrosList();
+                SimpleOverlay.HideFX();                
+            }
         }
 
         private void OnConfigPressed(object sender, EventArgs e)
@@ -174,21 +263,52 @@ namespace WSLMan
             installNew.ShowMe(this, wsl);
         }
 
-        private void Println(string str)
+
+
+        protected void CallError(string str)
+        {
+            ErrorInfo = ErrorInfo.Create(str);
+            Error = true;
+            PrintError(ErrorInfo);
+        }
+
+        protected void CallError(string str, Exception e)
+        {
+            ErrorInfo = ErrorInfo.Create(str, e);
+            Error = true;
+            PrintError(ErrorInfo);
+        }
+
+
+        protected void Clear()
+        { 
+            XConsole.Clear();
+        }
+        protected void Print(string str)
+        {
+            XConsole.Print(str);
+        }
+
+        protected void Println(string str)
         {
             XConsole.Println(str);
         }
 
-        private void Clear()
+        protected void PrintError(string str)
         {
-            XConsole.Clear();
+            XConsole.PrintError(str);
         }
 
-        private void Alert(string str)
+        protected void PrintError(ErrorInfo error)
+        {
+            XConsole.PrintError(error);
+        }
+
+        protected void Alert(string str)
         {
             XConsole.Alert(str);
         }
 
-        
+
     }
 }

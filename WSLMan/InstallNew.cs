@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WSLMan.Commands.Props;
 using WSLMan.Distro;
 using WSLMan.UI;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -42,6 +43,9 @@ namespace WSLMan
         public ErrorInfo ErrorInfo { get; private set; } = null;
 
         private string CustomName { get { return customNameInput.Text.Trim(); } }
+
+        private ProgressPanel progressPanel;
+        private ImportCmdProp _importCmdProp;
 
         private WSL wsl = null;
 
@@ -142,6 +146,7 @@ namespace WSLMan
 
         private async void OnRefreshListPressed(object sender, EventArgs e)
         {
+
             if (CurrState == State.Preinstalled)
             {
                 await RefreshDistroPreinstalled();
@@ -295,7 +300,12 @@ namespace WSLMan
             Println("isa: " + distro);
         }
 
-        private void InstallDistroPackages()
+        
+
+        
+        
+
+        private async void InstallDistroPackages()
         {
             DistroPackage distro = distroList.GetSelectedItem<DistroPackage>();
             string installDirPath = outputPathOutp.Text;
@@ -306,8 +316,25 @@ namespace WSLMan
 
             installDirPath += "\\" + CustomName;
 
-            wsl.ImportDistro('"' + CustomName + '"', '"' + installDirPath + '"', '"' + distro.Path + '"');
+            _importCmdProp = new ImportCmdProp() { CustomName = '"' + CustomName + '"', DestinationFolder = '"' + installDirPath + '"', InputFilename = '"' + distro.Path + '"' };
+
+            progressPanel = new ProgressPanel();
+            progressPanel.Opened += InstallDistroPackagesOpened;
+            progressPanel.ShowMe(this, wsl);
+            return;
+
+            //wsl.ImportDistro('"' + CustomName + '"', '"' + installDirPath + '"', '"' + distro.Path + '"');
         }
+
+        private async void InstallDistroPackagesOpened()
+        {
+            await wsl.ImportDistro(_importCmdProp.CustomName, _importCmdProp.DestinationFolder, _importCmdProp.InputFilename);
+
+            progressPanel.SetAsFinished();
+            //Alert("name:" + _importCmdProp.CustomName);
+        }
+
+
 
         private void InstallDistroOnline()
         {

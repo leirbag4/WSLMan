@@ -1,42 +1,19 @@
 ﻿using CommandLauncher;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using WSLMan.Distro;
 
 namespace WSLMan.Commands
 {
-    public class ImportCmd : BaseCmd
+    public class UnregisterCmd : BaseCmd
     {
-        /*public void Import(string customName, string destinationFolder, string inputFilename)
-        {
-            string fullCommand = "--import " + customName + " " + destinationFolder + " " + inputFilename;
-
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "wsl",
-                Arguments = fullCommand,
-                //RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = false,
-                //RedirectStandardOutput = true,
-                //RedirectStandardError = true
-            };
-
-            Println("wsl " + fullCommand);
-
-            Process process = new Process { StartInfo = psi };
-            process.Start();
-        }*/
-
-        public async Task<bool> Import(string customName, string destinationFolder, string inputFilename)
+        public async Task<bool> Unregister(string distroName)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
-            string fullCommand = "--import " + customName + " " + destinationFolder + " " + inputFilename;
+            string fullCommand = "--unregister " + distroName;
 
             XConsole.Println(fullCommand);
 
@@ -62,7 +39,7 @@ namespace WSLMan.Commands
             }
             catch (Exception e)
             {
-                CallError("Can't parse 'wsl --list --online'", e);
+                CallError("Can't parse 'wsl " + proc.Arguments + "'", e);
             }
         }
 
