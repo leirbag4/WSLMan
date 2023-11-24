@@ -1,4 +1,5 @@
 using CommandLauncher;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -41,6 +42,8 @@ namespace WSLMan
         protected override void OnLoad(EventArgs e)
         {
             SaveData.Initialize();
+
+            appVersionLabel.Text = "version: " + Application.ProductVersion;
 
             XConsole.SetOutput(outp);
 

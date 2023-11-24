@@ -63,7 +63,7 @@
             this.openLocationLabel = new System.Windows.Forms.Label();
             this.openLocationButton = new WSLMan.UI.PictureButton();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label5 = new System.Windows.Forms.Label();
+            this.appVersionLabel = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -458,15 +458,15 @@
             this.pictureBox1.TabIndex = 21;
             this.pictureBox1.TabStop = false;
             // 
-            // label5
+            // appVersionLabel
             // 
-            this.label5.AutoSize = true;
-            this.label5.ForeColor = System.Drawing.Color.Silver;
-            this.label5.Location = new System.Drawing.Point(680, 44);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(93, 20);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "version: 0.2.0";
+            this.appVersionLabel.AutoSize = true;
+            this.appVersionLabel.ForeColor = System.Drawing.Color.Silver;
+            this.appVersionLabel.Location = new System.Drawing.Point(680, 44);
+            this.appVersionLabel.Name = "appVersionLabel";
+            this.appVersionLabel.Size = new System.Drawing.Size(93, 20);
+            this.appVersionLabel.TabIndex = 12;
+            this.appVersionLabel.Text = "version: 0.2.0";
             // 
             // label7
             // 
@@ -485,7 +485,7 @@
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(791, 654);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label5);
+            this.Controls.Add(this.appVersionLabel);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.openLocationLabel);
             this.Controls.Add(this.openLocationButton);
@@ -552,7 +552,7 @@
         private Label openLocationLabel;
         private UI.PictureButton openLocationButton;
         private PictureBox pictureBox1;
-        private Label label5;
+        private Label appVersionLabel;
         private Label label7;
     }
 }
