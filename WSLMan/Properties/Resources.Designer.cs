@@ -103,6 +103,16 @@ namespace WSLMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap ctx_tick_button_mini {
+            get {
+                object obj = ResourceManager.GetObject("ctx_tick_button_mini", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap duplicate_button_med {
             get {
                 object obj = ResourceManager.GetObject("duplicate_button_med", resourceCulture);

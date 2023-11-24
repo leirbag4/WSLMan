@@ -78,7 +78,7 @@ namespace WSLMan
 
         private void InitContextMenu()
         {
-            ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_remove_button_mini, OnCtxSetDefaultPressed);
+            ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
             ctxDuplicateItem =      new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
             ctxUnregisterItem =     new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
             ctxOpenLocationItem =   new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
