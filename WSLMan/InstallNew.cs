@@ -38,6 +38,7 @@ namespace WSLMan
             //set; 
         }
 
+        public bool NewDistroInstalled { get; private set; } = false;
 
         public bool Error { get; private set; }
         public ErrorInfo ErrorInfo { get; private set; } = null;
@@ -58,6 +59,7 @@ namespace WSLMan
         public void ShowMe(ContainerControl parent, WSL wsl)
         {
             this.wsl = wsl;
+            this.NewDistroInstalled = false;
 
             if (parent != null) SimpleOverlay.ShowFX(parent);
             this.ShowDialog(parent);
@@ -332,6 +334,7 @@ namespace WSLMan
             await wsl.Import(_importCmdProp.CustomName, _importCmdProp.DestinationFolder, _importCmdProp.InputFilename);
 
             progressPanel.SetAsFinished();
+            NewDistroInstalled = true;
             //Alert("name:" + _importCmdProp.CustomName);
         }
 

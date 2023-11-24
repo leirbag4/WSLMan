@@ -51,13 +51,14 @@ namespace WSLMan
             configButton.AssignClickableLabel(configLabel);
             createNewButton.AssignClickableLabel(createNewLabel);
             removeButton.AssignClickableLabel(removeLabel);
+            openLocationButton.AssignClickableLabel(openLocationLabel);
 
             distroList.MouseUp += OnDistroListMouseUp;
 
             InitContextMenu();
 
             //createNewButton.PerformClick();
-
+            RefreshDistrosList();
 
             base.OnLoad(e);
         }
@@ -115,9 +116,6 @@ namespace WSLMan
 
         private async void OnCtxClonePressed(object sender, EventArgs e)
         {
-            
-
-
 
             ClonePanel clonePanel = new ClonePanel();
             clonePanel.ShowMe(this);
@@ -144,7 +142,7 @@ namespace WSLMan
                     CallError("Can't delete file: " + clonedFileName);
                 }
 
-                RefreshDistrosList();
+                await RefreshDistrosList();
 
                 SimpleOverlay.HideFX();
                 
@@ -153,8 +151,7 @@ namespace WSLMan
 
         private void OnCtxOpenLocationPressed(object sender, EventArgs e)
         {
-            string path = '"' + pathOutp.Text + '"';
-            Process.Start("Explorer.exe", path);
+            OnOpenLocationPressed(null, EventArgs.Empty);
         }
 
         private void FillDistroList(List<DistroInfo> distros)
@@ -194,29 +191,31 @@ namespace WSLMan
         {
             if (distro == null)
             {
-                nameOutp.Text =         "";
-                hashOutp.Text =         "";
-                pathOutp.Text =         "";
-                stateLabel.Text =       "";
-                versionLabel.Text =     "";
-                uidLabel.Text =         "";
-                startButton.Enabled =   false;
-                stopButton.Enabled =    false;
-                configButton.Enabled =  false;
-                removeButton.Enabled =  false;
+                nameOutp.Text =                 "";
+                hashOutp.Text =                 "";
+                pathOutp.Text =                 "";
+                stateLabel.Text =               "";
+                versionLabel.Text =             "";
+                uidLabel.Text =                 "";
+                startButton.Enabled =           false;
+                stopButton.Enabled =            false;
+                configButton.Enabled =          false;
+                removeButton.Enabled =          false;
+                openLocationButton.Enabled =    false;
             }
             else
             {
-                nameOutp.Text =         distro.Name;
-                hashOutp.Text =         distro.Hash;
-                pathOutp.Text =         distro.Path;
-                stateLabel.Text =       distro.State.ToString();
-                versionLabel.Text =     distro.Version.ToString();
-                uidLabel.Text =         distro.DefaultUid.ToString();
-                startButton.Enabled =   true;
-                stopButton.Enabled =    true;
-                configButton.Enabled =  true;
-                removeButton.Enabled =  true;
+                nameOutp.Text =                 distro.Name;
+                hashOutp.Text =                 distro.Hash;
+                pathOutp.Text =                 distro.Path;
+                stateLabel.Text =               distro.State.ToString();
+                versionLabel.Text =             distro.Version.ToString();
+                uidLabel.Text =                 distro.DefaultUid.ToString();
+                startButton.Enabled =           true;
+                stopButton.Enabled =            true;
+                configButton.Enabled =          true;
+                removeButton.Enabled =          true;
+                openLocationButton.Enabled =    true;
             }
         }
 
@@ -304,15 +303,24 @@ namespace WSLMan
             }
         }
 
+        private void OnOpenLocationPressed(object sender, EventArgs e)
+        {
+            string path = '"' + pathOutp.Text + '"';
+            Process.Start("Explorer.exe", path);
+        }
+
         private void OnConfigPressed(object sender, EventArgs e)
         {
 
         }
 
-        private void OnCreateNewPressed(object sender, EventArgs e)
+        private async void OnCreateNewPressed(object sender, EventArgs e)
         {
             InstallNew installNew= new InstallNew();
             installNew.ShowMe(this, wsl);
+
+            if(installNew.NewDistroInstalled)
+                await RefreshDistrosList();
         }
 
         private void OnDistroListDoubleClick(object sender, MouseEventArgs e)

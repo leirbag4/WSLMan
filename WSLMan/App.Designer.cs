@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
             this.listButton = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.distroList = new WSLMan.UI.SimpleListView();
@@ -59,8 +60,14 @@
             this.createNewButton = new WSLMan.UI.PictureButton();
             this.removeLabel = new System.Windows.Forms.Label();
             this.removeButton = new WSLMan.UI.PictureButton();
+            this.openLocationLabel = new System.Windows.Forms.Label();
+            this.openLocationButton = new WSLMan.UI.PictureButton();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // listButton
@@ -417,12 +424,71 @@
             this.removeButton.UseVisualStyleBackColor = true;
             this.removeButton.Click += new System.EventHandler(this.OnRemovePressed);
             // 
+            // openLocationLabel
+            // 
+            this.openLocationLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.openLocationLabel.Enabled = false;
+            this.openLocationLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.openLocationLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.openLocationLabel.Location = new System.Drawing.Point(657, 264);
+            this.openLocationLabel.Name = "openLocationLabel";
+            this.openLocationLabel.Size = new System.Drawing.Size(122, 40);
+            this.openLocationLabel.TabIndex = 20;
+            this.openLocationLabel.Text = "Open Location";
+            this.openLocationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // openLocationButton
+            // 
+            this.openLocationButton.Enabled = false;
+            this.openLocationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.openLocationButton.Image = global::WSLMan.Properties.Resources.folder_button_med;
+            this.openLocationButton.Location = new System.Drawing.Point(611, 264);
+            this.openLocationButton.Name = "openLocationButton";
+            this.openLocationButton.Size = new System.Drawing.Size(40, 40);
+            this.openLocationButton.TabIndex = 19;
+            this.openLocationButton.UseVisualStyleBackColor = true;
+            this.openLocationButton.Click += new System.EventHandler(this.OnOpenLocationPressed);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::WSLMan.Properties.Resources.flat_logo_small;
+            this.pictureBox1.Location = new System.Drawing.Point(421, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(131, 60);
+            this.pictureBox1.TabIndex = 21;
+            this.pictureBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.Color.Silver;
+            this.label5.Location = new System.Drawing.Point(680, 44);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(93, 20);
+            this.label5.TabIndex = 12;
+            this.label5.Text = "version: 0.2.0";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.ForeColor = System.Drawing.Color.Silver;
+            this.label7.Location = new System.Drawing.Point(680, 19);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(67, 20);
+            this.label7.TabIndex = 22;
+            this.label7.Text = "WSLMan";
+            // 
             // App
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
             this.ClientSize = new System.Drawing.Size(791, 654);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.pictureBox1);
+            this.Controls.Add(this.openLocationLabel);
+            this.Controls.Add(this.openLocationButton);
             this.Controls.Add(this.removeLabel);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.createNewLabel);
@@ -438,12 +504,15 @@
             this.Controls.Add(this.outp);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.listButton);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "App";
             this.Text = "WSLMan";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -480,5 +549,10 @@
         private ColumnHeader _colVersion;
         private Label removeLabel;
         private UI.PictureButton removeButton;
+        private Label openLocationLabel;
+        private UI.PictureButton openLocationButton;
+        private PictureBox pictureBox1;
+        private Label label5;
+        private Label label7;
     }
 }
