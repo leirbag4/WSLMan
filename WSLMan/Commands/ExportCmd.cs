@@ -13,7 +13,7 @@ namespace WSLMan.Commands
         public async Task<ExportCmdResult> Export(string distroName, string fileName)
         {
 
-            ExportCmdResult result = await CreateCommand<ExportCmdResult>("--export", distroName + " \"" + fileName + "\"");
+            ExportCmdResult result = await CreateCommand<ExportCmdResult>("--export", _quotes(distroName) + " " + _quotes(fileName));
 
             return result;
         }

@@ -48,7 +48,7 @@
             this.outputPathButton = new WSLMan.UI.PictureButton();
             this.outputPathOutp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.customNameInput = new System.Windows.Forms.TextBox();
+            this.newDistroNameInput = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.pathContainer.SuspendLayout();
@@ -252,7 +252,7 @@
             this.groupBox1.Controls.Add(this.outputPathButton);
             this.groupBox1.Controls.Add(this.outputPathOutp);
             this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.customNameInput);
+            this.groupBox1.Controls.Add(this.newDistroNameInput);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.installButton);
@@ -277,14 +277,14 @@
             this.outputPathButton.UseVisualStyleBackColor = true;
             this.outputPathButton.Click += new System.EventHandler(this.OnOutputPathPressed);
             // 
-            // pathOutput
+            // outputPathOutp
             // 
             this.outputPathOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
             this.outputPathOutp.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.outputPathOutp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(120)))), ((int)(((byte)(120)))), ((int)(((byte)(120)))));
-            this.outputPathOutp.Location = new System.Drawing.Point(115, 127);
-            this.outputPathOutp.Name = "pathOutput";
-            this.outputPathOutp.Size = new System.Drawing.Size(231, 20);
+            this.outputPathOutp.Location = new System.Drawing.Point(141, 127);
+            this.outputPathOutp.Name = "outputPathOutp";
+            this.outputPathOutp.Size = new System.Drawing.Size(205, 20);
             this.outputPathOutp.TabIndex = 29;
             this.outputPathOutp.Text = "C:\\Users\\wsltester\\anypath";
             // 
@@ -298,15 +298,15 @@
             this.label2.TabIndex = 28;
             this.label2.Text = "Output path";
             // 
-            // customNameInput
+            // newDistroNameInput
             // 
-            this.customNameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.customNameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.customNameInput.ForeColor = System.Drawing.Color.Silver;
-            this.customNameInput.Location = new System.Drawing.Point(115, 90);
-            this.customNameInput.Name = "customNameInput";
-            this.customNameInput.Size = new System.Drawing.Size(264, 27);
-            this.customNameInput.TabIndex = 27;
+            this.newDistroNameInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.newDistroNameInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.newDistroNameInput.ForeColor = System.Drawing.Color.Silver;
+            this.newDistroNameInput.Location = new System.Drawing.Point(141, 90);
+            this.newDistroNameInput.Name = "newDistroNameInput";
+            this.newDistroNameInput.Size = new System.Drawing.Size(238, 27);
+            this.newDistroNameInput.TabIndex = 27;
             // 
             // label3
             // 
@@ -314,9 +314,9 @@
             this.label3.ForeColor = System.Drawing.Color.SlateBlue;
             this.label3.Location = new System.Drawing.Point(8, 93);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(103, 20);
+            this.label3.Size = new System.Drawing.Size(127, 20);
             this.label3.TabIndex = 26;
-            this.label3.Text = "Custom Name";
+            this.label3.Text = "New Distro Name";
             // 
             // InstallNew
             // 
@@ -363,7 +363,7 @@
         private GroupBox groupBox2;
         private Button browseButton;
         private GroupBox groupBox1;
-        private TextBox customNameInput;
+        private TextBox newDistroNameInput;
         private Label label3;
         private Label descriptionLabel;
         private Panel pathContainer;

@@ -77,6 +77,10 @@ namespace WSLMan.Commands
             tcs.SetResult(baseResult);
         }*/
 
+        protected string _quotes(string str)
+        {
+            return '"' + str + '"';
+        }
 
         protected void CallError(string str)
         {

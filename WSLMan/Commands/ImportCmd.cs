@@ -36,7 +36,7 @@ namespace WSLMan.Commands
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
-            string fullCommand = "--import " + customName + " " + destinationFolder + " " + fileName;
+            string fullCommand = "--import " + _quotes(customName) + " " + _quotes(destinationFolder) + " " + _quotes(fileName);
 
             XConsole.Println(fullCommand);
 

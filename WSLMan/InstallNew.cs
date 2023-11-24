@@ -42,7 +42,7 @@ namespace WSLMan
         public bool Error { get; private set; }
         public ErrorInfo ErrorInfo { get; private set; } = null;
 
-        private string CustomName { get { return customNameInput.Text.Trim(); } }
+        private string NewDistroName { get { return newDistroNameInput.Text.Trim(); } }
 
         private ProgressPanel progressPanel;
         private ImportCmdProp _importCmdProp;
@@ -314,9 +314,10 @@ namespace WSLMan
             if (!CheckName())                   return;
             if (!CheckDir(installDirPath, "output installation")) return;
 
-            installDirPath += "\\" + CustomName;
+            installDirPath += "\\" + NewDistroName;
 
-            _importCmdProp = new ImportCmdProp() { CustomName = '"' + CustomName + '"', DestinationFolder = '"' + installDirPath + '"', InputFilename = '"' + distro.Path + '"' };
+            //_importCmdProp = new ImportCmdProp() { CustomName = '"' + NewDistroName + '"', DestinationFolder = '"' + installDirPath + '"', InputFilename = '"' + distro.Path + '"' };
+            _importCmdProp = new ImportCmdProp() { CustomName = NewDistroName, DestinationFolder = installDirPath, InputFilename = distro.Path };
 
             progressPanel = new ProgressPanel();
             progressPanel.Opened += InstallDistroPackagesOpened;
@@ -361,7 +362,7 @@ namespace WSLMan
 
         private bool CheckName()
         {
-            if (CustomName == "")
+            if (NewDistroName == "")
             {
                 Alert("Custom distro name is empty.");
                 return false;

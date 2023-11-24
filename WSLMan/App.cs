@@ -29,7 +29,7 @@ namespace WSLMan
         private ContextMenuStrip ctxMenuDistroList;
         private ToolStripMenuItem ctxSetDefaultItem;
         private ToolStripMenuItem ctxRemoveItem;
-        private ToolStripMenuItem ctxDuplicateItem;
+        private ToolStripMenuItem ctxCloneItem;
         private ToolStripMenuItem ctxOpenLocationItem;
 
 
@@ -80,7 +80,7 @@ namespace WSLMan
         {
             ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
             ctxRemoveItem =         new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
-            ctxDuplicateItem =      new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
+            ctxCloneItem =          new ToolStripMenuItem("Clone", Resources.ctx_duplicate_button_mini, OnCtxClonePressed);
             ctxOpenLocationItem =   new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
 
             ctxMenuDistroList =     new ContextMenuStrip();
@@ -97,7 +97,7 @@ namespace WSLMan
             ctxMenuDistroList.Items.Add(ctxSetDefaultItem);
             ctxMenuDistroList.Items.Add(ctxRemoveItem);
             ctxMenuDistroList.Items.Add(new ToolStripSeparator());
-            ctxMenuDistroList.Items.Add(ctxDuplicateItem);
+            ctxMenuDistroList.Items.Add(ctxCloneItem);
             ctxMenuDistroList.Items.Add(ctxOpenLocationItem);
 
         }
@@ -113,12 +113,42 @@ namespace WSLMan
             OnRemovePressed(null, EventArgs.Empty);
         }
 
-        private async void OnCtxDuplicatePressed(object sender, EventArgs e)
+        private async void OnCtxClonePressed(object sender, EventArgs e)
         {
-            SimpleOverlay.ShowFX(this);
-            await wsl.Export(CurrentDistro.Name, CurrentDistro.Path + "_clone.tar");
-            await wsl.Import("ReCapote", "C:\\WSL_OUT2\\NewReCapote", CurrentDistro.Path + "_clone.tar");
-            SimpleOverlay.HideFX();
+            
+
+
+
+            ClonePanel clonePanel = new ClonePanel();
+            clonePanel.ShowMe(this);
+            string newDistroName;
+            string newPath;
+            string clonedFileName;
+
+            if (clonePanel.DialogResult == DialogResult.OK)
+            {
+                newDistroName =     clonePanel.NewDistroName;
+                newPath =           clonePanel.SelectedPath;
+                clonedFileName =    CurrentDistro.Path + "_clone.tar";
+
+                SimpleOverlay.ShowFX(this);
+                await wsl.Export(CurrentDistro.Name, clonedFileName);
+                await wsl.Import(newDistroName, "C:\\WSL_OUT2\\" + newDistroName, clonedFileName);
+                try
+                {
+                    File.Delete(clonedFileName);
+                    Println("File '" + clonedFileName + "' removed");
+                }
+                catch (Exception ex)
+                {
+                    CallError("Can't delete file: " + clonedFileName);
+                }
+
+                RefreshDistrosList();
+
+                SimpleOverlay.HideFX();
+                
+            }
         }
 
         private void OnCtxOpenLocationPressed(object sender, EventArgs e)
@@ -251,7 +281,7 @@ namespace WSLMan
 
         private async void OnRemovePressed(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Do you really want to remove '" + CurrentDistro.Name + "'?/nThis will unregister your distro and all your stored data will be deleted.", "Remove Distro", MessageBoxButtons.YesNoCancel);
+            var result = MessageBox.Show("Do you really want to remove '" + CurrentDistro.Name + "'?\nThis will unregister your distro and all your stored data will be deleted.", "Remove Distro", MessageBoxButtons.YesNo);
 
             if (result == DialogResult.Yes)
             {
@@ -285,7 +315,13 @@ namespace WSLMan
             installNew.ShowMe(this, wsl);
         }
 
-
+        private void OnDistroListDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                startButton.PerformClick();
+            }
+        }
 
         protected void CallError(string str)
         {
@@ -331,6 +367,6 @@ namespace WSLMan
             XConsole.Alert(str);
         }
 
-
+        
     }
 }

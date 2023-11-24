@@ -107,6 +107,7 @@
             this.distroList.UseCompatibleStateImageBehavior = false;
             this.distroList.View = System.Windows.Forms.View.Details;
             this.distroList.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
+            this.distroList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnDistroListDoubleClick);
             // 
             // _colName
             // 
@@ -391,14 +392,14 @@
             this.createNewButton.UseVisualStyleBackColor = true;
             this.createNewButton.Click += new System.EventHandler(this.OnCreateNewPressed);
             // 
-            // removeDistroLabel
+            // removeLabel
             // 
             this.removeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.removeLabel.Enabled = false;
             this.removeLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.removeLabel.ForeColor = System.Drawing.Color.SlateBlue;
             this.removeLabel.Location = new System.Drawing.Point(657, 217);
-            this.removeLabel.Name = "removeDistroLabel";
+            this.removeLabel.Name = "removeLabel";
             this.removeLabel.Size = new System.Drawing.Size(116, 40);
             this.removeLabel.TabIndex = 18;
             this.removeLabel.Text = "Remove distro";
