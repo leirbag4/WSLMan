@@ -28,8 +28,8 @@ namespace WSLMan
         
         private ContextMenuStrip ctxMenuDistroList;
         private ToolStripMenuItem ctxSetDefaultItem;
+        private ToolStripMenuItem ctxRemoveItem;
         private ToolStripMenuItem ctxDuplicateItem;
-        private ToolStripMenuItem ctxUnregisterItem;
         private ToolStripMenuItem ctxOpenLocationItem;
 
 
@@ -79,8 +79,8 @@ namespace WSLMan
         private void InitContextMenu()
         {
             ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
-            ctxDuplicateItem =      new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
-            ctxUnregisterItem =     new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
+            ctxRemoveItem =         new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
+            ctxDuplicateItem =      new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
             ctxOpenLocationItem =   new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
 
             ctxMenuDistroList =     new ContextMenuStrip();
@@ -95,9 +95,9 @@ namespace WSLMan
             //this.ContextMenuStrip.Items.AddRange(new ToolStripMenuItem[] { ctxDuplicateItem, new ToolStripMenuItem("-"), ctxUnregisterItem});
 
             ctxMenuDistroList.Items.Add(ctxSetDefaultItem);
-            ctxMenuDistroList.Items.Add(ctxDuplicateItem);
+            ctxMenuDistroList.Items.Add(ctxRemoveItem);
             ctxMenuDistroList.Items.Add(new ToolStripSeparator());
-            ctxMenuDistroList.Items.Add(ctxUnregisterItem);
+            ctxMenuDistroList.Items.Add(ctxDuplicateItem);
             ctxMenuDistroList.Items.Add(ctxOpenLocationItem);
 
         }
@@ -113,9 +113,12 @@ namespace WSLMan
             OnRemovePressed(null, EventArgs.Empty);
         }
 
-        private void OnCtxDuplicatePressed(object sender, EventArgs e)
-        { 
-        
+        private async void OnCtxDuplicatePressed(object sender, EventArgs e)
+        {
+            SimpleOverlay.ShowFX(this);
+            await wsl.Export(CurrentDistro.Name, CurrentDistro.Path + "_clone.tar");
+            await wsl.Import("ReCapote", "C:\\WSL_OUT2\\NewReCapote", CurrentDistro.Path + "_clone.tar");
+            SimpleOverlay.HideFX();
         }
 
         private void OnCtxOpenLocationPressed(object sender, EventArgs e)

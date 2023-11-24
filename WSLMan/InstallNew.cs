@@ -328,7 +328,7 @@ namespace WSLMan
 
         private async void InstallDistroPackagesOpened()
         {
-            await wsl.ImportDistro(_importCmdProp.CustomName, _importCmdProp.DestinationFolder, _importCmdProp.InputFilename);
+            await wsl.Import(_importCmdProp.CustomName, _importCmdProp.DestinationFolder, _importCmdProp.InputFilename);
 
             progressPanel.SetAsFinished();
             //Alert("name:" + _importCmdProp.CustomName);

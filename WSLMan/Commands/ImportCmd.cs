@@ -32,11 +32,11 @@ namespace WSLMan.Commands
             process.Start();
         }*/
 
-        public async Task<bool> Import(string customName, string destinationFolder, string inputFilename)
+        public async Task<bool> Import(string customName, string destinationFolder, string fileName)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
-            string fullCommand = "--import " + customName + " " + destinationFolder + " " + inputFilename;
+            string fullCommand = "--import " + customName + " " + destinationFolder + " " + fileName;
 
             XConsole.Println(fullCommand);
 

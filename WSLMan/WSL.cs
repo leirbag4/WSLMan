@@ -101,10 +101,19 @@ namespace WSLMan
             CheckCmd(cmd);
         }*/
 
-        public async Task<bool> ImportDistro(string customName, string destinationFolder, string inputFilename)
+        public async Task<bool> Import(string customName, string destinationFolder, string fileName)
         {
             ImportCmd cmd = new ImportCmd();
-            var result = await cmd.Import(customName, destinationFolder, inputFilename);
+            var result = await cmd.Import(customName, destinationFolder, fileName);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<ExportCmdResult> Export(string distroName, string fileName)
+        {
+            ExportCmd cmd = new ExportCmd();
+            var result = await cmd.Export(distroName, fileName);
             CheckCmd(cmd);
 
             return result;

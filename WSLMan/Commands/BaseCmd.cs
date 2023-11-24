@@ -15,11 +15,12 @@ namespace WSLMan.Commands
         public ErrorInfo ErrorInfo { get; private set; } = null;
         
         protected CmdRun proc;
-        protected BaseResult baseResult;
+        protected BaseResult baseResult = null;
 
-        protected async Task<T> CreateCommand<T>(string command, string param0 = "", string param1 = "") where T : BaseResult
+        protected async Task<T> CreateCommand<T>(string command, string param0 = "", string param1 = "") where T : BaseResult, new()
         {
             TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
+            baseResult = new T();
 
             string arguments = command;
 
@@ -82,6 +83,9 @@ namespace WSLMan.Commands
             ErrorInfo = ErrorInfo.Create(str);
             Error =     true;
             PrintError(ErrorInfo);
+
+            if(baseResult != null)
+                baseResult.SetError(ErrorInfo);
         }
 
         protected void CallError(string str, Exception e)
