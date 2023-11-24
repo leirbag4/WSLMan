@@ -7,13 +7,12 @@ using WSLMan.Commands.Result;
 
 namespace WSLMan.Commands
 {
-    public class SetDefaultCmd : BaseCmd
+    public class ShutdownCmd : BaseCmd
     {
-
-        public async Task<SetDefaultCmdResult> SetDefault(string distroName)
+        public async Task<ShutdownCmdResult> Shutdown()
         {
 
-            SetDefaultCmdResult result = await CreateCommand<SetDefaultCmdResult>("--set-default", distroName);
+            ShutdownCmdResult result = await CreateCommand<ShutdownCmdResult>("--shutdown");
 
             return result;
         }
@@ -25,7 +24,8 @@ namespace WSLMan.Commands
 
         protected override void OnErrorDataReceived(string data)
         {
-            
+
         }
+
     }
 }

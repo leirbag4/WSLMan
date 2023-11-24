@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace WSLMan.Commands.Result
 {
-    public class SetDefaultResult : BaseResult
+    public class SetDefaultCmdResult : BaseResult
     {
     }
 }

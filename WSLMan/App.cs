@@ -3,6 +3,7 @@ using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Diagnostics;
 using System.Drawing;
+using System.Security.Policy;
 using System.Windows.Forms;
 using WSLMan.Distro;
 using WSLMan.Properties;
@@ -45,6 +46,10 @@ namespace WSLMan
 
             appVersionLabel.Text = "version: " + Application.ProductVersion;
 
+            menuStrip.Renderer = new UI.Renderer.MenuStripRenderer();
+            menuStrip.BackColor= Color.FromArgb(30, 30, 30);
+            //menuStrip.ForeColor = Color.FromArgb(140, 140, 140);
+
             XConsole.SetOutput(outp);
 
             wsl = new WSL();
@@ -64,6 +69,30 @@ namespace WSLMan
             RefreshDistrosList();
 
             base.OnLoad(e);
+        }
+
+        private void MenuStrip_Paint(object? sender, PaintEventArgs e)
+        {
+            // Obtener el área de dibujo del MenuStrip
+            Rectangle rect = new Rectangle(0, 0, menuStrip.Width, menuStrip.Height);
+
+            // Rellenar el fondo del MenuStrip con color negro
+            e.Graphics.FillRectangle(new SolidBrush(Color.Black), rect);
+
+            // Iterar a través de los elementos del menú para personalizar los colores
+            foreach (ToolStripMenuItem item in menuStrip.Items)
+            {
+                // Rellenar el fondo de los elementos del menú principal con color blanco cuando están seleccionados
+                if (item.Selected)
+                    e.Graphics.FillRectangle(new SolidBrush(Color.White), item.Bounds);
+
+                // Rellenar el fondo de los elementos de submenú con color verde cuando están seleccionados
+                foreach (ToolStripMenuItem subItem in item.DropDownItems)
+                {
+                    if (subItem.Selected)
+                        e.Graphics.FillRectangle(new SolidBrush(Color.Green), subItem.Bounds);
+                }
+            }
         }
 
         private void OnDistroListMouseUp(object sender, MouseEventArgs e)
@@ -324,6 +353,30 @@ namespace WSLMan
 
             if(installNew.NewDistroInstalled)
                 await RefreshDistrosList();
+        }
+
+        private async void OnMItemShutdownPressed(object sender, EventArgs e)
+        {
+            await wsl.Shutdown();
+        }
+
+        private void OnMItemGithubPressed(object sender, EventArgs e)
+        {
+            try
+            {
+                string url = "https://github.com/leirbag4/WSLMan";
+                Process.Start(new ProcessStartInfo { FileName = url, UseShellExecute = true });
+            }
+            catch (Exception ex)
+            {
+                PrintError("Can't open url");
+            }
+        }
+
+        private void OnMItemAboutPressed(object sender, EventArgs e)
+        {
+            AboutPanel aboutPanel = new AboutPanel();
+            aboutPanel.ShowMe(this);
         }
 
         private void OnDistroListDoubleClick(object sender, MouseEventArgs e)

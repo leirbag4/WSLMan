@@ -128,10 +128,19 @@ namespace WSLMan
             return result;
         }
 
-        public async Task<SetDefaultResult> SetDefault(string distroName)
+        public async Task<SetDefaultCmdResult> SetDefault(string distroName)
         {
             SetDefaultCmd cmd = new SetDefaultCmd();
             var result = await cmd.SetDefault(distroName);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<ShutdownCmdResult> Shutdown()
+        {
+            ShutdownCmd cmd = new ShutdownCmd();
+            var result = await cmd.Shutdown();
             CheckCmd(cmd);
 
             return result;
