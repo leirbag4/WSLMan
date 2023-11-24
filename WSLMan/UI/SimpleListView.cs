@@ -55,6 +55,17 @@ namespace WSLMan.UI
             Items.Clear();
         }
 
+        public void SetBoldIndex(int index, bool active)
+        {
+            if (index < Items.Count)
+            {
+                if(active)
+                    Items[index].Font = new Font(Font.FontFamily, Font.Size, FontStyle.Bold);
+                else
+                    Items[index].Font = Font;
+            }
+        }
+
         public void AddItem(object obj, string col0)
         {
             ListViewItem item = new ListViewItem();

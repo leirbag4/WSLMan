@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WSLMan.Commands;
+using WSLMan.Commands.Result;
 using WSLMan.Distro;
 using WSLMan.Register;
 
@@ -113,6 +114,15 @@ namespace WSLMan
         {
             UnregisterCmd cmd = new UnregisterCmd();
             var result = await cmd.Unregister(distroName);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<SetDefaultResult> SetDefault(string distroName)
+        {
+            SetDefaultCmd cmd = new SetDefaultCmd();
+            var result = await cmd.SetDefault(distroName);
             CheckCmd(cmd);
 
             return result;

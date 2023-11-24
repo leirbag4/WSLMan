@@ -27,6 +27,7 @@ namespace WSLMan
         private WSL wsl;
         
         private ContextMenuStrip ctxMenuDistroList;
+        private ToolStripMenuItem ctxSetDefaultItem;
         private ToolStripMenuItem ctxDuplicateItem;
         private ToolStripMenuItem ctxUnregisterItem;
         private ToolStripMenuItem ctxOpenLocationItem;
@@ -77,11 +78,12 @@ namespace WSLMan
 
         private void InitContextMenu()
         {
-            ctxDuplicateItem = new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
-            ctxUnregisterItem = new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
-            ctxOpenLocationItem = new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
+            ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_remove_button_mini, OnCtxSetDefaultPressed);
+            ctxDuplicateItem =      new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
+            ctxUnregisterItem =     new ToolStripMenuItem("Duplicate", Resources.ctx_duplicate_button_mini, OnCtxDuplicatePressed);
+            ctxOpenLocationItem =   new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
 
-            ctxMenuDistroList = new ContextMenuStrip();
+            ctxMenuDistroList =     new ContextMenuStrip();
             ctxMenuDistroList.ForeColor = Color.Silver;
             ctxMenuDistroList.Renderer = new WSLMan.UI.Renderer.ToolStripRenderer();
             
@@ -92,11 +94,18 @@ namespace WSLMan
         {
             //this.ContextMenuStrip.Items.AddRange(new ToolStripMenuItem[] { ctxDuplicateItem, new ToolStripMenuItem("-"), ctxUnregisterItem});
 
+            ctxMenuDistroList.Items.Add(ctxSetDefaultItem);
             ctxMenuDistroList.Items.Add(ctxDuplicateItem);
             ctxMenuDistroList.Items.Add(new ToolStripSeparator());
             ctxMenuDistroList.Items.Add(ctxUnregisterItem);
             ctxMenuDistroList.Items.Add(ctxOpenLocationItem);
 
+        }
+
+        private async void OnCtxSetDefaultPressed(object sender, EventArgs e)
+        {
+            await wsl.SetDefault(CurrentDistro.Name);
+            await RefreshDistrosList();
         }
 
         private void OnCtxRemovePressed(object sender, EventArgs e)
@@ -117,11 +126,21 @@ namespace WSLMan
 
         private void FillDistroList(List<DistroInfo> distros)
         {
+            string defaultStr;
             distroList.ClearItems();
 
-            foreach (DistroInfo distro in distros)
+            for (int a = 0; a < distros.Count; a++)
             {
-                distroList.AddItem(distro, distro.Name, distro.State.ToString(), distro.Version.ToString());
+                DistroInfo distro = distros[a];
+
+                if (distro.Default)
+                    defaultStr = " (default)";
+                else
+                    defaultStr = "";
+
+                distroList.AddItem(distro, distro.Name + defaultStr, distro.State.ToString(), distro.Version.ToString());
+                if (distro.Default)
+                    distroList.SetBoldIndex(a, true);
             }
 
         }
