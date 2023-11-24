@@ -52,18 +52,19 @@ namespace WSLMan.UI
             }
         }
 
-        private WSL wsl = null;
 
         public ProgressPanel()
         {
             InitializeComponent();
         }
 
-        public void ShowMe(ContainerControl parent, WSL wsl)
+        public void ShowMe(ContainerControl parent, string title, string description)
         {
-            this.wsl = wsl;
 
             if (parent != null) SimpleOverlay.ShowFX(parent);
+
+            this.titleLabel.Text = title;
+            this.descriptionLabel.Text = description;
             this.ShowDialog(parent);
             if (parent != null) SimpleOverlay.HideFX();
         }
