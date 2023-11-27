@@ -183,6 +183,16 @@ namespace WSLMan.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap hor_separator_line {
+            get {
+                object obj = ResourceManager.GetObject("hor_separator_line", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap icon_png_24_24 {
             get {
                 object obj = ResourceManager.GetObject("icon_png_24_24", resourceCulture);
