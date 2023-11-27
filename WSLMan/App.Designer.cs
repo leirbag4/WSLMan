@@ -54,8 +54,8 @@
             this.stopButton = new WSLMan.UI.PictureButton();
             this.startLabel = new System.Windows.Forms.Label();
             this.stopLabel = new System.Windows.Forms.Label();
-            this.configButton = new WSLMan.UI.PictureButton();
-            this.configLabel = new System.Windows.Forms.Label();
+            this.editButton = new WSLMan.UI.PictureButton();
+            this.editLabel = new System.Windows.Forms.Label();
             this.createNewLabel = new System.Windows.Forms.Label();
             this.createNewButton = new WSLMan.UI.PictureButton();
             this.removeLabel = new System.Windows.Forms.Label();
@@ -71,8 +71,8 @@
             this.hElpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.duplicateLabel = new System.Windows.Forms.Label();
-            this.duplicateButton = new WSLMan.UI.PictureButton();
+            this.cloneLabel = new System.Windows.Forms.Label();
+            this.cloneButton = new WSLMan.UI.PictureButton();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
@@ -365,30 +365,30 @@
             this.stopLabel.Text = "Stop distro";
             this.stopLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // configButton
+            // editButton
             // 
-            this.configButton.Enabled = false;
-            this.configButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.configButton.Image = global::WSLMan.Properties.Resources.edit_button_med;
-            this.configButton.Location = new System.Drawing.Point(414, 334);
-            this.configButton.Name = "configButton";
-            this.configButton.Size = new System.Drawing.Size(40, 40);
-            this.configButton.TabIndex = 13;
-            this.configButton.UseVisualStyleBackColor = true;
-            this.configButton.Click += new System.EventHandler(this.OnConfigPressed);
+            this.editButton.Enabled = false;
+            this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.editButton.Image = global::WSLMan.Properties.Resources.edit_button_med;
+            this.editButton.Location = new System.Drawing.Point(414, 334);
+            this.editButton.Name = "editButton";
+            this.editButton.Size = new System.Drawing.Size(40, 40);
+            this.editButton.TabIndex = 13;
+            this.editButton.UseVisualStyleBackColor = true;
+            this.editButton.Click += new System.EventHandler(this.OnEditPressed);
             // 
-            // configLabel
+            // editLabel
             // 
-            this.configLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.configLabel.Enabled = false;
-            this.configLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.configLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.configLabel.Location = new System.Drawing.Point(460, 334);
-            this.configLabel.Name = "configLabel";
-            this.configLabel.Size = new System.Drawing.Size(122, 40);
-            this.configLabel.TabIndex = 14;
-            this.configLabel.Text = "Configuration ...";
-            this.configLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.editLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.editLabel.Enabled = false;
+            this.editLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.editLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.editLabel.Location = new System.Drawing.Point(460, 334);
+            this.editLabel.Name = "editLabel";
+            this.editLabel.Size = new System.Drawing.Size(122, 40);
+            this.editLabel.TabIndex = 14;
+            this.editLabel.Text = "Edit distro ...";
+            this.editLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // createNewLabel
             // 
@@ -480,7 +480,7 @@
             this.appVersionLabel.Name = "appVersionLabel";
             this.appVersionLabel.Size = new System.Drawing.Size(93, 20);
             this.appVersionLabel.TabIndex = 12;
-            this.appVersionLabel.Text = "version: 0.2.0";
+            this.appVersionLabel.Text = "version: 0.0.0";
             // 
             // label7
             // 
@@ -547,30 +547,30 @@
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnMItemAboutPressed);
             // 
-            // duplicateLabel
+            // cloneLabel
             // 
-            this.duplicateLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.duplicateLabel.Enabled = false;
-            this.duplicateLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.duplicateLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.duplicateLabel.Location = new System.Drawing.Point(657, 189);
-            this.duplicateLabel.Name = "duplicateLabel";
-            this.duplicateLabel.Size = new System.Drawing.Size(116, 40);
-            this.duplicateLabel.TabIndex = 25;
-            this.duplicateLabel.Text = "Remove distro";
-            this.duplicateLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.cloneLabel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.cloneLabel.Enabled = false;
+            this.cloneLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cloneLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.cloneLabel.Location = new System.Drawing.Point(657, 189);
+            this.cloneLabel.Name = "cloneLabel";
+            this.cloneLabel.Size = new System.Drawing.Size(116, 40);
+            this.cloneLabel.TabIndex = 25;
+            this.cloneLabel.Text = "Clone distro";
+            this.cloneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // duplicateButton
+            // cloneButton
             // 
-            this.duplicateButton.Enabled = false;
-            this.duplicateButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.duplicateButton.Image = global::WSLMan.Properties.Resources.duplicate_button_med;
-            this.duplicateButton.Location = new System.Drawing.Point(611, 189);
-            this.duplicateButton.Name = "duplicateButton";
-            this.duplicateButton.Size = new System.Drawing.Size(40, 40);
-            this.duplicateButton.TabIndex = 24;
-            this.duplicateButton.UseVisualStyleBackColor = true;
-            this.duplicateButton.Click += new System.EventHandler(this.OnDuplicatePressed);
+            this.cloneButton.Enabled = false;
+            this.cloneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cloneButton.Image = global::WSLMan.Properties.Resources.duplicate_button_med;
+            this.cloneButton.Location = new System.Drawing.Point(611, 189);
+            this.cloneButton.Name = "cloneButton";
+            this.cloneButton.Size = new System.Drawing.Size(40, 40);
+            this.cloneButton.TabIndex = 24;
+            this.cloneButton.UseVisualStyleBackColor = true;
+            this.cloneButton.Click += new System.EventHandler(this.OnClonePressed);
             // 
             // pictureBox2
             // 
@@ -600,8 +600,8 @@
             this.ClientSize = new System.Drawing.Size(791, 683);
             this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.duplicateLabel);
-            this.Controls.Add(this.duplicateButton);
+            this.Controls.Add(this.cloneLabel);
+            this.Controls.Add(this.cloneButton);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.appVersionLabel);
             this.Controls.Add(this.pictureBox1);
@@ -611,8 +611,8 @@
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.createNewLabel);
             this.Controls.Add(this.createNewButton);
-            this.Controls.Add(this.configLabel);
-            this.Controls.Add(this.configButton);
+            this.Controls.Add(this.editLabel);
+            this.Controls.Add(this.editButton);
             this.Controls.Add(this.stopLabel);
             this.Controls.Add(this.startLabel);
             this.Controls.Add(this.stopButton);
@@ -662,8 +662,8 @@
         private UI.PictureButton stopButton;
         private Label startLabel;
         private Label stopLabel;
-        private UI.PictureButton configButton;
-        private Label configLabel;
+        private UI.PictureButton editButton;
+        private Label editLabel;
         private Label createNewLabel;
         private UI.PictureButton createNewButton;
         private UI.SimpleListView distroList;
@@ -683,8 +683,8 @@
         private ToolStripMenuItem hElpToolStripMenuItem;
         private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem githubToolStripMenuItem;
-        private Label duplicateLabel;
-        private UI.PictureButton duplicateButton;
+        private Label cloneLabel;
+        private UI.PictureButton cloneButton;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
     }

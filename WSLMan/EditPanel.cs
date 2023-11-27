@@ -14,7 +14,7 @@ using WSLMan.UI;
 
 namespace WSLMan
 {
-    public partial class ConfigPanel : Form
+    public partial class EditPanel : Form
     {
         public OS.OS SelectedOS { get { return osList.SelectedItem as OS.OS; } }
 
@@ -22,7 +22,7 @@ namespace WSLMan
         private DistroInfo distro;
         private ProgressPanel progressPanel;
         
-        public ConfigPanel()
+        public EditPanel()
         {
             InitializeComponent();
         }

@@ -16,6 +16,7 @@ namespace WSLMan.UI
         public delegate void OpenEvent();
 
         public event OpenEvent Opened;
+        private bool _finished = false; 
 
 
         public float Progress 
@@ -62,14 +63,26 @@ namespace WSLMan.UI
         {
 
             if (parent != null) SimpleOverlay.ShowFX(parent);
-
+            
+            this._finished = false;
             this.titleLabel.Text = title;
             this.descriptionLabel.Text = description;
             this.ShowDialog(parent);
             if (parent != null) SimpleOverlay.HideFX();
         }
 
-        
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                if (_finished)
+                {
+                    this.Close();
+                    return true;
+                }
+            }
+            return base.ProcessDialogKey(keyData);
+        }
 
         public void SetProgress(float progress)
         { 
@@ -80,6 +93,7 @@ namespace WSLMan.UI
         {
             Progress = 1.0f;
             closeButton.Enabled = true;
+            _finished = true;
         }
 
         protected override void OnLoad(EventArgs e)

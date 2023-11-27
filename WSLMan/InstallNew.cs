@@ -324,8 +324,7 @@ namespace WSLMan
             progressPanel = new ProgressPanel();
             progressPanel.Opened += InstallDistroPackagesOpened;
             progressPanel.ShowMe(this, "Install New Distro", "Installing distro '" + _importCmdProp.CustomName + "' from a tar.gz package.\nPlease be patient. Installing will complete as soon as possible...");
-            return;
-
+            
             //wsl.ImportDistro('"' + CustomName + '"', '"' + installDirPath + '"', '"' + distro.Path + '"');
         }
 

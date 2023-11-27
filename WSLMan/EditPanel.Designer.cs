@@ -1,6 +1,6 @@
 ﻿namespace WSLMan
 {
-    partial class ConfigPanel
+    partial class EditPanel
     {
         /// <summary>
         /// Required designer variable.

@@ -36,6 +36,17 @@ namespace WSLMan
             if (parent != null) SimpleOverlay.HideFX();
         }
 
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
         private bool CheckName()
         {
             if (newDistroNameInput.Text.Trim() == "")

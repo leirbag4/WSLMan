@@ -26,6 +26,17 @@ namespace WSLMan
             if (parent != null) SimpleOverlay.HideFX();
         }
 
+        protected override bool ProcessDialogKey(Keys keyData)
+        {
+            if (Form.ModifierKeys == Keys.None && keyData == Keys.Escape)
+            {
+                DialogResult = DialogResult.Cancel;
+                this.Close();
+                return true;
+            }
+            return base.ProcessDialogKey(keyData);
+        }
+
         protected override void OnLoad(EventArgs e)
         {
             appVersionLabel.Text = "version: " + Application.ProductVersion;

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Security.Policy;
 using System.Windows.Forms;
+using WSLMan.Commands.Props;
 using WSLMan.Distro;
 using WSLMan.OS;
 using WSLMan.Properties;
@@ -37,6 +38,7 @@ namespace WSLMan
         private ToolStripMenuItem ctxCloneItem;
         private ToolStripMenuItem ctxOpenLocationItem;
 
+        private ProgressPanel progressPanel;
 
         public App()
         {
@@ -60,10 +62,10 @@ namespace WSLMan
 
             startButton.AssignClickableLabel(startLabel);
             stopButton.AssignClickableLabel(stopLabel);
-            configButton.AssignClickableLabel(configLabel);
+            editButton.AssignClickableLabel(editLabel);
             createNewButton.AssignClickableLabel(createNewLabel);
             removeButton.AssignClickableLabel(removeLabel);
-            duplicateButton.AssignClickableLabel(duplicateLabel);
+            cloneButton.AssignClickableLabel(cloneLabel);
             openLocationButton.AssignClickableLabel(openLocationLabel);
 
             distroList.MouseUp += OnDistroListMouseUp;
@@ -168,7 +170,7 @@ namespace WSLMan
 
         private async void OnCtxClonePressed(object sender, EventArgs e)
         {
-            OnDuplicatePressed(null, EventArgs.Empty);
+            OnClonePressed(null, EventArgs.Empty);
         }
 
         private void OnCtxOpenLocationPressed(object sender, EventArgs e)
@@ -221,9 +223,9 @@ namespace WSLMan
                 uidLabel.Text =                 "";
                 startButton.Enabled =           false;
                 stopButton.Enabled =            false;
-                configButton.Enabled =          false;
+                editButton.Enabled =          false;
                 removeButton.Enabled =          false;
-                duplicateButton.Enabled =       false;
+                cloneButton.Enabled =       false;
                 openLocationButton.Enabled =    false;
             }
             else
@@ -236,9 +238,9 @@ namespace WSLMan
                 uidLabel.Text =                 distro.DefaultUid.ToString();
                 startButton.Enabled =           true;
                 stopButton.Enabled =            true;
-                configButton.Enabled =          true;
+                editButton.Enabled =          true;
                 removeButton.Enabled =          true;
-                duplicateButton.Enabled =       true;
+                cloneButton.Enabled =       true;
                 openLocationButton.Enabled =    true;
             }
         }
@@ -302,7 +304,7 @@ namespace WSLMan
             await RefreshDistrosList();
         }
 
-        private async void OnDuplicatePressed(object sender, EventArgs e)
+        private async void OnClonePressed(object sender, EventArgs e)
         {
             ClonePanel clonePanel = new ClonePanel();
             clonePanel.ShowMe(this);
@@ -316,23 +318,33 @@ namespace WSLMan
                 newPath =           clonePanel.SelectedPath;
                 clonedFileName =    CurrentDistro.Path + "_clone.tar";
 
-                SimpleOverlay.ShowFX(this);
-                await wsl.Export(CurrentDistro.Name, clonedFileName);
-                await wsl.Import(newDistroName, "C:\\WSL_OUT2\\" + newDistroName, clonedFileName);
-                try
-                {
-                    File.Delete(clonedFileName);
-                    Println("File '" + clonedFileName + "' removed");
-                }
-                catch (Exception ex)
-                {
-                    CallError("Can't delete file: " + clonedFileName);
-                }
 
-                await RefreshDistrosList();
+                progressPanel = new ProgressPanel();
+                progressPanel.Opened += async () => {
 
-                SimpleOverlay.HideFX();
-                
+                    await wsl.Export(CurrentDistro.Name, clonedFileName);
+                    progressPanel.SetProgress(0.4f);
+                    await wsl.Import(newDistroName, "C:\\WSL_OUT2\\" + newDistroName, clonedFileName);
+                    progressPanel.SetProgress(0.7f);
+                    try
+                    {
+                        File.Delete(clonedFileName);
+                        Println("File '" + clonedFileName + "' removed");
+                    }
+                    catch (Exception ex)
+                    {
+                        CallError("Can't delete file: " + clonedFileName);
+                    }
+                    progressPanel.SetProgress(0.8f);
+
+                    await RefreshDistrosList();
+
+                    XConsole.Println("clone complete");
+                    progressPanel.SetAsFinished();
+                };
+
+                progressPanel.ShowMe(this, "Clone Distro", "Cloning ditro '" + CurrentDistro.Name + "' to a new one called '" + newDistroName + "'\nInstallation path: " + newPath);
+
             }
         }
 
@@ -368,13 +380,13 @@ namespace WSLMan
             Process.Start("Explorer.exe", path);
         }
 
-        private void OnConfigPressed(object sender, EventArgs e)
+        private void OnEditPressed(object sender, EventArgs e)
         {
             if (CurrentDistro == null)
                 return;
 
-            ConfigPanel configPanel = new ConfigPanel();
-            configPanel.ShowMe(this, wsl, CurrentDistro);
+            EditPanel editPanel = new EditPanel();
+            editPanel.ShowMe(this, wsl, CurrentDistro);
         }
 
         private async void OnCreateNewPressed(object sender, EventArgs e)
