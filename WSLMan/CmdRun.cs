@@ -77,7 +77,7 @@ namespace CommandLauncher
             if (_type == CmdType.WSL)
             {
                 startInfo.StandardOutputEncoding =  System.Text.Encoding.Unicode;
-                startInfo.StandardErrorEncoding =   System.Text.Encoding.Unicode;
+               // startInfo.StandardErrorEncoding =   System.Text.Encoding.Unicode;
             }
             //else if (_type == CmdType.Windows) { }
 

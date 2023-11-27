@@ -8,6 +8,8 @@ namespace WSLMan.Commands.Result
 {
     public class BaseResult
     {
+        public bool IsOk { get { return !Error; } }
+
         public bool Error { get; private set; } = false;
         public ErrorInfo ErrorInfo { get; private set; } = null;
 

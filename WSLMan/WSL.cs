@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using WSLMan.Commands;
 using WSLMan.Commands.Result;
 using WSLMan.Distro;
+using WSLMan.OS;
 using WSLMan.Register;
 
 namespace WSLMan
@@ -28,10 +29,10 @@ namespace WSLMan
             Distros = new List<DistroInfo>();
         }
 
-        public void StartDistro(DistroInfo distro)
+        public void StartDistro(DistroInfo distro, string user = "")
         {
             StartCmd cmd = new StartCmd();
-            cmd.StartDistro(distro);
+            cmd.StartDistro(distro, user);
             CheckCmd(cmd);
         }
 
@@ -136,6 +137,43 @@ namespace WSLMan
 
             return result;
         }
+
+        public async Task<UserManagerResult> CreateUser(string distro, string username, OsId osType = OsId.OtherLinux)
+        { 
+            UserManagerCmd cmd = new UserManagerCmd();
+            var result = await cmd.CreateUser(distro, username, osType);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<UserManagerResult> SetUserPassword(string distro, string username, string password, OsId osType = OsId.OtherLinux)
+        {
+            UserManagerCmd cmd = new UserManagerCmd();
+            var result = await cmd.SetUserPassword(distro, username, password, osType);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<UserManagerResult> AddUserToGroups(string distro, string username, string[] groups, OsId osType = OsId.OtherLinux)
+        {
+            UserManagerCmd cmd = new UserManagerCmd();
+            var result = await cmd.AddUserToGroups(distro, username, groups, osType);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public async Task<UserManagerResult> WriteTextFile(string distro, string text, string fileName, OsId osType = OsId.OtherLinux)
+        {
+            FileManagerCmd cmd = new FileManagerCmd();
+            var result = await cmd.WriteTextFile(distro, text, fileName, osType);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
 
         public async Task<ShutdownCmdResult> Shutdown()
         {

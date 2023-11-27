@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Security.Policy;
 using System.Windows.Forms;
 using WSLMan.Distro;
+using WSLMan.OS;
 using WSLMan.Properties;
 using WSLMan.Register;
 using WSLMan.UI;
@@ -42,6 +43,7 @@ namespace WSLMan
 
         protected override void OnLoad(EventArgs e)
         {
+            OsManager.Initialize();
             SaveData.Initialize();
 
             appVersionLabel.Text = "version: " + Application.ProductVersion;
@@ -343,7 +345,11 @@ namespace WSLMan
 
         private void OnConfigPressed(object sender, EventArgs e)
         {
+            if (CurrentDistro == null)
+                return;
 
+            ConfigPanel configPanel = new ConfigPanel();
+            configPanel.ShowMe(this, wsl, CurrentDistro);
         }
 
         private async void OnCreateNewPressed(object sender, EventArgs e)

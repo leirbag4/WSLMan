@@ -11,9 +11,12 @@ namespace WSLMan.Commands
     public class StartCmd : BaseCmd
     {
 
-        public void StartDistro(DistroInfo distro)
+        public void StartDistro(DistroInfo distro, string username = "")
         {
             string fullCommand = "-d " + distro.Name;
+
+            if (username != "")
+                fullCommand += " --user " + username;
 
             ProcessStartInfo psi = new ProcessStartInfo
             {

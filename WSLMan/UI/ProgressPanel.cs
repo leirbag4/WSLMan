@@ -69,6 +69,13 @@ namespace WSLMan.UI
             if (parent != null) SimpleOverlay.HideFX();
         }
 
+        
+
+        public void SetProgress(float progress)
+        { 
+            this.Progress = progress;
+        }
+
         public void SetAsFinished()
         {
             Progress = 1.0f;
