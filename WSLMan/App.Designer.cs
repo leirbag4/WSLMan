@@ -1,4 +1,6 @@
-﻿namespace WSLMan
+﻿using WSLMan.UI;
+
+namespace WSLMan
 {
     partial class App
     {
@@ -30,14 +32,14 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
             this.listButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new WSLMan.UI.SimpleGroupBox();
             this.distroList = new WSLMan.UI.SimpleListView();
             this._colName = new System.Windows.Forms.ColumnHeader();
             this._colState = new System.Windows.Forms.ColumnHeader();
             this._colVersion = new System.Windows.Forms.ColumnHeader();
             this.outp = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new WSLMan.UI.SimpleGroupBox();
             this.nameOutp = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uidLabel = new System.Windows.Forms.Label();
@@ -89,7 +91,7 @@
             this.listButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.listButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.listButton.ForeColor = System.Drawing.Color.Silver;
-            this.listButton.Location = new System.Drawing.Point(278, 309);
+            this.listButton.Location = new System.Drawing.Point(278, 307);
             this.listButton.Name = "listButton";
             this.listButton.Size = new System.Drawing.Size(102, 32);
             this.listButton.TabIndex = 0;
@@ -101,12 +103,15 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBox1.BorderSize = 1;
             this.groupBox1.Controls.Add(this.distroList);
             this.groupBox1.Controls.Add(this.listButton);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
             this.groupBox1.Location = new System.Drawing.Point(12, 28);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 350);
+            this.groupBox1.Size = new System.Drawing.Size(396, 346);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Distros";
@@ -175,6 +180,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBox2.BorderSize = 1;
             this.groupBox2.Controls.Add(this.nameOutp);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.uidLabel);
@@ -187,7 +194,8 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.pathOutp);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox2.ForeColor = System.Drawing.Color.Silver;
             this.groupBox2.Location = new System.Drawing.Point(12, 377);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(767, 131);
@@ -642,10 +650,10 @@
         #endregion
 
         private Button listButton;
-        private GroupBox groupBox1;
+        private SimpleGroupBox groupBox1;
         private RichTextBox outp;
         private Button button3;
-        private GroupBox groupBox2;
+        private SimpleGroupBox groupBox2;
         private TextBox pathOutp;
         private Label label1;
         private TextBox hashOutp;

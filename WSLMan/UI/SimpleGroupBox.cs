@@ -61,15 +61,37 @@ namespace WSLMan.UI
             }
             else if (_customStyle == CustomStyle.SOLID)
             {
-                e.Graphics.FillRectangle(new SolidBrush(_borderColor), ClientRectangle);
-                e.Graphics.FillRectangle(new SolidBrush(BackColor), new Rectangle(_borderSize, _borderSize, Width - (_borderSize * 2), Height - (_borderSize * 2)));
-                //e.Graphics.DrawRectangle(new Pen(new SolidBrush(_borderColor), _borderSize), new Rectangle(_borderSize, _borderSize, Width - _borderSize, Height - _borderSize));
+                int textPosXOffset = 8;
+                int textHeight = 12;
+
+                // Draw Rectangle
+                if (this.Text == "")
+                {
+                    // fill all client area
+                    e.Graphics.FillRectangle(new SolidBrush(_borderColor), ClientRectangle);
+                    e.Graphics.FillRectangle(new SolidBrush(BackColor), new Rectangle(_borderSize, _borderSize, Width - (_borderSize * 2), Height - (_borderSize * 2)));
+                }
+                else
+                {
+                    // fill part of client area and leave some space at the top for the text
+                    e.Graphics.FillRectangle(new SolidBrush(BackColor), ClientRectangle);
+                    e.Graphics.FillRectangle(new SolidBrush(_borderColor), new Rectangle(0, textHeight, ClientRectangle.Width, ClientRectangle.Height - textHeight));
+                    e.Graphics.FillRectangle(new SolidBrush(BackColor), new Rectangle(_borderSize, _borderSize + textHeight, Width - (_borderSize * 2), Height - (_borderSize * 2) - textHeight));
+                }
+
+
+                // Draw Text
+                int textPosX = _borderSize + textPosXOffset;
+                Size textSize =         TextRenderer.MeasureText(Text, Font);
+                Rectangle textBounds =  new Rectangle(textPosX, 0, textSize.Width, textSize.Height);
+
+                e.Graphics.FillRectangle(new SolidBrush(BackColor), textBounds);
+                TextRenderer.DrawText(e.Graphics, Text, Font, new Point(textPosX, 0), ForeColor);
             }
             else if (_customStyle == CustomStyle.SOLID_NO_BORDERS)
             {
-
                 e.Graphics.FillRectangle(new SolidBrush(BackColor), ClientRectangle);
-
+                //TextRenderer.DrawText(e.Graphics, Text, Font, new Point(0, 0), ForeColor);
             }
 
         }
