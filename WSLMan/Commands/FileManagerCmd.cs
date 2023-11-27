@@ -13,7 +13,6 @@ namespace WSLMan.Commands
 
         public async Task<UserManagerResult> WriteTextFile(string distro, string text, string fileName, OsId osType = OsId.OtherLinux)
         {
-            UserManagerResult result;
             string cmd;
 
             //wsl -d Alpine -u root sh -c "echo -e '[user]\ndefault = new_user' > /etc/wsl.conf"

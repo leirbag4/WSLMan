@@ -13,7 +13,6 @@ namespace WSLMan.Commands
 
         public async Task<UserManagerResult> CreateUser(string distro, string username, OsId osType = OsId.OtherLinux)
         {
-            UserManagerResult result;
             string cmd;
 
             if (osType == OsId.AlpineOther)
@@ -28,7 +27,6 @@ namespace WSLMan.Commands
 
         public async Task<UserManagerResult> SetUserPassword(string distro, string username, string password, OsId osType = OsId.OtherLinux)
         {
-            UserManagerResult result;
             string cmd;
 
             //wsl -d Alpine -u root ash -c 'echo "NewUser:NewPass" | chpasswd'
@@ -42,7 +40,6 @@ namespace WSLMan.Commands
 
         public async Task<UserManagerResult> AddUserToGroups(string distro, string username, string[] groups, OsId osType = OsId.OtherLinux)
         {
-            UserManagerResult result;
             string cmd;
 
             //wsl -d Alpine -u root adduser NewUser wheel            

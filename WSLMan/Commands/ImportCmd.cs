@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Commands.Result;
 using WSLMan.Distro;
 
 namespace WSLMan.Commands
@@ -32,7 +33,22 @@ namespace WSLMan.Commands
             process.Start();
         }*/
 
-        public async Task<bool> Import(string customName, string destinationFolder, string fileName)
+        public async Task<ImportCmdResult> Import(string customName, string destinationFolder, string fileName)
+        {
+            return await CreateCommand<ImportCmdResult>("--import",  _quotes(customName) + " " + _quotes(destinationFolder) + " " + _quotes(fileName));
+        }
+
+        protected override void OnDataReceived(string data)
+        {
+            XConsole.Println("data: " + data);
+        }
+
+        protected override void OnErrorDataReceived(string data)
+        {
+
+        }
+
+        /*public async Task<bool> Import(string customName, string destinationFolder, string fileName)
         {
             TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
 
@@ -74,6 +90,6 @@ namespace WSLMan.Commands
         private void OnComplete(TaskCompletionSource<bool> tcs)
         {
             tcs.SetResult(true);
-        }
+        }*/
     }
 }

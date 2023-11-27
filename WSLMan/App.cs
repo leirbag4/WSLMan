@@ -30,6 +30,8 @@ namespace WSLMan
         private WSL wsl;
         
         private ContextMenuStrip ctxMenuDistroList;
+        private ToolStripMenuItem ctxStartItem;
+        private ToolStripMenuItem ctxStopItem;
         private ToolStripMenuItem ctxSetDefaultItem;
         private ToolStripMenuItem ctxRemoveItem;
         private ToolStripMenuItem ctxCloneItem;
@@ -113,6 +115,8 @@ namespace WSLMan
 
         private void InitContextMenu()
         {
+            ctxStartItem =          new ToolStripMenuItem("Start", Resources.ctx_play_button_mini, OnCtxStartPressed);
+            ctxStopItem =           new ToolStripMenuItem("Stop", Resources.ctx_stop_button_mini, OnCtxStopPressed);
             ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
             ctxRemoveItem =         new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
             ctxCloneItem =          new ToolStripMenuItem("Clone", Resources.ctx_duplicate_button_mini, OnCtxClonePressed);
@@ -129,12 +133,25 @@ namespace WSLMan
         {
             //this.ContextMenuStrip.Items.AddRange(new ToolStripMenuItem[] { ctxDuplicateItem, new ToolStripMenuItem("-"), ctxUnregisterItem});
 
+            ctxMenuDistroList.Items.Add(ctxStartItem);
+            ctxMenuDistroList.Items.Add(ctxStopItem);
+            ctxMenuDistroList.Items.Add(new ToolStripSeparator());
             ctxMenuDistroList.Items.Add(ctxSetDefaultItem);
             ctxMenuDistroList.Items.Add(ctxRemoveItem);
             ctxMenuDistroList.Items.Add(new ToolStripSeparator());
             ctxMenuDistroList.Items.Add(ctxCloneItem);
             ctxMenuDistroList.Items.Add(ctxOpenLocationItem);
 
+        }
+
+        private void OnCtxStartPressed(object sender, EventArgs e)
+        {
+            OnStartPressed(null, EventArgs.Empty);
+        }
+
+        private void OnCtxStopPressed(object sender, EventArgs e)
+        {
+            OnStopPressed(null, EventArgs.Empty);
         }
 
         private async void OnCtxSetDefaultPressed(object sender, EventArgs e)

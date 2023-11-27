@@ -102,7 +102,7 @@ namespace WSLMan
             CheckCmd(cmd);
         }*/
 
-        public async Task<bool> Import(string customName, string destinationFolder, string fileName)
+        public async Task<ImportCmdResult> Import(string customName, string destinationFolder, string fileName)
         {
             ImportCmd cmd = new ImportCmd();
             var result = await cmd.Import(customName, destinationFolder, fileName);
