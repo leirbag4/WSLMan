@@ -35,7 +35,7 @@ namespace WSLMan.Commands
             //proc.Complete +=          OnComplete;
             //proc.Start();
 
-            proc.Complete += () => OnComplete(tcs);
+            proc.Complete += () => _OnComplete(tcs);
             await Task.Run(() => proc.Start());
 
             return await tcs.Task;
@@ -67,10 +67,15 @@ namespace WSLMan.Commands
         protected virtual void OnErrorDataReceived(string data)
         { }
 
-        private void OnComplete<T>(TaskCompletionSource<T> tcs) where T : BaseResult
+        private void _OnComplete<T>(TaskCompletionSource<T> tcs) where T : BaseResult
         {
-            tcs.SetResult((T)baseResult);
+            T result = (T)baseResult;
+            OnComplete(result);
+            tcs.SetResult(result);
         }
+
+        protected virtual void OnComplete(BaseResult result)
+        { }
 
         /*private void OnComplete(TaskCompletionSource<BaseResult> tcs)
         {

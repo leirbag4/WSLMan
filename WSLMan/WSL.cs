@@ -50,17 +50,17 @@ namespace WSLMan
         /// </summary>
         /// <param name="matchWithRegister">merge and match info with windows registry to find for example installed path of distros but at the cost of speed. Set to 'false' to refresh only state.</param>
         /// <returns></returns>
-        public async Task<List<DistroInfo>> ListDistrosAsync(bool matchWithRegister = true)
+        public async Task<ListCmdResult> ListDistrosAsync(bool matchWithRegister = true)
         {
             ListCmd cmd = new ListCmd();
             var result = await cmd.ListDistrosAsync(matchWithRegister);
-            Distros = result;
+            Distros = result.distros;
             CheckCmd(cmd);
 
             return result;
         }
 
-        public async Task<List<DistroOnline>> ListOnlineDistrosAsync()
+        public async Task<ListOnlineCmdResult> ListOnlineDistrosAsync()
         { 
             ListOnlineCmd cmd = new ListOnlineCmd();
             var result = await cmd.ListOnlineAsync();

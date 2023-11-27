@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Commands.Result;
 using WSLMan.Distro;
 using WSLMan.Register;
 
@@ -11,33 +12,20 @@ namespace WSLMan.Commands
 {
     public class ListOnlineCmd : BaseCmd
     {
-        List<DistroOnline> _distros;
+        private List<DistroOnline> _distros;
         private bool _cmd_list_allowed = false;
 
-        public async Task<List<DistroOnline>> ListOnlineAsync()
+
+        public async Task<ListOnlineCmdResult> ListOnlineAsync()
         {
-            TaskCompletionSource<List<DistroOnline>> tcs = new TaskCompletionSource<List<DistroOnline>>();
-
-            _distros = new List<DistroOnline>();
-
+            _distros =          new List<DistroOnline>();
             _cmd_list_allowed = false;
-            //_matchWithRegister = matchWithRegister;
 
-            proc = new CmdRun(CmdType.WSL, "wsl", "--list --online");
-            proc.DataReceived += OnListDataReceived;
-            proc.ErrorDataReceived += OnListDataErrorReceived;
-            //proc.Complete +=          OnComplete;
-            //proc.Start();
-
-            proc.Complete += () => OnComplete(tcs);
-
-            await Task.Run(() => proc.Start());
-
-            return await tcs.Task;
-
+            return await CreateCommand<ListOnlineCmdResult>("--list --online");
         }
 
-        private void OnListDataReceived(string data)
+
+        protected override void OnDataReceived(string data)
         {
             string[] parts = data.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -69,14 +57,17 @@ namespace WSLMan.Commands
             }
         }
 
-        private void OnListDataErrorReceived(string data)
+        protected override void OnErrorDataReceived(string data)
         {
-            CallError("DataReceivedError -> " + data);
+
         }
 
-        private void OnComplete(TaskCompletionSource<List<DistroOnline>> tcs)
+        protected override void OnComplete(BaseResult result)
         {
-            tcs.SetResult(_distros);
+            ListOnlineCmdResult listOnlineResult = (ListOnlineCmdResult)result;
+
+            listOnlineResult.distros = _distros;
         }
+
     }
 }

@@ -272,7 +272,7 @@ namespace WSLMan
 
         private async Task RefreshDistrosList()
         {
-            List<DistroInfo> distros = await wsl.ListDistrosAsync();
+            List<DistroInfo> distros = (await wsl.ListDistrosAsync()).distros;
             string lastSelDistroHash = "";
 
             if (CurrentDistro != null)

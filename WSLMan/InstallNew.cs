@@ -85,7 +85,7 @@ namespace WSLMan
             distroList.ClearSelection();
             distroList.ClearItems();
 
-            var distros = await wsl.ListDistrosAsync();
+            var distros = (await wsl.ListDistrosAsync()).distros;
 
             if (distros != null)
             {
@@ -128,7 +128,7 @@ namespace WSLMan
             distroList.ClearSelection();
             distroList.ClearItems();
 
-            var distros = await wsl.ListOnlineDistrosAsync();
+            var distros = (await wsl.ListOnlineDistrosAsync()).distros;
 
             if (distros != null)
             {

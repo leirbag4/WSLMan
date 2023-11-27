@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Commands.Result;
 using WSLMan.Distro;
 using WSLMan.Register;
 
@@ -20,30 +21,17 @@ namespace WSLMan.Commands
         /// </summary>
         /// <param name="matchWithRegister">merge and match info with windows registry to find for example installed path of distros but at the cost of speed. Set to 'false' to refresh only state.</param>
         /// <returns></returns>
-        public async Task<List<DistroInfo>> ListDistrosAsync(bool matchWithRegister = true)
+        public async Task<ListCmdResult> ListDistrosAsync(bool matchWithRegister = true)
         {
-            TaskCompletionSource<List<DistroInfo>> tcs = new TaskCompletionSource<List<DistroInfo>>();
+            _distros =              new List<DistroInfo>();
+            _cmd_list_allowed =     false;
+            _matchWithRegister =    matchWithRegister;
 
-            _distros = new List<DistroInfo>();
-
-            _cmd_list_allowed = false;
-            _matchWithRegister = matchWithRegister;
-
-            proc = new CmdRun(CmdType.WSL, "wsl", "-l -v");
-            proc.DataReceived +=        OnListDataReceived;
-            proc.ErrorDataReceived +=   OnListDataErrorReceived;
-            //proc.Complete +=          OnComplete;
-            //proc.Start();
-
-            proc.Complete += () => OnComplete(tcs);
-
-            await Task.Run(() => proc.Start());
-
-            return await tcs.Task;
-
+            return await CreateCommand<ListCmdResult>("-l -v");
         }
 
-        private void OnListDataReceived(string data)
+
+        protected override void OnDataReceived(string data)
         {
             string[] parts = data.Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
@@ -85,16 +73,18 @@ namespace WSLMan.Commands
 
                 }
             }
+        }
+
+        protected override void OnErrorDataReceived(string data)
+        {
 
         }
 
-        private void OnListDataErrorReceived(string data)
-        {
-            CallError("DataReceivedError -> " + data);
-        }
 
-        private void OnComplete(TaskCompletionSource<List<DistroInfo>> tcs)
+        protected override void OnComplete(BaseResult result)
         {
+            ListCmdResult listResult = (ListCmdResult)result;
+
             if (_matchWithRegister)
             {
                 // find distros on windows registry first
@@ -120,8 +110,9 @@ namespace WSLMan.Commands
                     CallError("There was an error while merging registry distros with 'wsl --list -v' command.");
             }
 
-
-            tcs.SetResult(_distros);
+            listResult.distros = _distros;
         }
+
+
     }
 }
