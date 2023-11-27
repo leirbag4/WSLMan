@@ -4,53 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Commands.Result;
 
 namespace WSLMan.Commands
 {
     public class UnregisterCmd : BaseCmd
     {
-        public async Task<bool> Unregister(string distroName)
+        public async Task<UnregisterCmdResult> Unregister(string distroName)
         {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
+            return await CreateCommand<UnregisterCmdResult>("--unregister", distroName);
+        }
 
-            string fullCommand = "--unregister " + distroName;
+        protected override void OnDataReceived(string data)
+        {
+            XConsole.Println("data: " + data);
+        }
 
-            XConsole.Println(fullCommand);
-
-            proc = new CmdRun(CmdType.WSL, "wsl", fullCommand);
-            proc.DataReceived +=        OnListDataReceived;
-            proc.ErrorDataReceived +=   OnListDataErrorReceived;
-            //proc.Complete +=          OnComplete;
-            //proc.Start();
-
-            proc.Complete += () => OnComplete(tcs);
-
-            await Task.Run(() => proc.Start());
-
-            return await tcs.Task;
+        protected override void OnErrorDataReceived(string data)
+        {
 
         }
 
-        private void OnListDataReceived(string data)
-        {
-            try
-            {
-                XConsole.Println(data);
-            }
-            catch (Exception e)
-            {
-                CallError("Can't parse 'wsl " + proc.Arguments + "'", e);
-            }
-        }
-
-        private void OnListDataErrorReceived(string data)
-        {
-            CallError("DataReceivedError -> " + data);
-        }
-
-        private void OnComplete(TaskCompletionSource<bool> tcs)
-        {
-            tcs.SetResult(true);
-        }
     }
 }

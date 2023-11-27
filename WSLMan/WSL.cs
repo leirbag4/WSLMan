@@ -120,7 +120,7 @@ namespace WSLMan
             return result;
         }
 
-        public async Task<bool> Unregister(string distroName)
+        public async Task<UnregisterCmdResult> Unregister(string distroName)
         {
             UnregisterCmd cmd = new UnregisterCmd();
             var result = await cmd.Unregister(distroName);

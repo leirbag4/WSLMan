@@ -336,7 +336,8 @@ namespace WSLMan
             if (result == DialogResult.Yes)
             {
                 SimpleOverlay.ShowFX(this);
-                bool unregistered = await wsl.Unregister(CurrentDistro.Name);
+
+                bool unregistered = (await wsl.Unregister(CurrentDistro.Name)).IsOk;
                 if (unregistered)
                 {
                     try
