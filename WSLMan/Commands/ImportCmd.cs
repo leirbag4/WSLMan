@@ -48,48 +48,5 @@ namespace WSLMan.Commands
 
         }
 
-        /*public async Task<bool> Import(string customName, string destinationFolder, string fileName)
-        {
-            TaskCompletionSource<bool> tcs = new TaskCompletionSource<bool>();
-
-            string fullCommand = "--import " + _quotes(customName) + " " + _quotes(destinationFolder) + " " + _quotes(fileName);
-
-            XConsole.Println(fullCommand);
-
-            proc = new CmdRun(CmdType.WSL, "wsl", fullCommand);
-            proc.DataReceived +=        OnListDataReceived;
-            proc.ErrorDataReceived +=   OnListDataErrorReceived;
-            //proc.Complete +=          OnComplete;
-            //proc.Start();
-
-            proc.Complete += () => OnComplete(tcs);
-
-            await Task.Run(() => proc.Start());
-
-            return await tcs.Task;
-
-        }
-
-        private void OnListDataReceived(string data)
-        {
-            try
-            {
-                XConsole.Println(data);
-            }
-            catch (Exception e)
-            {
-                CallError("Can't parse 'wsl --list --online'", e);
-            }
-        }
-
-        private void OnListDataErrorReceived(string data)
-        {
-            CallError("DataReceivedError -> " + data);
-        }
-
-        private void OnComplete(TaskCompletionSource<bool> tcs)
-        {
-            tcs.SetResult(true);
-        }*/
     }
 }
