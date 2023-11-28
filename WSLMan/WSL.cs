@@ -45,6 +45,21 @@ namespace WSLMan
             return result;
         }
 
+        public void InstallDistro(string distroName)
+        {
+            InstallCmd cmd = new InstallCmd();
+            cmd.InstallOnline(distroName);
+
+            CheckCmd(cmd);
+        }
+
+        public void InstallDistro(DistroInfo distro)
+        {
+            InstallCmd cmd = new InstallCmd();
+            cmd.InstallOnline(distro.Name);
+            CheckCmd(cmd);
+        }
+
         /// <summary>
         /// Get the list of all the installed distros
         /// </summary>

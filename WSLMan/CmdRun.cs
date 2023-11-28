@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace CommandLauncher
 {
@@ -94,6 +95,22 @@ namespace CommandLauncher
 
             //compiler.StandardInput.WriteLine("wsl --list");
 
+        }
+
+        public void OpenAndLaunch()
+        {
+
+            ProcessStartInfo startInfo = new ProcessStartInfo
+            {
+                WorkingDirectory =  WorkingDirectory,
+                FileName =          FileName,
+                Arguments =         Arguments,
+                UseShellExecute =   false,
+                CreateNoWindow =    false,
+            };
+
+            Process process = new Process { StartInfo = startInfo };
+            process.Start();
         }
 
         private void OnDataReceived(object sender, DataReceivedEventArgs e)

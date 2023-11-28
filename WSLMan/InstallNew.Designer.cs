@@ -47,9 +47,9 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.outputPathButton = new WSLMan.UI.PictureButton();
             this.outputPathOutp = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
+            this.outputPathLabel = new System.Windows.Forms.Label();
             this.newDistroNameInput = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.newDistroLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.pathContainer.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -251,9 +251,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox1.Controls.Add(this.outputPathButton);
             this.groupBox1.Controls.Add(this.outputPathOutp);
-            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.outputPathLabel);
             this.groupBox1.Controls.Add(this.newDistroNameInput);
-            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.newDistroLabel);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.installButton);
             this.groupBox1.Controls.Add(this.selectedNameLabel);
@@ -288,15 +288,15 @@
             this.outputPathOutp.TabIndex = 29;
             this.outputPathOutp.Text = "C:\\Users\\wsltester\\anypath";
             // 
-            // label2
+            // outputPathLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label2.Location = new System.Drawing.Point(8, 126);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 20);
-            this.label2.TabIndex = 28;
-            this.label2.Text = "Output path";
+            this.outputPathLabel.AutoSize = true;
+            this.outputPathLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.outputPathLabel.Location = new System.Drawing.Point(8, 126);
+            this.outputPathLabel.Name = "outputPathLabel";
+            this.outputPathLabel.Size = new System.Drawing.Size(89, 20);
+            this.outputPathLabel.TabIndex = 28;
+            this.outputPathLabel.Text = "Output path";
             // 
             // newDistroNameInput
             // 
@@ -308,15 +308,15 @@
             this.newDistroNameInput.Size = new System.Drawing.Size(238, 27);
             this.newDistroNameInput.TabIndex = 27;
             // 
-            // label3
+            // newDistroLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label3.Location = new System.Drawing.Point(8, 93);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(127, 20);
-            this.label3.TabIndex = 26;
-            this.label3.Text = "New Distro Name";
+            this.newDistroLabel.AutoSize = true;
+            this.newDistroLabel.ForeColor = System.Drawing.Color.SlateBlue;
+            this.newDistroLabel.Location = new System.Drawing.Point(8, 93);
+            this.newDistroLabel.Name = "newDistroLabel";
+            this.newDistroLabel.Size = new System.Drawing.Size(127, 20);
+            this.newDistroLabel.TabIndex = 26;
+            this.newDistroLabel.Text = "New Distro Name";
             // 
             // InstallNew
             // 
@@ -364,11 +364,11 @@
         private Button browseButton;
         private GroupBox groupBox1;
         private TextBox newDistroNameInput;
-        private Label label3;
+        private Label newDistroLabel;
         private Label descriptionLabel;
         private Panel pathContainer;
         private TextBox outputPathOutp;
-        private Label label2;
+        private Label outputPathLabel;
         private UI.PictureButton outputPathButton;
     }
 }

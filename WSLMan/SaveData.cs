@@ -18,15 +18,20 @@ namespace WSLMan
         // A folder path for the creation of the virtual hard drive 'vhdx' file
         public static string OutputVhdxDirPath { get { return saveData.output_vhdx_dir_path; } set { saveData.output_vhdx_dir_path = value; } }
 
+        // A folder path for the creation of the virtual hard drive 'vhdx' file at the browse single package menu
+        public static string OutputBrowseSingleVhdxDirPath { get { return saveData.output_browse_single_vhdx_dir_path; } set { saveData.output_browse_single_vhdx_dir_path = value; } }
+
         // The last 'tar.gz' file path used when browsing on a new creation
         public static string LastPackageFilePath { get { return saveData.last_package_file_path; } set { saveData.last_package_file_path = value; } }
 
+        
 
         private static SaveData saveData = null;
         private const string FILENAME = "config.cfg";
 
         public string version { get; set; } = "";
         public string output_vhdx_dir_path { get; set; } = "";
+        public string output_browse_single_vhdx_dir_path { get; set; } = "";
         public string custom_package_dir_path { get; set; } = "";
         public string last_package_file_path { get; set; } = "";
 
@@ -61,10 +66,11 @@ namespace WSLMan
         private static void CreateNew()
         {
             saveData = new SaveData();
-            saveData.version = "0.2.0";
-            saveData.output_vhdx_dir_path =     "";
-            saveData.custom_package_dir_path =  "";
-            saveData.last_package_file_path =   "";
+            saveData.version = "0.4.0";
+            saveData.output_vhdx_dir_path =                 "";
+            saveData.output_browse_single_vhdx_dir_path =   "";
+            saveData.custom_package_dir_path =              "";
+            saveData.last_package_file_path =               "";
         }
 
         public static void Load()

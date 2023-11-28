@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommandLauncher;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -18,19 +19,8 @@ namespace WSLMan.Commands
             if (username != "")
                 fullCommand += " --user " + username;
 
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "wsl",
-                Arguments = fullCommand,
-                //RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = false,
-                //RedirectStandardOutput = true,
-                //RedirectStandardError = true
-            };
-
-            Process process = new Process { StartInfo = psi };
-            process.Start();
+            CmdRun cmd = new CmdRun("wsl", fullCommand);
+            cmd.OpenAndLaunch();
         }
 
 

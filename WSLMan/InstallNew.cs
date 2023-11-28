@@ -22,7 +22,7 @@ namespace WSLMan
             Preinstalled,
             CustomPackages,
             Online,
-            Browse
+            BrowseSingle
         }
 
         public State CurrState 
@@ -32,7 +32,7 @@ namespace WSLMan
                      if(preinstalledRDButton.Checked)   return State.Preinstalled;
                 else if(customRDButton.Checked)         return State.CustomPackages;
                 else if(onlineRDButton.Checked)         return State.Online;
-                else if(browseRDButton.Checked)         return State.Browse;
+                else if(browseRDButton.Checked)         return State.BrowseSingle;
                 else return State.None;
             } 
             //set; 
@@ -141,9 +141,36 @@ namespace WSLMan
             SimpleOverlay.HideFX();
         }
 
-        private void RefreshDistroBrowse()
+        private void RefreshDistroBrowseSingle()
         {
-            pathInput.Text = SaveData.LastPackageFilePath;
+            distroList.ClearItems();
+
+            pathInput.Text =        SaveData.LastPackageFilePath;
+            outputPathOutp.Text =   SaveData.OutputBrowseSingleVhdxDirPath;
+
+            string distroFileName = pathInput.Text;
+
+            if (pathInput.Text != "")
+            {
+                if (File.Exists(distroFileName))
+                {
+                    DistroPackage distroPackage = new DistroPackage(Path.GetFileName(distroFileName), distroFileName);
+                    distroList.AddItem(distroPackage, distroPackage.Name);
+                    distroList.SelectByIndex(0);
+                }
+                else
+                {
+                    var result = MessageBox.Show("Package '" + pathInput.Text + "' does not exist anymore.\n\nDo you want to delete the record from the list?", "Can't find package", MessageBoxButtons.YesNo);
+                    if (result == DialogResult.Yes)
+                    {
+                        pathInput.Text = "";
+                        SaveData.LastPackageFilePath = "";
+                        SaveData.Save();
+                    }
+                }
+            }
+
+            //DistroPackage distro = distroList.GetSelectedItem<DistroPackage>();
         }
 
         private async void OnRefreshListPressed(object sender, EventArgs e)
@@ -168,7 +195,20 @@ namespace WSLMan
                  if(state == State.Preinstalled)    preinstalledRDButton.Checked = true; 
             else if(state == State.CustomPackages)  customRDButton.Checked = true; 
             else if(state == State.Online)          onlineRDButton.Checked = true; 
-            else if(state == State.Browse)          browseRDButton.Checked = true; 
+            else if(state == State.BrowseSingle)          browseRDButton.Checked = true; 
+        }
+
+        private void SetNewNameEnable(bool enable)
+        {
+            newDistroLabel.ForeColor = enable ? Color.SlateBlue : Color.DimGray;
+            newDistroNameInput.Enabled = enable;
+        }
+
+        private void SetOutPathEnable(bool enable)
+        { 
+            outputPathLabel.ForeColor = enable ? Color.SlateBlue : Color.DimGray;
+            outputPathOutp.Enabled =    enable;
+            outputPathButton.Enabled =  enable;
         }
 
         private async void OnModeCheckedChanged(object sender, EventArgs e)
@@ -177,47 +217,56 @@ namespace WSLMan
 
             pathInput.Text =        "";
             outputPathOutp.Text = "";
-            outputPathButton.Enabled = false;
+            distroList.Enabled = true;
+            SetOutPathEnable(false);
 
             distroList.ClearSelection();
 
+            
+
             if (state == State.Preinstalled)
             {
-                descriptionLabel.Text = "Use any of the preinstalled distros to create your new installation. Click the 'refresh list' button to check for changes.";
-                refreshListButton.Enabled = true;
-                pathInput.Enabled =         false;
-                browseButton.Enabled =      false;
-                pathContainer.Visible =     false;
+                descriptionLabel.Text =         "Use any of the preinstalled distros to create your new installation. Click the 'refresh list' button to check for changes.";
+                refreshListButton.Enabled =     true;
+                pathInput.Enabled =             false;
+                browseButton.Enabled =          false;
+                pathContainer.Visible =         false;
+                SetNewNameEnable(false);
                 await RefreshDistroPreinstalled();
             }
             else if (state == State.CustomPackages)
             {
                 descriptionLabel.Text = "Select a directory where all your distros.tar.gz are downloaded";
-                refreshListButton.Enabled = true;
-                pathInput.Enabled =         true;
-                browseButton.Enabled =      true;
-                pathContainer.Visible =     true;
-                outputPathButton.Enabled =  true;
+                refreshListButton.Enabled =     true;
+                pathInput.Enabled =             true;
+                browseButton.Enabled =          true;
+                pathContainer.Visible =         true;
+                SetOutPathEnable(true);
+                SetNewNameEnable(true);
                 RefreshDistroCustom();
             }
             else if (state == State.Online)
             {
                 descriptionLabel.Text = "Wait for online distro list to be downloaded. Click the 'refresh list' button to check for changes.";
-                refreshListButton.Enabled = true;
-                pathInput.Enabled =         false;
-                browseButton.Enabled =      false;
-                pathContainer.Visible =     false;
+                refreshListButton.Enabled =     true;
+                pathInput.Enabled =             false;
+                browseButton.Enabled =          false;
+                pathContainer.Visible =         false;
+                SetNewNameEnable(false);
                 await RefreshDistroOnline();
             }
-            else if (state == State.Browse)
+            else if (state == State.BrowseSingle)
             {
                 descriptionLabel.Text = "Select a downloaded 'tag.gz' package to be used for the installation of the distro.";
-                refreshListButton.Enabled = false;
-                pathInput.Enabled =         true;
-                browseButton.Enabled =      true;
-                pathContainer.Visible =     true;
+                refreshListButton.Enabled =     false;
+                pathInput.Enabled =             true;
+                browseButton.Enabled =          true;
+                pathContainer.Visible =         true;
+                SetOutPathEnable(true);
+                SetNewNameEnable(true);
                 distroList.ClearItems();
-                RefreshDistroBrowse();
+                distroList.Enabled = false;
+                RefreshDistroBrowseSingle();
             }
         }
 
@@ -238,7 +287,7 @@ namespace WSLMan
                     SaveData.Save();
                 }
             }
-            else if (CurrState == State.Browse)
+            else if (CurrState == State.BrowseSingle)
             {
                 OpenFileDialog openFileDialog = new OpenFileDialog();
 
@@ -252,6 +301,8 @@ namespace WSLMan
                     pathInput.Text =                openFileDialog.FileName;
                     SaveData.LastPackageFilePath =  pathInput.Text;
                     SaveData.Save();
+
+                    RefreshDistroBrowseSingle();
                 }
             }
         }
@@ -276,8 +327,21 @@ namespace WSLMan
 
                 if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
                 {
-                    outputPathOutp.Text = folderBrowserDialog.SelectedPath;
+                    outputPathOutp.Text = folderBrowserDialog.SelectedPath.Trim();
                     SaveData.OutputVhdxDirPath = outputPathOutp.Text;
+                    SaveData.Save();
+                }
+            }
+            else if (CurrState == State.BrowseSingle)
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+
+                folderBrowserDialog.ShowNewFolderButton = false;
+
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    outputPathOutp.Text = folderBrowserDialog.SelectedPath.Trim();
+                    SaveData.OutputBrowseSingleVhdxDirPath = outputPathOutp.Text;
                     SaveData.Save();
                 }
             }
@@ -291,8 +355,8 @@ namespace WSLMan
                 InstallDistroPackages();
             else if (CurrState == State.Online)
                 InstallDistroOnline();
-            else if (CurrState == State.Browse)
-                InstallBrowse();
+            else if (CurrState == State.BrowseSingle)
+                InstallBrowseSingle();
         }
 
         private void InstallDistroInfo()
@@ -343,12 +407,33 @@ namespace WSLMan
         {
             DistroOnline distro = distroList.GetSelectedItem<DistroOnline>();
 
-            Println("isc: " + distro);
+            wsl.InstallDistro(distro.Name);
+            NewDistroInstalled = true;
         }
 
-        private void InstallBrowse()
+        private void InstallBrowseSingle()
         { 
-        
+            DistroPackage distro = distroList.GetSelectedItem<DistroPackage>();
+            string installDirPath = outputPathOutp.Text;
+
+            if (!CheckDistro(distro))           return;
+            if (!CheckName())                   return;
+            if (!CheckDir(installDirPath, "output installation")) return;
+
+            installDirPath += "\\" + NewDistroName;
+
+            //_importCmdProp = new ImportCmdProp() { CustomName = NewDistroName, DestinationFolder = installDirPath, InputFilename = distro.Path };
+
+            progressPanel = new ProgressPanel();
+            progressPanel.Opened += async () => {
+                
+                await wsl.Import(NewDistroName, installDirPath, distro.Path);
+                progressPanel.SetAsFinished();
+                NewDistroInstalled = true;
+            };
+
+            progressPanel.ShowMe(this, "Install New Distro", "Installing distro '" + NewDistroName + "' from a tar.gz package.\nPlease be patient. Installing will complete as soon as possible...");
+            
         }
 
         private bool CheckDistro(DistroBase distro)
