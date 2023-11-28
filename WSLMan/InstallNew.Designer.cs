@@ -1,4 +1,6 @@
-﻿namespace WSLMan
+﻿using WSLMan.UI;
+
+namespace WSLMan
 {
     partial class InstallNew
     {
@@ -40,11 +42,11 @@
             this.pathInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.selectedNameLabel = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new WSLMan.UI.SimpleGroupBox();
             this.descriptionLabel = new System.Windows.Forms.Label();
             this.pathContainer = new System.Windows.Forms.Panel();
             this.browseButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new WSLMan.UI.SimpleGroupBox();
             this.outputPathButton = new WSLMan.UI.PictureButton();
             this.outputPathOutp = new System.Windows.Forms.TextBox();
             this.outputPathLabel = new System.Windows.Forms.Label();
@@ -202,9 +204,12 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBox2.BorderSize = 2;
             this.groupBox2.Controls.Add(this.descriptionLabel);
             this.groupBox2.Controls.Add(this.pathContainer);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
+            this.groupBox2.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox2.ForeColor = System.Drawing.Color.Silver;
             this.groupBox2.Location = new System.Drawing.Point(420, 161);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(395, 170);
@@ -249,6 +254,8 @@
             // 
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
+            this.groupBox1.BorderSize = 2;
             this.groupBox1.Controls.Add(this.outputPathButton);
             this.groupBox1.Controls.Add(this.outputPathOutp);
             this.groupBox1.Controls.Add(this.outputPathLabel);
@@ -257,7 +264,8 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.installButton);
             this.groupBox1.Controls.Add(this.selectedNameLabel);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
             this.groupBox1.Location = new System.Drawing.Point(420, 6);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(395, 160);
@@ -360,9 +368,9 @@
         private TextBox pathInput;
         private Label label1;
         private Label selectedNameLabel;
-        private GroupBox groupBox2;
+        private SimpleGroupBox groupBox2;
         private Button browseButton;
-        private GroupBox groupBox1;
+        private SimpleGroupBox groupBox1;
         private TextBox newDistroNameInput;
         private Label newDistroLabel;
         private Label descriptionLabel;

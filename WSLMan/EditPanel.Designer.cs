@@ -1,4 +1,6 @@
-﻿namespace WSLMan
+﻿using WSLMan.UI;
+
+namespace WSLMan
 {
     partial class EditPanel
     {
@@ -33,12 +35,12 @@
             this.passwordInput = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.setUserButton = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBox2 = new WSLMan.UI.SimpleGroupBox();
             this.defaultUserLoginCKBox = new System.Windows.Forms.CheckBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new WSLMan.UI.SimpleGroupBox();
             this.osList = new System.Windows.Forms.ComboBox();
             this.distroName = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox3 = new WSLMan.UI.SimpleGroupBox();
             this.infoLabel = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -70,7 +72,7 @@
             this.passwordInput.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.passwordInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.passwordInput.ForeColor = System.Drawing.Color.Silver;
-            this.passwordInput.Location = new System.Drawing.Point(98, 58);
+            this.passwordInput.Location = new System.Drawing.Point(98, 61);
             this.passwordInput.Name = "passwordInput";
             this.passwordInput.PasswordChar = '*';
             this.passwordInput.Size = new System.Drawing.Size(133, 27);
@@ -80,7 +82,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label1.Location = new System.Drawing.Point(10, 60);
+            this.label1.Location = new System.Drawing.Point(10, 63);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(70, 20);
             this.label1.TabIndex = 14;
@@ -92,7 +94,7 @@
             this.setUserButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
             this.setUserButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.setUserButton.ForeColor = System.Drawing.Color.Silver;
-            this.setUserButton.Location = new System.Drawing.Point(10, 138);
+            this.setUserButton.Location = new System.Drawing.Point(10, 142);
             this.setUserButton.Name = "setUserButton";
             this.setUserButton.Size = new System.Drawing.Size(221, 29);
             this.setUserButton.TabIndex = 16;
@@ -102,16 +104,19 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.groupBox2.BorderSize = 2;
             this.groupBox2.Controls.Add(this.defaultUserLoginCKBox);
             this.groupBox2.Controls.Add(this.passwordInput);
             this.groupBox2.Controls.Add(this.setUserButton);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.usernameInput);
             this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.ForeColor = System.Drawing.Color.White;
-            this.groupBox2.Location = new System.Drawing.Point(12, 111);
+            this.groupBox2.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox2.ForeColor = System.Drawing.Color.Silver;
+            this.groupBox2.Location = new System.Drawing.Point(12, 107);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(246, 181);
+            this.groupBox2.Size = new System.Drawing.Size(246, 185);
             this.groupBox2.TabIndex = 17;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "New User";
@@ -123,7 +128,7 @@
             this.defaultUserLoginCKBox.CheckState = System.Windows.Forms.CheckState.Checked;
             this.defaultUserLoginCKBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.defaultUserLoginCKBox.ForeColor = System.Drawing.Color.Silver;
-            this.defaultUserLoginCKBox.Location = new System.Drawing.Point(13, 96);
+            this.defaultUserLoginCKBox.Location = new System.Drawing.Point(13, 99);
             this.defaultUserLoginCKBox.Name = "defaultUserLoginCKBox";
             this.defaultUserLoginCKBox.Size = new System.Drawing.Size(176, 24);
             this.defaultUserLoginCKBox.TabIndex = 18;
@@ -132,9 +137,12 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.groupBox1.BorderSize = 2;
             this.groupBox1.Controls.Add(this.osList);
             this.groupBox1.Controls.Add(this.distroName);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
+            this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
             this.groupBox1.Location = new System.Drawing.Point(12, 5);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(246, 102);
@@ -167,8 +175,11 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.groupBox3.BorderSize = 2;
             this.groupBox3.Controls.Add(this.infoLabel);
-            this.groupBox3.ForeColor = System.Drawing.Color.White;
+            this.groupBox3.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox3.ForeColor = System.Drawing.Color.Silver;
             this.groupBox3.Location = new System.Drawing.Point(264, 5);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(218, 287);
@@ -186,7 +197,7 @@
             this.infoLabel.TabIndex = 12;
             this.infoLabel.Text = "----";
             // 
-            // ConfigPanel
+            // EditPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -196,9 +207,9 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "ConfigPanel";
+            this.Name = "EditPanel";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Configuration";
+            this.Text = "Edition";
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox1.ResumeLayout(false);
@@ -215,12 +226,12 @@
         private TextBox passwordInput;
         private Label label1;
         private Button setUserButton;
-        private GroupBox groupBox2;
+        private SimpleGroupBox groupBox2;
         private CheckBox defaultUserLoginCKBox;
-        private GroupBox groupBox1;
+        private SimpleGroupBox groupBox1;
         private Label distroName;
         private ComboBox osList;
-        private GroupBox groupBox3;
+        private SimpleGroupBox groupBox3;
         private Label infoLabel;
     }
 }

@@ -24,7 +24,7 @@ namespace WSLMan
 
         protected override void OnLoad(EventArgs e)
         {
-            outputPathOutp.Text = SaveData.OutputVhdxDirPath;
+            outputPathOutp.Text = SaveData.OutputCloneVhdxDirPath;
             //DialogResult = DialogResult.Cancel;
             base.OnLoad(e);
         }
@@ -96,7 +96,7 @@ namespace WSLMan
             if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
             {
                 outputPathOutp.Text = folderBrowserDialog.SelectedPath;
-                SaveData.OutputVhdxDirPath = outputPathOutp.Text;
+                SaveData.OutputCloneVhdxDirPath = outputPathOutp.Text;
                 SaveData.Save();
             }
             

@@ -1,4 +1,6 @@
-﻿namespace WSLMan
+﻿using WSLMan.UI;
+
+namespace WSLMan
 {
     partial class ClonePanel
     {
@@ -28,7 +30,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new WSLMan.UI.SimpleGroupBox();
             this.outputPathButton = new WSLMan.UI.PictureButton();
             this.outputPathOutp = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,13 +43,16 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(60)))), ((int)(((byte)(60)))));
+            this.groupBox1.BorderSize = 2;
             this.groupBox1.Controls.Add(this.outputPathButton);
             this.groupBox1.Controls.Add(this.outputPathOutp);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.newDistroNameInput);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.ForeColor = System.Drawing.Color.White;
-            this.groupBox1.Location = new System.Drawing.Point(8, 3);
+            this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
+            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
+            this.groupBox1.Location = new System.Drawing.Point(8, 0);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(395, 96);
             this.groupBox1.TabIndex = 27;
@@ -153,7 +158,7 @@
 
         #endregion
 
-        private GroupBox groupBox1;
+        private SimpleGroupBox groupBox1;
         private UI.PictureButton outputPathButton;
         private TextBox outputPathOutp;
         private Label label2;

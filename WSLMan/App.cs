@@ -324,8 +324,9 @@ namespace WSLMan
 
                     await wsl.Export(CurrentDistro.Name, clonedFileName);
                     progressPanel.SetProgress(0.4f);
-                    await wsl.Import(newDistroName, "C:\\WSL_OUT2\\" + newDistroName, clonedFileName);
+                    await wsl.Import(newDistroName, newPath + "\\" + newDistroName, clonedFileName);
                     progressPanel.SetProgress(0.7f);
+
                     try
                     {
                         File.Delete(clonedFileName);
@@ -343,7 +344,7 @@ namespace WSLMan
                     progressPanel.SetAsFinished();
                 };
 
-                progressPanel.ShowMe(this, "Clone Distro", "Cloning ditro '" + CurrentDistro.Name + "' to a new one called '" + newDistroName + "'\nInstallation path: " + newPath);
+                progressPanel.ShowMe(this, "Clone Distro", "Cloning distro '" + CurrentDistro.Name + "' to a new one called '" + newDistroName + "'\nInstallation path: " + newPath);
 
             }
         }

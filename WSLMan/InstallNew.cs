@@ -85,6 +85,8 @@ namespace WSLMan
             distroList.ClearSelection();
             distroList.ClearItems();
 
+            outputPathOutp.Text = SaveData.OutputCloneVhdxDirPath;
+
             var distros = (await wsl.ListDistrosAsync()).distros;
 
             if (distros != null)
@@ -231,7 +233,8 @@ namespace WSLMan
                 pathInput.Enabled =             false;
                 browseButton.Enabled =          false;
                 pathContainer.Visible =         false;
-                SetNewNameEnable(false);
+                SetOutPathEnable(true);
+                SetNewNameEnable(true);
                 await RefreshDistroPreinstalled();
             }
             else if (state == State.CustomPackages)
@@ -285,6 +288,7 @@ namespace WSLMan
                     pathInput.Text =                folderBrowserDialog.SelectedPath;
                     SaveData.CustomPackageDirPath = pathInput.Text;
                     SaveData.Save();
+                    RefreshDistroCustom();
                 }
             }
             else if (CurrState == State.BrowseSingle)
@@ -319,7 +323,21 @@ namespace WSLMan
 
         private void OnOutputPathPressed(object sender, EventArgs e)
         {
-            if (CurrState == State.CustomPackages)
+            if (CurrState == State.Preinstalled)
+            {
+                FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
+
+                folderBrowserDialog.ShowNewFolderButton = false;
+
+                if (folderBrowserDialog.ShowDialog() == DialogResult.OK)
+                {
+                    outputPathOutp.Text = folderBrowserDialog.SelectedPath.Trim();
+                    SaveData.OutputCloneVhdxDirPath = outputPathOutp.Text;
+                    SaveData.Save();
+                }
+
+            }
+            else if (CurrState == State.CustomPackages)
             {
                 FolderBrowserDialog folderBrowserDialog = new FolderBrowserDialog();
 
@@ -350,7 +368,7 @@ namespace WSLMan
         private void OnInstallPressed(object sender, EventArgs e)
         {
             if (CurrState == State.Preinstalled)
-                InstallDistroInfo();
+                InstallDistroPreinstalled();
             else if (CurrState == State.CustomPackages)
                 InstallDistroPackages();
             else if (CurrState == State.Online)
@@ -359,11 +377,54 @@ namespace WSLMan
                 InstallBrowseSingle();
         }
 
-        private void InstallDistroInfo()
+        private async void InstallDistroPreinstalled()
         {
             DistroInfo distro = distroList.GetSelectedItem<DistroInfo>();
+            string installDirPath = outputPathOutp.Text;
 
-            Println("isa: " + distro);
+            if (!CheckDistro(distro)) return;
+            if (!CheckName()) return;
+            if (!CheckDir(installDirPath, "output installation")) return;
+
+            var result = MessageBox.Show("You are going to make a clone of '" + distro.Name + "'.\nThe new distro '" + NewDistroName + "' will have a copy of all the original distro's content.\nYou can opt to create a clean one using the 'Online' installation mode.\n\nDo you want to continue anyway?", "Clone distro", MessageBoxButtons.OKCancel);
+
+            string clonedFileName = distro.Path + "_clone.tar";
+            string newDistroName =  NewDistroName;
+            installDirPath += "\\" + NewDistroName;
+
+            if(result == DialogResult.OK)
+            { 
+
+                progressPanel = new ProgressPanel();
+                progressPanel.Opened += async () => {
+
+                    await wsl.Export(distro.Name, clonedFileName);
+                    progressPanel.SetProgress(0.4f);
+                    await wsl.Import(NewDistroName, installDirPath, clonedFileName);
+                    progressPanel.SetProgress(0.7f);
+
+                    try
+                    {
+                        File.Delete(clonedFileName);
+                        Println("File '" + clonedFileName + "' removed");
+                    }
+                    catch (Exception ex)
+                    {
+                        CallError("Can't delete file: " + clonedFileName);
+                    }
+                    progressPanel.SetProgress(0.8f);
+
+                    //await RefreshDistrosList();
+                    await RefreshDistroPreinstalled();
+
+                    XConsole.Println("clone complete");
+                    progressPanel.SetAsFinished();
+                    NewDistroInstalled = true;
+                };
+
+                progressPanel.ShowMe(this, "Clone Distro", "Cloning distro '" + distro.Name + "' to a new one called '" + newDistroName + "'\nInstallation path: " + installDirPath);
+
+            }
         }
 
         
@@ -451,7 +512,7 @@ namespace WSLMan
         {
             if (NewDistroName == "")
             {
-                Alert("Custom distro name is empty.");
+                Alert("New distro name is empty.");
                 return false;
             }
             else

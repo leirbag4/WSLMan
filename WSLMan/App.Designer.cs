@@ -104,7 +104,7 @@ namespace WSLMan
             this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBox1.BorderSize = 1;
+            this.groupBox1.BorderSize = 2;
             this.groupBox1.Controls.Add(this.distroList);
             this.groupBox1.Controls.Add(this.listButton);
             this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
@@ -181,7 +181,7 @@ namespace WSLMan
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBox2.BorderSize = 1;
+            this.groupBox2.BorderSize = 2;
             this.groupBox2.Controls.Add(this.nameOutp);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.uidLabel);
@@ -208,7 +208,7 @@ namespace WSLMan
             this.nameOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.nameOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nameOutp.ForeColor = System.Drawing.Color.Silver;
-            this.nameOutp.Location = new System.Drawing.Point(66, 24);
+            this.nameOutp.Location = new System.Drawing.Point(66, 28);
             this.nameOutp.Name = "nameOutp";
             this.nameOutp.Size = new System.Drawing.Size(133, 27);
             this.nameOutp.TabIndex = 11;
@@ -217,7 +217,7 @@ namespace WSLMan
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label4.Location = new System.Drawing.Point(10, 27);
+            this.label4.Location = new System.Drawing.Point(10, 31);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 20);
             this.label4.TabIndex = 10;
@@ -227,7 +227,7 @@ namespace WSLMan
             // 
             this.uidLabel.AutoSize = true;
             this.uidLabel.ForeColor = System.Drawing.Color.Silver;
-            this.uidLabel.Location = new System.Drawing.Point(299, 93);
+            this.uidLabel.Location = new System.Drawing.Point(299, 97);
             this.uidLabel.Name = "uidLabel";
             this.uidLabel.Size = new System.Drawing.Size(17, 20);
             this.uidLabel.TabIndex = 9;
@@ -237,7 +237,7 @@ namespace WSLMan
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label8.Location = new System.Drawing.Point(261, 93);
+            this.label8.Location = new System.Drawing.Point(261, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 20);
             this.label8.TabIndex = 8;
@@ -257,7 +257,7 @@ namespace WSLMan
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label6.Location = new System.Drawing.Point(161, 93);
+            this.label6.Location = new System.Drawing.Point(161, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 20);
             this.label6.TabIndex = 6;
@@ -267,7 +267,7 @@ namespace WSLMan
             // 
             this.stateLabel.AutoSize = true;
             this.stateLabel.ForeColor = System.Drawing.Color.Silver;
-            this.stateLabel.Location = new System.Drawing.Point(66, 93);
+            this.stateLabel.Location = new System.Drawing.Point(66, 97);
             this.stateLabel.Name = "stateLabel";
             this.stateLabel.Size = new System.Drawing.Size(70, 20);
             this.stateLabel.TabIndex = 5;
@@ -277,7 +277,7 @@ namespace WSLMan
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label3.Location = new System.Drawing.Point(10, 93);
+            this.label3.Location = new System.Drawing.Point(10, 97);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(43, 20);
             this.label3.TabIndex = 4;
@@ -288,7 +288,7 @@ namespace WSLMan
             this.hashOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.hashOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.hashOutp.ForeColor = System.Drawing.Color.Silver;
-            this.hashOutp.Location = new System.Drawing.Point(253, 24);
+            this.hashOutp.Location = new System.Drawing.Point(253, 28);
             this.hashOutp.Name = "hashOutp";
             this.hashOutp.Size = new System.Drawing.Size(127, 27);
             this.hashOutp.TabIndex = 3;
@@ -297,7 +297,7 @@ namespace WSLMan
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label2.Location = new System.Drawing.Point(205, 27);
+            this.label2.Location = new System.Drawing.Point(205, 31);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 20);
             this.label2.TabIndex = 2;
@@ -308,7 +308,7 @@ namespace WSLMan
             this.pathOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.pathOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pathOutp.ForeColor = System.Drawing.Color.Silver;
-            this.pathOutp.Location = new System.Drawing.Point(66, 60);
+            this.pathOutp.Location = new System.Drawing.Point(66, 64);
             this.pathOutp.Name = "pathOutp";
             this.pathOutp.Size = new System.Drawing.Size(314, 27);
             this.pathOutp.TabIndex = 1;
@@ -317,7 +317,7 @@ namespace WSLMan
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label1.Location = new System.Drawing.Point(10, 63);
+            this.label1.Location = new System.Drawing.Point(10, 67);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(37, 20);
             this.label1.TabIndex = 0;

@@ -99,7 +99,7 @@ namespace WSLMan
             }
             else
             {
-                string[] distroFiles = Directory.GetFiles(path);
+                string[] distroFiles = Directory.GetFiles(path, "*.tar*");
 
                 foreach (var fullFilename in distroFiles)
                 {
