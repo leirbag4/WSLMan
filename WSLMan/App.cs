@@ -385,8 +385,10 @@ namespace WSLMan
                     progressPanel.Opened += async () =>
                     {
                         string prevDistroName = CurrentDistro.Name;
+                        string prevDistroPath = CurrentDistro.Path;
 
                         await wsl.StopDistro(CurrentDistro);
+                        Thread.Sleep(2000);
                         await wsl.UninstallPackage(CurrentDistro.AppxPackageName);
                         
                         // refresh list to check if it was removed
@@ -396,14 +398,14 @@ namespace WSLMan
                         // try to unregister now
                         if (DistroExist(prevDistroName))
                         {
-                            await wsl.Unregister(CurrentDistro.Name);
+                            await wsl.Unregister(prevDistroName);
                             try
                             {
-                                Directory.Delete(CurrentDistro.Path, true);
+                                Directory.Delete(prevDistroPath, true);
                             }
                             catch (Exception ex)
                             {
-                                CallError("Can't delete directory '" + CurrentDistro.Path + "'", ex);
+                                CallError("Can't delete directory '" + prevDistroPath + "'", ex);
                             }
 
                             // refresh again
