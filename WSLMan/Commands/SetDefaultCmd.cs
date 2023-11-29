@@ -20,7 +20,7 @@ namespace WSLMan.Commands
 
         protected override void OnDataReceived(string data)
         {
-            XConsole.Println(data);
+            Println(data);
         }
 
         protected override void OnErrorDataReceived(string data)

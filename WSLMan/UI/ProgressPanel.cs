@@ -16,13 +16,16 @@ namespace WSLMan.UI
         public delegate void OpenEvent();
 
         public event OpenEvent Opened;
-        private bool _finished = false; 
-
+        private bool _finished = false;
+        private System.Windows.Forms.Timer _timer = null;
+        private SimulateProgress simulateProgress = null;
 
         public float Progress 
         { 
             set 
             {
+                if (value > 1.0f) value = 1.0f;
+
                 if (progressBar.InvokeRequired)
                 {
                     progressBar.Invoke(new MethodInvoker(delegate { progressBar.Value = (int)(value * 100); }));
@@ -61,14 +64,19 @@ namespace WSLMan.UI
 
         public void ShowMe(ContainerControl parent, string title, string description)
         {
-
             if (parent != null) SimpleOverlay.ShowFX(parent);
             
-            this._finished = false;
-            this.titleLabel.Text = title;
-            this.descriptionLabel.Text = description;
+            this._finished =                false;
+            this.titleLabel.Text =          title;
+            this.descriptionLabel.Text =    description;
             this.ShowDialog(parent);
+            
             if (parent != null) SimpleOverlay.HideFX();
+        }
+
+        public void SimulateTimer(float progressStep, int millisTick)
+        {
+            simulateProgress = new SimulateProgress(progressStep, millisTick);
         }
 
         protected override bool ProcessDialogKey(Keys keyData)
@@ -84,23 +92,13 @@ namespace WSLMan.UI
             return base.ProcessDialogKey(keyData);
         }
 
-        public void SetProgress(float progress)
-        { 
-            this.Progress = progress;
-        }
-
-        public void SetAsFinished()
-        {
-            Progress = 1.0f;
-            closeButton.Enabled = true;
-            _finished = true;
-        }
-
         protected override void OnLoad(EventArgs e)
         {
-            Progress = 0;
             XConsole.Push();
             XConsole.SetOutput(outp);
+
+            if (simulateProgress != null)
+                SimulateTimer();
 
             if (Opened != null)
                 Opened();
@@ -108,9 +106,50 @@ namespace WSLMan.UI
             base.OnLoad(e);
         }
 
+        public void SimulateTimer()
+        {
+            simulateProgress.Start();
+            _timer =            new System.Windows.Forms.Timer();
+            _timer.Interval =   simulateProgress.millisTick;
+            _timer.Tick +=      OnSimulateTimerTick;
+            _timer.Start();
+        }
+
+        private void OnSimulateTimerTick(object sender, EventArgs e)
+        {
+            SetProgress(simulateProgress.NextStep());
+        }
+
+        private void KillIfTimer()
+        {
+            if (_timer != null)
+            {
+                _timer.Stop();
+                _timer = null;
+                simulateProgress = null;
+            }
+        }
+
+        public void SetProgress(float progress)
+        { 
+            this.Progress = progress;
+        }
+
+        public void SetAsFinished()
+        {
+            KillIfTimer();
+
+            Progress = 1.0f;
+            closeButton.Enabled = true;
+            _finished = true;
+
+            KillIfTimer();
+        }
+
         protected override void OnClosing(CancelEventArgs e)
         {
             XConsole.Pop();
+            KillIfTimer();
 
             base.OnClosing(e);
         }

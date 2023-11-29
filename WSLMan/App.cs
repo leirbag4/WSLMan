@@ -49,6 +49,7 @@ namespace WSLMan
         {
             OsManager.Initialize();
             SaveData.Initialize();
+            SelectDistro(null);
 
             appVersionLabel.Text = "version: " + Application.ProductVersion;
 
@@ -192,9 +193,14 @@ namespace WSLMan
                 else
                     defaultStr = "";
 
+
                 distroList.AddItem(distro, distro.Name + defaultStr, distro.State.ToString(), distro.Version.ToString());
                 if (distro.Default)
                     distroList.SetBoldIndex(a, true);
+
+                if (distro.InstalledFromPackageOrStore)
+                    distroList.SetColorIndex(a, Color.FromArgb(200, 180, 200)); // Color.FromArgb(180, 180, 160));
+
             }
 
         }
@@ -218,14 +224,15 @@ namespace WSLMan
                 nameOutp.Text =                 "";
                 hashOutp.Text =                 "";
                 pathOutp.Text =                 "";
-                stateLabel.Text =               "";
-                versionLabel.Text =             "";
-                uidLabel.Text =                 "";
+                stateLabel.Text =               "-";
+                versionLabel.Text =             "-";
+                uidLabel.Text =                 "-";
+                installLabel.Text =             "-";
                 startButton.Enabled =           false;
                 stopButton.Enabled =            false;
-                editButton.Enabled =          false;
+                editButton.Enabled =            false;
                 removeButton.Enabled =          false;
-                cloneButton.Enabled =       false;
+                cloneButton.Enabled =           false;
                 openLocationButton.Enabled =    false;
             }
             else
@@ -236,13 +243,28 @@ namespace WSLMan
                 stateLabel.Text =               distro.State.ToString();
                 versionLabel.Text =             distro.Version.ToString();
                 uidLabel.Text =                 distro.DefaultUid.ToString();
+                installLabel.Text =             distro.InstalledFromPackageOrStore == true ? "Package" : "Custom";
                 startButton.Enabled =           true;
                 stopButton.Enabled =            true;
-                editButton.Enabled =          true;
+                editButton.Enabled =            true;
                 removeButton.Enabled =          true;
-                cloneButton.Enabled =       true;
+                cloneButton.Enabled =           true;
                 openLocationButton.Enabled =    true;
             }
+        }
+
+        private bool DistroExist(string distroName)
+        {
+            if (distroList.Items != null)
+            {
+                for (int a = 0; a < distroList.Items.Count; a++)
+                {
+                    if ((distroList.Items[a].Tag as DistroInfo).Name == distroName)
+                        return true;
+                }
+            }
+
+            return false;
         }
 
         private async Task RefreshDistrosList()
@@ -298,9 +320,7 @@ namespace WSLMan
 
         private async void OnStopPressed(object sender, EventArgs e)
         {
-            string output = wsl.StopDistro(CurrentDistro);
-            
-            Println(output);
+            await wsl.StopDistro(CurrentDistro);
             await RefreshDistrosList();
         }
 
@@ -355,23 +375,69 @@ namespace WSLMan
 
             if (result == DialogResult.Yes)
             {
-                SimpleOverlay.ShowFX(this);
-
-                bool unregistered = (await wsl.Unregister(CurrentDistro.Name)).IsOk;
-                if (unregistered)
+                //
+                //  Package Installation
+                //
+                if (CurrentDistro.InstalledFromPackageOrStore)
                 {
-                    try
+                    progressPanel = new ProgressPanel();
+                    progressPanel.SimulateTimer(0.01f, 1000);
+                    progressPanel.Opened += async () =>
                     {
-                        Directory.Delete(CurrentDistro.Path, true);
-                    }
-                    catch (Exception ex)
-                    {
-                        CallError("Can't delete directory '" + CurrentDistro.Path + "'", ex);
-                    }
-                }
+                        string prevDistroName = CurrentDistro.Name;
 
-                await RefreshDistrosList();
-                SimpleOverlay.HideFX();                
+                        await wsl.StopDistro(CurrentDistro);
+                        await wsl.UninstallPackage(CurrentDistro.AppxPackageName);
+                        
+                        // refresh list to check if it was removed
+                        await RefreshDistrosList();
+
+                        // couldn't be delete for any reason, so 
+                        // try to unregister now
+                        if (DistroExist(prevDistroName))
+                        {
+                            await wsl.Unregister(CurrentDistro.Name);
+                            try
+                            {
+                                Directory.Delete(CurrentDistro.Path, true);
+                            }
+                            catch (Exception ex)
+                            {
+                                CallError("Can't delete directory '" + CurrentDistro.Path + "'", ex);
+                            }
+
+                            // refresh again
+                            await RefreshDistrosList();
+                        }
+                        
+                        progressPanel.SetAsFinished();
+                    };
+
+                    progressPanel.ShowMe(this, "Uninstall package", "Uninstalling package '" + CurrentDistro.AppxPackageName + ". Do not close\nPlease be patient...");
+                }
+                //
+                // Custom Installation
+                //
+                else
+                {
+                    SimpleOverlay.ShowFX(this);
+
+                    bool unregistered = (await wsl.Unregister(CurrentDistro.Name)).IsOk;
+                    if (unregistered)
+                    {
+                        try
+                        {
+                            Directory.Delete(CurrentDistro.Path, true);
+                        }
+                        catch (Exception ex)
+                        {
+                            CallError("Can't delete directory '" + CurrentDistro.Path + "'", ex);
+                        }
+                    }
+
+                    await RefreshDistrosList();
+                    SimpleOverlay.HideFX();
+                }
             }
         }
 

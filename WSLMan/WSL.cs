@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.XPath;
 using WSLMan.Commands;
 using WSLMan.Commands.Result;
 using WSLMan.Distro;
@@ -36,10 +37,19 @@ namespace WSLMan
             CheckCmd(cmd);
         }
 
-        public string StopDistro(DistroInfo distro)
+        public Task<StopCmdResult> StopDistro(DistroInfo distro)
         {
             StopCmd cmd = new StopCmd();
             var result = cmd.StopDistro(distro);
+            CheckCmd(cmd);
+
+            return result;
+        }
+
+        public Task<UninstallCmdResult> UninstallPackage(string packageName)
+        {
+            UninstallCmd cmd = new UninstallCmd();
+            var result = cmd.UninstallPackageName(packageName);
             CheckCmd(cmd);
 
             return result;

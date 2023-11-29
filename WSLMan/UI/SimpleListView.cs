@@ -66,6 +66,12 @@ namespace WSLMan.UI
             }
         }
 
+        public void SetColorIndex(int index, Color color)
+        {
+            if (index < Items.Count)
+                Items[index].ForeColor = color;
+        }
+
         public void AddItem(object obj, string col0)
         {
             ListViewItem item = new ListViewItem();

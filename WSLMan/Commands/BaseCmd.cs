@@ -19,19 +19,29 @@ namespace WSLMan.Commands
 
         protected async Task<T> CreateCommand<T>(string command, string param0 = "", string param1 = "") where T : BaseResult, new()
         {
+            return await _CreateCommand<T>("wsl", command, param0, param1);
+        }
+
+        protected async Task<T> CreateCommandProg<T>(string program, string command, string param0 = "", string param1 = "") where T : BaseResult, new()
+        {
+            return await _CreateCommand<T>(program, command, param0, param1);
+        }
+
+        protected async Task<T> _CreateCommand<T>(string program, string command, string param0 = "", string param1 = "") where T : BaseResult, new()
+        {
             TaskCompletionSource<T> tcs = new TaskCompletionSource<T>();
             baseResult = new T();
 
             string arguments = command;
 
-                 if(param0 != "") arguments += " " + param0;
-            else if(param1 != "") arguments += " " + param1;
+            if (param0 != "") arguments += " " + param0;
+            else if (param1 != "") arguments += " " + param1;
 
-            XConsole.Println("wsl " + arguments);
+            Println(program + " " + arguments);
 
-            proc = new CmdRun(CmdType.WSL, "wsl", arguments);
-            proc.DataReceived +=        _OnDataReceived;
-            proc.ErrorDataReceived +=   _OnErrorDataReceived;
+            proc = new CmdRun(CmdType.WSL, program, arguments);
+            proc.DataReceived += _OnDataReceived;
+            proc.ErrorDataReceived += _OnErrorDataReceived;
             //proc.Complete +=          OnComplete;
             //proc.Start();
 

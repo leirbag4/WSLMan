@@ -16,7 +16,11 @@ namespace WSLMan.Distro
         public string Path { get { return _regDistroInfo.BasePath; } }
         public int DefaultUid { get { return _regDistroInfo.DefaultUid; } }
         public string Hash { get { return _regDistroInfo.Hash; } }
+        public string PackageFamily { get { return _regDistroInfo.PackageFamily; } }
 
+        public bool InstalledFromPackageOrStore { get { return PackageFamily != ""; } }
+
+        public string AppxPackageName { get { if (PackageFamily == "") return ""; else return PackageFamily.Substring(0, PackageFamily.IndexOf("_")); } }
 
         // this information is collected from windows registry but if not exist it can be null
         private RegDistroInfo _regDistroInfo = null;

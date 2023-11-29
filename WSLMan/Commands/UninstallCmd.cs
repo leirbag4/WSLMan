@@ -1,6 +1,6 @@
-﻿using CommandLauncher;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,11 +8,12 @@ using WSLMan.Commands.Result;
 
 namespace WSLMan.Commands
 {
-    public class UnregisterCmd : BaseCmd
+    public class UninstallCmd : BaseCmd
     {
-        public async Task<UnregisterCmdResult> Unregister(string distroName)
+
+        public async Task<UninstallCmdResult> UninstallPackageName(string packageName)
         {
-            return await CreateCommand<UnregisterCmdResult>("--unregister", distroName);
+            return await CreateCommandProg<UninstallCmdResult>("powershell.exe", "Get-AppxPackage " + packageName + " | Remove-AppxPackage");
         }
 
         protected override void OnDataReceived(string data)
@@ -22,8 +23,9 @@ namespace WSLMan.Commands
 
         protected override void OnErrorDataReceived(string data)
         {
-
+            Println("");
         }
+
 
     }
 }

@@ -14,8 +14,10 @@ namespace WSLMan.Register
         public string DistributionName {get; private set;}
         public int State {get; private set;}
         public int Version {get; private set;}
+        public string PackageFamily { get; private set; }
 
-        public RegDistroInfo(string hash, string basePath, string defaultUid, string distributionName, string state, string version)
+
+        public RegDistroInfo(string hash, string basePath, string defaultUid, string distributionName, string state, string version, string packageFamily)
         {
             Hash =              hash;
             BasePath =          basePath;
@@ -23,6 +25,7 @@ namespace WSLMan.Register
             DistributionName =  distributionName;
             State =             int.Parse(state);
             Version =           int.Parse(version);
+            PackageFamily =     packageFamily;
 
             if (BasePath.StartsWith(@"\\?\"))
                 BasePath = BasePath.Substring(@"\\?\".Length);
@@ -30,7 +33,7 @@ namespace WSLMan.Register
 
         public override string ToString()
         {
-            return "Hash: " + Hash + ", BasePath: " + BasePath + ", DefaultUid: " + DefaultUid + " DistributionName: " + DistributionName + ", State: " + State + " Version: " + Version;
+            return "Hash: " + Hash + ", BasePath: " + BasePath + ", DefaultUid: " + DefaultUid + " DistributionName: " + DistributionName + ", State: " + State + " Version: " + Version + " PackageFamily: " + PackageFamily;
         }
     }
 }

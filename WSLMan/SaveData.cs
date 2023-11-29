@@ -70,7 +70,7 @@ namespace WSLMan
         private static void CreateNew()
         {
             saveData = new SaveData();
-            saveData.version = "0.6.0";
+            saveData.version =                              Application.ProductVersion;
             saveData.output_vhdx_dir_path =                 "";
             saveData.output_clone_vhdx_dir_path =           "";
             saveData.output_browse_single_vhdx_dir_path =   "";

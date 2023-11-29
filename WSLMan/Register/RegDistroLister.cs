@@ -42,6 +42,7 @@ namespace WSLMan.Register
                                     object distributionNameValue =  subKey.GetValue("DistributionName");
                                     object stateValue =             subKey.GetValue("State");
                                     object versionValue =           subKey.GetValue("Version");
+                                    object packageFamilyValue =     subKey.GetValue("PackageFamilyName");
 
                                     if (basePathValue != null && defaultUidValue != null &&
                                         distributionNameValue != null && stateValue != null && versionValue != null)
@@ -52,8 +53,10 @@ namespace WSLMan.Register
                                         string distributionName =   distributionNameValue.ToString();
                                         string state =              stateValue.ToString();
                                         string version =            versionValue.ToString();
+                                        string packageFamily =      packageFamilyValue != null ? packageFamilyValue.ToString() : "";
 
-                                        InsertDistro(hash, basePath, defaultUid, distributionName, state, version);
+
+                                        InsertDistro(hash, basePath, defaultUid, distributionName, state, version, packageFamily);
                                     }
                                     else
                                     {
@@ -77,11 +80,11 @@ namespace WSLMan.Register
 
             return _distros.ToArray();
         }
-        private static void InsertDistro(string hash, string basePath, string defaultUid, string distributionName, string state, string version)
+        private static void InsertDistro(string hash, string basePath, string defaultUid, string distributionName, string state, string version, string packageFamily)
         {
             try
             {
-                RegDistroInfo distro = new RegDistroInfo(hash, basePath, defaultUid, distributionName, state, version);
+                RegDistroInfo distro = new RegDistroInfo(hash, basePath, defaultUid, distributionName, state, version, packageFamily);
                 _distros.Add(distro);
             }
             catch (Exception e)

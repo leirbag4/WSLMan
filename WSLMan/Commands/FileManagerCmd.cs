@@ -26,7 +26,7 @@ namespace WSLMan.Commands
 
         protected override void OnDataReceived(string data)
         {
-            XConsole.Println("data: " + data);
+            Println("data: " + data);
         }
 
         protected override void OnErrorDataReceived(string data)

@@ -4,35 +4,26 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Commands.Result;
 using WSLMan.Distro;
 
 namespace WSLMan.Commands
 {
     public class StopCmd : BaseCmd
     {
-        public string StopDistro(DistroInfo distro)
+        public async Task<StopCmdResult> StopDistro(DistroInfo distro)
         {
-            string fullCommand = "--terminate " + distro.Name;
+            return await CreateCommand<StopCmdResult>("--terminate ", distro.Name);
+        }
 
-            ProcessStartInfo psi = new ProcessStartInfo
-            {
-                FileName = "wsl",
-                Arguments = fullCommand,
-                CreateNoWindow = true,
-                UseShellExecute = false,
-                RedirectStandardOutput = true,
-                RedirectStandardError = true,
-                StandardOutputEncoding = System.Text.Encoding.Unicode,
-                StandardErrorEncoding = System.Text.Encoding.Unicode
-            };
+        protected override void OnDataReceived(string data)
+        {
+            Println("data: " + data);
+        }
 
-            Process process = new Process { StartInfo = psi };
-            process.Start();
-
-            string output = process.StandardOutput.ReadToEnd();
-            string errors = process.StandardError.ReadToEnd();
-
-            return output;
+        protected override void OnErrorDataReceived(string data)
+        {
+            Println("");
         }
     }
 }

@@ -40,6 +40,8 @@ namespace WSLMan
             this.outp = new System.Windows.Forms.RichTextBox();
             this.button3 = new System.Windows.Forms.Button();
             this.groupBox2 = new WSLMan.UI.SimpleGroupBox();
+            this.installLabel = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
             this.nameOutp = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
             this.uidLabel = new System.Windows.Forms.Label();
@@ -182,6 +184,8 @@ namespace WSLMan
             | System.Windows.Forms.AnchorStyles.Right)));
             this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.groupBox2.BorderSize = 2;
+            this.groupBox2.Controls.Add(this.installLabel);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.nameOutp);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.uidLabel);
@@ -202,6 +206,26 @@ namespace WSLMan
             this.groupBox2.TabIndex = 6;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Info";
+            // 
+            // installLabel
+            // 
+            this.installLabel.AutoSize = true;
+            this.installLabel.ForeColor = System.Drawing.Color.Silver;
+            this.installLabel.Location = new System.Drawing.Point(338, 97);
+            this.installLabel.Name = "installLabel";
+            this.installLabel.Size = new System.Drawing.Size(63, 20);
+            this.installLabel.TabIndex = 13;
+            this.installLabel.Text = "Package";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.ForeColor = System.Drawing.Color.SlateBlue;
+            this.label9.Location = new System.Drawing.Point(292, 97);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 20);
+            this.label9.TabIndex = 12;
+            this.label9.Text = "Install";
             // 
             // nameOutp
             // 
@@ -227,7 +251,7 @@ namespace WSLMan
             // 
             this.uidLabel.AutoSize = true;
             this.uidLabel.ForeColor = System.Drawing.Color.Silver;
-            this.uidLabel.Location = new System.Drawing.Point(299, 97);
+            this.uidLabel.Location = new System.Drawing.Point(251, 97);
             this.uidLabel.Name = "uidLabel";
             this.uidLabel.Size = new System.Drawing.Size(17, 20);
             this.uidLabel.TabIndex = 9;
@@ -237,7 +261,7 @@ namespace WSLMan
             // 
             this.label8.AutoSize = true;
             this.label8.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label8.Location = new System.Drawing.Point(261, 97);
+            this.label8.Location = new System.Drawing.Point(216, 97);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(32, 20);
             this.label8.TabIndex = 8;
@@ -247,7 +271,7 @@ namespace WSLMan
             // 
             this.versionLabel.AutoSize = true;
             this.versionLabel.ForeColor = System.Drawing.Color.Silver;
-            this.versionLabel.Location = new System.Drawing.Point(221, 93);
+            this.versionLabel.Location = new System.Drawing.Point(195, 97);
             this.versionLabel.Name = "versionLabel";
             this.versionLabel.Size = new System.Drawing.Size(17, 20);
             this.versionLabel.TabIndex = 7;
@@ -257,7 +281,7 @@ namespace WSLMan
             // 
             this.label6.AutoSize = true;
             this.label6.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label6.Location = new System.Drawing.Point(161, 97);
+            this.label6.Location = new System.Drawing.Point(136, 97);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(57, 20);
             this.label6.TabIndex = 6;
@@ -267,7 +291,7 @@ namespace WSLMan
             // 
             this.stateLabel.AutoSize = true;
             this.stateLabel.ForeColor = System.Drawing.Color.Silver;
-            this.stateLabel.Location = new System.Drawing.Point(66, 97);
+            this.stateLabel.Location = new System.Drawing.Point(62, 97);
             this.stateLabel.Name = "stateLabel";
             this.stateLabel.Size = new System.Drawing.Size(70, 20);
             this.stateLabel.TabIndex = 5;
@@ -290,7 +314,7 @@ namespace WSLMan
             this.hashOutp.ForeColor = System.Drawing.Color.Silver;
             this.hashOutp.Location = new System.Drawing.Point(253, 28);
             this.hashOutp.Name = "hashOutp";
-            this.hashOutp.Size = new System.Drawing.Size(127, 27);
+            this.hashOutp.Size = new System.Drawing.Size(143, 27);
             this.hashOutp.TabIndex = 3;
             // 
             // label2
@@ -310,7 +334,7 @@ namespace WSLMan
             this.pathOutp.ForeColor = System.Drawing.Color.Silver;
             this.pathOutp.Location = new System.Drawing.Point(66, 64);
             this.pathOutp.Name = "pathOutp";
-            this.pathOutp.Size = new System.Drawing.Size(314, 27);
+            this.pathOutp.Size = new System.Drawing.Size(330, 27);
             this.pathOutp.TabIndex = 1;
             // 
             // label1
@@ -695,5 +719,7 @@ namespace WSLMan
         private UI.PictureButton cloneButton;
         private PictureBox pictureBox2;
         private PictureBox pictureBox3;
+        private Label installLabel;
+        private Label label9;
     }
 }
