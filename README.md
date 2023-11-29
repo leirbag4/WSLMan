@@ -12,8 +12,10 @@ Its functionalities are:
 
 <br>
 
-![reference image](Docs/ref_img_beta_0_2_0.png)
+![reference image](Docs/ref_img_beta_0_6_0.png)
 <br><br><br>
-![reference image](Docs/ref_img2_beta_0_2_0.png)
+![reference image](Docs/ref_img2_beta_0_6_0.png)
 <br><br><br>
-![reference image](Docs/ref_img3_beta_0_2_0.png)
+![reference image](Docs/ref_img3_beta_0_6_0.png)
+<br><br><br>
+![reference image](Docs/ref_img4_beta_0_6_0.png)
