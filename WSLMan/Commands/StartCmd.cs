@@ -12,14 +12,19 @@ namespace WSLMan.Commands
     public class StartCmd : BaseCmd
     {
 
-        public void StartDistro(DistroInfo distro, string username = "")
+        public void StartDistro(DistroInfo distro, string username = "", bool startPathAtHome = true)
         {
-            string fullCommand = "-d " + distro.Name;
+            string args = "";
+
+            //if(startPathAtHome)
+            //    args = "~ ";
+
+            args += "-d " + distro.Name;
 
             if (username != "")
-                fullCommand += " --user " + username;
+                args += " --user " + username;
 
-            CmdRun cmd = new CmdRun("wsl", fullCommand);
+            CmdRun cmd = new CmdRun("wsl", args);
             cmd.OpenAndLaunch();
         }
 

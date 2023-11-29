@@ -30,10 +30,10 @@ namespace WSLMan
             Distros = new List<DistroInfo>();
         }
 
-        public void StartDistro(DistroInfo distro, string user = "")
+        public void StartDistro(DistroInfo distro, string user = "", bool startPathAtHome = true) 
         {
             StartCmd cmd = new StartCmd();
-            cmd.StartDistro(distro, user);
+            cmd.StartDistro(distro, user, startPathAtHome);
             CheckCmd(cmd);
         }
 
