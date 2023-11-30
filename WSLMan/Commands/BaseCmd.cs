@@ -1,6 +1,7 @@
 ﻿using CommandLauncher;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,6 +12,7 @@ namespace WSLMan.Commands
 {
     public class BaseCmd
     {
+        public CmdType CommandType { get; set; } = CmdType.WSL;
         public bool Error { get; private set; }
         public ErrorInfo ErrorInfo { get; private set; } = null;
         
@@ -19,6 +21,12 @@ namespace WSLMan.Commands
 
         protected async Task<T> CreateCommand<T>(string command, string param0 = "", string param1 = "") where T : BaseResult, new()
         {
+            return await _CreateCommand<T>("wsl", command, param0, param1);
+        }
+
+        protected async Task<T> CreateCommand<T>(CmdType cmdType, string command, string param0 = "", string param1 = "") where T : BaseResult, new()
+        {
+            CommandType = cmdType;
             return await _CreateCommand<T>("wsl", command, param0, param1);
         }
 
@@ -39,7 +47,7 @@ namespace WSLMan.Commands
 
             Println(program + " " + arguments);
 
-            proc = new CmdRun(CmdType.WSL, program, arguments);
+            proc = new CmdRun(CommandType, program, arguments);
             proc.DataReceived += _OnDataReceived;
             proc.ErrorDataReceived += _OnErrorDataReceived;
             //proc.Complete +=          OnComplete;

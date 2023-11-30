@@ -22,10 +22,7 @@ namespace WSLMan.UI
             //set; 
         }
 
-        public void ClearSelection()
-        { 
-            SelectedItems.Clear();
-        }
+        private Dictionary<int, int> _columnsVisibility = new Dictionary<int, int>(); // <columnIndex, columnWidth>
 
         public SimpleListView()
         {
@@ -34,6 +31,11 @@ namespace WSLMan.UI
             View =          View.Details;
             MultiSelect =   false;
             FullRowSelect = true;
+        }
+
+        public void ClearSelection()
+        {
+            SelectedItems.Clear();
         }
 
         public T GetSelectedItem<T>()
@@ -53,6 +55,43 @@ namespace WSLMan.UI
         public void ClearItems()
         {
             Items.Clear();
+        }
+
+
+        public void SetColumnVisibility(int[] columnIndices, bool visible)
+        { 
+            foreach(var index in columnIndices)
+                SetColumnVisibility(index, visible);
+        }
+
+        public void SetColumnVisibility(int index, bool visible)
+        {
+            
+            if (_columnsVisibility.ContainsKey(index))
+            {
+                
+
+                if (visible)
+                {
+                    Columns[index].Width = _columnsVisibility[index];
+                }
+                else
+                {
+                    _columnsVisibility[index] = Columns[index].Width;
+                    Columns[index].Width =      0;
+                }
+            }
+            else
+            {
+                if (visible)
+                { }
+                else
+                {
+                    _columnsVisibility.Add(index, Columns[index].Width);
+                    Columns[index].Width = 0;
+                }
+            }
+            
         }
 
         public void SetBoldIndex(int index, bool active)
@@ -110,5 +149,42 @@ namespace WSLMan.UI
             Items.Add(item);
         }
 
+        public void AddItem(object obj, string col0, string col1, string col2, string col3, string col4)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag =  obj;
+            item.Text = col0;
+            item.SubItems.Add(col1); item.SubItems.Add(col2); item.SubItems.Add(col3); item.SubItems.Add(col4);
+            Items.Add(item);
+        }
+        public void AddItem(object obj, string col0, string col1, string col2, string col3, string col4, string col5)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag = obj;
+            item.Text = col0;
+            item.SubItems.Add(col1); item.SubItems.Add(col2); item.SubItems.Add(col3); item.SubItems.Add(col4);
+            item.SubItems.Add(col5);
+            Items.Add(item);
+        }
+
+        public void AddItem(object obj, string col0, string col1, string col2, string col3, string col4, string col5, string col6)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag = obj;
+            item.Text = col0;
+            item.SubItems.Add(col1); item.SubItems.Add(col2); item.SubItems.Add(col3); item.SubItems.Add(col4);
+            item.SubItems.Add(col5); item.SubItems.Add(col6);
+            Items.Add(item);
+        }
+
+        public void AddItem(object obj, string col0, string col1, string col2, string col3, string col4, string col5, string col6, string col7)
+        {
+            ListViewItem item = new ListViewItem();
+            item.Tag = obj;
+            item.Text = col0;
+            item.SubItems.Add(col1); item.SubItems.Add(col2); item.SubItems.Add(col3); item.SubItems.Add(col4);
+            item.SubItems.Add(col5); item.SubItems.Add(col6); item.SubItems.Add(col7);
+            Items.Add(item);
+        }
     }
 }

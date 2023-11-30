@@ -199,6 +199,14 @@ namespace WSLMan
             return result;
         }
 
+        public async Task<GetUsersCmdResult> GetUsers(string distro, OsId osType = OsId.OtherLinux)
+        {
+            GetUsersCmd cmd = new GetUsersCmd();
+            var result = await cmd.GetUsers(distro, osType);
+            CheckCmd(cmd);
+
+            return result;
+        }
 
         public async Task<ShutdownCmdResult> Shutdown()
         {

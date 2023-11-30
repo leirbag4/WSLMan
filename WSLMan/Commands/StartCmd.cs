@@ -16,8 +16,8 @@ namespace WSLMan.Commands
         {
             string args = "";
 
-            //if(startPathAtHome)
-            //    args = "~ ";
+            if(startPathAtHome)
+                args = "~ ";
 
             args += "-d " + distro.Name;
 
