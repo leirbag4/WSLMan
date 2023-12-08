@@ -1,6 +1,7 @@
 using CommandLauncher;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Drawing;
 using System.Security.Policy;
@@ -10,6 +11,7 @@ using WSLMan.Distro;
 using WSLMan.OS;
 using WSLMan.Properties;
 using WSLMan.Register;
+using WSLMan.Save;
 using WSLMan.UI;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
@@ -18,18 +20,18 @@ namespace WSLMan
     public partial class App : Form
     {
 
-        private DistroInfo CurrentDistro 
-        { 
-            get 
+        private DistroInfo CurrentDistro
+        {
+            get
             {
                 return distroList.GetSelectedItem<DistroInfo>();
-            } 
+            }
         }
 
         private bool Error { get; set; } = false;
         private ErrorInfo ErrorInfo { get; set; } = null;
         private WSL wsl;
-        
+
         private ContextMenuStrip ctxMenuDistroList;
         private ToolStripMenuItem ctxStartItem;
         private ToolStripMenuItem ctxStopItem;
@@ -39,6 +41,7 @@ namespace WSLMan
         private ToolStripMenuItem ctxOpenLocationItem;
 
         private ProgressPanel progressPanel;
+        private bool _enableDescriptionEvents = true;
 
         public App()
         {
@@ -54,7 +57,7 @@ namespace WSLMan
             appVersionLabel.Text = "version: " + Application.ProductVersion;
 
             menuStrip.Renderer = new UI.Renderer.MenuStripRenderer();
-            menuStrip.BackColor= Color.FromArgb(30, 30, 30);
+            menuStrip.BackColor = Color.FromArgb(30, 30, 30);
             //menuStrip.ForeColor = Color.FromArgb(140, 140, 140);
 
             XConsole.SetOutput(outp);
@@ -79,28 +82,15 @@ namespace WSLMan
             base.OnLoad(e);
         }
 
-        private void MenuStrip_Paint(object? sender, PaintEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
         {
-            // Obtener el área de dibujo del MenuStrip
-            Rectangle rect = new Rectangle(0, 0, menuStrip.Width, menuStrip.Height);
-
-            // Rellenar el fondo del MenuStrip con color negro
-            e.Graphics.FillRectangle(new SolidBrush(Color.Black), rect);
-
-            // Iterar a través de los elementos del menú para personalizar los colores
-            foreach (ToolStripMenuItem item in menuStrip.Items)
+            // save distro config if needed
+            foreach (var distro in wsl.Distros)
             {
-                // Rellenar el fondo de los elementos del menú principal con color blanco cuando están seleccionados
-                if (item.Selected)
-                    e.Graphics.FillRectangle(new SolidBrush(Color.White), item.Bounds);
-
-                // Rellenar el fondo de los elementos de submenú con color verde cuando están seleccionados
-                foreach (ToolStripMenuItem subItem in item.DropDownItems)
-                {
-                    if (subItem.Selected)
-                        e.Graphics.FillRectangle(new SolidBrush(Color.Green), subItem.Bounds);
-                }
+                if (distro.Config.SaveNeeded())
+                    distro.SaveConfig();
             }
+            base.OnClosing(e);
         }
 
         private void OnDistroListMouseUp(object sender, MouseEventArgs e)
@@ -119,17 +109,17 @@ namespace WSLMan
 
         private void InitContextMenu()
         {
-            ctxStartItem =          new ToolStripMenuItem("Start", Resources.ctx_play_button_mini, OnCtxStartPressed);
-            ctxStopItem =           new ToolStripMenuItem("Stop", Resources.ctx_stop_button_mini, OnCtxStopPressed);
-            ctxSetDefaultItem =     new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
-            ctxRemoveItem =         new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
-            ctxCloneItem =          new ToolStripMenuItem("Clone", Resources.ctx_duplicate_button_mini, OnCtxClonePressed);
-            ctxOpenLocationItem =   new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
+            ctxStartItem = new ToolStripMenuItem("Start", Resources.ctx_play_button_mini, OnCtxStartPressed);
+            ctxStopItem = new ToolStripMenuItem("Stop", Resources.ctx_stop_button_mini, OnCtxStopPressed);
+            ctxSetDefaultItem = new ToolStripMenuItem("Set Default", Resources.ctx_tick_button_mini, OnCtxSetDefaultPressed);
+            ctxRemoveItem = new ToolStripMenuItem("Remove", Resources.ctx_remove_button_mini, OnCtxRemovePressed);
+            ctxCloneItem = new ToolStripMenuItem("Clone", Resources.ctx_duplicate_button_mini, OnCtxClonePressed);
+            ctxOpenLocationItem = new ToolStripMenuItem("Open Location", Resources.ctx_folder_button_mini, OnCtxOpenLocationPressed);
 
-            ctxMenuDistroList =     new ContextMenuStrip();
+            ctxMenuDistroList = new ContextMenuStrip();
             ctxMenuDistroList.ForeColor = Color.Silver;
             ctxMenuDistroList.Renderer = new WSLMan.UI.Renderer.ToolStripRenderer();
-            
+
             AddDefaultContextMenuItems();
         }
 
@@ -219,6 +209,8 @@ namespace WSLMan
 
         private void SelectDistro(DistroInfo distro)
         {
+            _enableDescriptionEvents = false;
+
             if (distro == null)
             {
                 nameOutp.Text =                 "";
@@ -228,6 +220,7 @@ namespace WSLMan
                 versionLabel.Text =             "-";
                 uidLabel.Text =                 "-";
                 installLabel.Text =             "-";
+                descriptionInput.Text =         "-";
                 startButton.Enabled =           false;
                 stopButton.Enabled =            false;
                 editButton.Enabled =            false;
@@ -244,6 +237,7 @@ namespace WSLMan
                 versionLabel.Text =             distro.Version.ToString();
                 uidLabel.Text =                 distro.DefaultUid.ToString();
                 installLabel.Text =             distro.InstalledFromPackageOrStore == true ? "Package" : "Custom";
+                descriptionInput.Text =         distro.Config.Description;
                 startButton.Enabled =           true;
                 stopButton.Enabled =            true;
                 editButton.Enabled =            true;
@@ -251,6 +245,8 @@ namespace WSLMan
                 cloneButton.Enabled =           true;
                 openLocationButton.Enabled =    true;
             }
+
+            _enableDescriptionEvents = true;
         }
 
         private bool DistroExist(string distroName)
@@ -314,6 +310,8 @@ namespace WSLMan
         private void OnStartPressed(object sender, EventArgs e)
         {
             wsl.StartDistro(CurrentDistro);
+            CurrentDistro.Config.OpenedNow();
+            CurrentDistro.Config.SetAsModified();
 
             Println("start distro -> " + CurrentDistro.Name);
         }
@@ -334,13 +332,14 @@ namespace WSLMan
 
             if (clonePanel.DialogResult == DialogResult.OK)
             {
-                newDistroName =     clonePanel.NewDistroName;
-                newPath =           clonePanel.SelectedPath;
-                clonedFileName =    CurrentDistro.Path + "_clone.tar";
+                newDistroName = clonePanel.NewDistroName;
+                newPath = clonePanel.SelectedPath;
+                clonedFileName = CurrentDistro.Path + "_clone.tar";
 
 
                 progressPanel = new ProgressPanel();
-                progressPanel.Opened += async () => {
+                progressPanel.Opened += async () =>
+                {
 
                     await wsl.Export(CurrentDistro.Name, clonedFileName);
                     progressPanel.SetProgress(0.4f);
@@ -390,7 +389,7 @@ namespace WSLMan
                         await wsl.StopDistro(CurrentDistro);
                         Thread.Sleep(2000);
                         await wsl.UninstallPackage(CurrentDistro.AppxPackageName);
-                        
+
                         // refresh list to check if it was removed
                         await RefreshDistrosList();
 
@@ -411,7 +410,7 @@ namespace WSLMan
                             // refresh again
                             await RefreshDistrosList();
                         }
-                        
+
                         progressPanel.SetAsFinished();
                     };
 
@@ -460,10 +459,10 @@ namespace WSLMan
 
         private async void OnCreateNewPressed(object sender, EventArgs e)
         {
-            InstallNew installNew= new InstallNew();
+            InstallNew installNew = new InstallNew();
             installNew.ShowMe(this, wsl);
 
-            if(installNew.NewDistroInstalled)
+            if (installNew.NewDistroInstalled)
                 await RefreshDistrosList();
         }
 
@@ -515,7 +514,7 @@ namespace WSLMan
 
 
         protected void Clear()
-        { 
+        {
             XConsole.Clear();
         }
         protected void Print(string str)
@@ -543,5 +542,16 @@ namespace WSLMan
             XConsole.Alert(str);
         }
 
+        private void OnDescriptionChanged(object sender, EventArgs e)
+        {
+            if (!_enableDescriptionEvents)
+                return;
+
+            if (CurrentDistro == null)
+                return;
+
+            CurrentDistro.Config.Description = descriptionInput.Text;
+            CurrentDistro.Config.SetAsModified();
+        }
     }
 }

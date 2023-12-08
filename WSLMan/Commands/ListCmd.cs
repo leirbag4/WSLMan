@@ -99,6 +99,7 @@ namespace WSLMan.Commands
                         if (distro.Name == regDistro.DistributionName)
                         {
                             distro.SetRegDistroInfo(regDistro);
+                            distro.LoadConfig();
                             regDistros.Remove(regDistro);       // remove the selected registry distro
                             break;                              // and break the loop to speed up
                         }

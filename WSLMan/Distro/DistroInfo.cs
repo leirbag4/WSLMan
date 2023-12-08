@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 using WSLMan.Register;
+using WSLMan.Save;
 
 namespace WSLMan.Distro
 {
@@ -22,8 +24,14 @@ namespace WSLMan.Distro
 
         public string AppxPackageName { get { if (PackageFamily == "") return ""; else return PackageFamily.Substring(0, PackageFamily.IndexOf("_")); } }
 
+        public DistroConfig Config { get { return _config; } }
+
+        private string ConfigPath { get { return System.IO.Path.Combine(_regDistroInfo.BasePath, DistroConfig.Filename); } }
+        
         // this information is collected from windows registry but if not exist it can be null
         private RegDistroInfo _regDistroInfo = null;
+        private DistroConfig _config = null;
+
 
         public DistroInfo(string name, string state, string version, bool isDefault)
         {
@@ -50,6 +58,49 @@ namespace WSLMan.Distro
         public void SetRegDistroInfo(RegDistroInfo regDistroInfo)
         {
             _regDistroInfo = regDistroInfo;
+        }
+
+        private void CheckRegDistro()
+        {
+            if (_regDistroInfo == null)
+            {
+                string errMsg = "Can't continue because 'RegDistroInfo' was not loaded before 'VMConfig' config file!";
+                XConsole.Alert(errMsg);
+                throw new Exception(errMsg);
+            }
+        }
+
+        // It must be used always after 'SetRegDistroInfo()'
+        public void LoadConfig()
+        {
+            CheckRegDistro();
+
+            if (File.Exists(ConfigPath))
+            {
+                // LOAD - config
+                string json =   File.ReadAllText(ConfigPath);
+                _config =       JsonSerializer.Deserialize<DistroConfig>(json);
+            }
+            else
+            {
+                // CREATE NEW - config
+                _config = new DistroConfig();
+                _config.Reset();
+                SaveConfig();
+            }
+        }
+
+        // It must be used always after 'SetRegDistroInfo()'
+        public void SaveConfig()
+        {
+            CheckRegDistro();
+
+            XConsole.Alert("save: " + ConfigPath);
+
+            // SAVE - config
+            string json = JsonSerializer.Serialize(_config);
+            File.WriteAllText(ConfigPath, json);
+            _config.SetAsSaved();
         }
 
         public override string ToString()

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WSLMan.Commands.Props;
 using WSLMan.Distro;
+using WSLMan.Save;
 using WSLMan.UI;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 

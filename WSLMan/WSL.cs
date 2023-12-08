@@ -11,6 +11,7 @@ using WSLMan.Commands.Result;
 using WSLMan.Distro;
 using WSLMan.OS;
 using WSLMan.Register;
+using WSLMan.Save;
 
 namespace WSLMan
 {

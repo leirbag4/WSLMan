@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace WSLMan
+namespace WSLMan.Save
 {
     public class SaveData
     {
@@ -14,7 +14,7 @@ namespace WSLMan
 
         // A folder path for downloaded 'tar.gz' ditros
         public static string CustomPackageDirPath { get { return saveData.custom_package_dir_path; } set { saveData.custom_package_dir_path = value; } }
-        
+
         // A folder path for the creation of the virtual hard drive 'vhdx' file
         public static string OutputVhdxDirPath { get { return saveData.output_vhdx_dir_path; } set { saveData.output_vhdx_dir_path = value; } }
 
@@ -27,7 +27,7 @@ namespace WSLMan
         // The last 'tar.gz' file path used when browsing on a new creation
         public static string LastPackageFilePath { get { return saveData.last_package_file_path; } set { saveData.last_package_file_path = value; } }
 
-        
+
 
         private static SaveData saveData = null;
         private const string FILENAME = "config.cfg";
@@ -48,9 +48,9 @@ namespace WSLMan
             {
                 Load();
             }
-            catch(Exception e) 
+            catch (Exception e)
             {
-                createNew= true;
+                createNew = true;
             }
 
             if (createNew)
@@ -69,7 +69,7 @@ namespace WSLMan
 
         private static void CreateNew()
         {
-            saveData = new SaveData();
+            saveData =                                      new SaveData();
             saveData.version =                              Application.ProductVersion;
             saveData.output_vhdx_dir_path =                 "";
             saveData.output_clone_vhdx_dir_path =           "";
@@ -80,8 +80,8 @@ namespace WSLMan
 
         public static void Load()
         {
-            string json =   File.ReadAllText(FILENAME);
-            saveData =      JsonSerializer.Deserialize<SaveData>(json);
+            string json = File.ReadAllText(FILENAME);
+            saveData = JsonSerializer.Deserialize<SaveData>(json);
         }
         public static void Save()
         {

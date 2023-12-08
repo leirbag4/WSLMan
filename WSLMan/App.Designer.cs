@@ -31,644 +31,666 @@ namespace WSLMan
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(App));
-            this.listButton = new System.Windows.Forms.Button();
-            this.groupBox1 = new WSLMan.UI.SimpleGroupBox();
-            this.distroList = new WSLMan.UI.SimpleListView();
-            this._colName = new System.Windows.Forms.ColumnHeader();
-            this._colState = new System.Windows.Forms.ColumnHeader();
-            this._colVersion = new System.Windows.Forms.ColumnHeader();
-            this.outp = new System.Windows.Forms.RichTextBox();
-            this.button3 = new System.Windows.Forms.Button();
-            this.groupBox2 = new WSLMan.UI.SimpleGroupBox();
-            this.installLabel = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.nameOutp = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.uidLabel = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.versionLabel = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.stateLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.hashOutp = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.pathOutp = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.startButton = new WSLMan.UI.PictureButton();
-            this.stopButton = new WSLMan.UI.PictureButton();
-            this.startLabel = new System.Windows.Forms.Label();
-            this.stopLabel = new System.Windows.Forms.Label();
-            this.editButton = new WSLMan.UI.PictureButton();
-            this.editLabel = new System.Windows.Forms.Label();
-            this.createNewLabel = new System.Windows.Forms.Label();
-            this.createNewButton = new WSLMan.UI.PictureButton();
-            this.removeLabel = new System.Windows.Forms.Label();
-            this.removeButton = new WSLMan.UI.PictureButton();
-            this.openLocationLabel = new System.Windows.Forms.Label();
-            this.openLocationButton = new WSLMan.UI.PictureButton();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.appVersionLabel = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.menuStrip = new System.Windows.Forms.MenuStrip();
-            this.wSLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.shutdownToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.hElpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.githubToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.cloneLabel = new System.Windows.Forms.Label();
-            this.cloneButton = new WSLMan.UI.PictureButton();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox3 = new System.Windows.Forms.PictureBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.menuStrip.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            this.SuspendLayout();
+            listButton = new Button();
+            groupBox1 = new SimpleGroupBox();
+            distroList = new SimpleListView();
+            _colName = new ColumnHeader();
+            _colState = new ColumnHeader();
+            _colVersion = new ColumnHeader();
+            outp = new RichTextBox();
+            button3 = new Button();
+            groupBox2 = new SimpleGroupBox();
+            installLabel = new Label();
+            label9 = new Label();
+            nameOutp = new TextBox();
+            label4 = new Label();
+            uidLabel = new Label();
+            label8 = new Label();
+            versionLabel = new Label();
+            label6 = new Label();
+            stateLabel = new Label();
+            label3 = new Label();
+            hashOutp = new TextBox();
+            label2 = new Label();
+            pathOutp = new TextBox();
+            label1 = new Label();
+            startButton = new PictureButton();
+            stopButton = new PictureButton();
+            startLabel = new Label();
+            stopLabel = new Label();
+            editButton = new PictureButton();
+            editLabel = new Label();
+            createNewLabel = new Label();
+            createNewButton = new PictureButton();
+            removeLabel = new Label();
+            removeButton = new PictureButton();
+            openLocationLabel = new Label();
+            openLocationButton = new PictureButton();
+            pictureBox1 = new PictureBox();
+            appVersionLabel = new Label();
+            label7 = new Label();
+            menuStrip = new MenuStrip();
+            wSLToolStripMenuItem = new ToolStripMenuItem();
+            shutdownToolStripMenuItem = new ToolStripMenuItem();
+            hElpToolStripMenuItem = new ToolStripMenuItem();
+            githubToolStripMenuItem = new ToolStripMenuItem();
+            aboutToolStripMenuItem = new ToolStripMenuItem();
+            cloneLabel = new Label();
+            cloneButton = new PictureButton();
+            pictureBox2 = new PictureBox();
+            pictureBox3 = new PictureBox();
+            simpleGroupBox1 = new SimpleGroupBox();
+            descriptionInput = new TextBox();
+            groupBox1.SuspendLayout();
+            groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            menuStrip.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).BeginInit();
+            simpleGroupBox1.SuspendLayout();
+            SuspendLayout();
             // 
             // listButton
             // 
-            this.listButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.listButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.listButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.listButton.ForeColor = System.Drawing.Color.Silver;
-            this.listButton.Location = new System.Drawing.Point(278, 307);
-            this.listButton.Name = "listButton";
-            this.listButton.Size = new System.Drawing.Size(102, 32);
-            this.listButton.TabIndex = 0;
-            this.listButton.Text = "refresh list";
-            this.listButton.UseVisualStyleBackColor = false;
-            this.listButton.Click += new System.EventHandler(this.OnListDistrosPressed);
+            listButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            listButton.BackColor = Color.FromArgb(20, 20, 20);
+            listButton.FlatStyle = FlatStyle.Flat;
+            listButton.ForeColor = Color.Silver;
+            listButton.Location = new Point(278, 307);
+            listButton.Name = "listButton";
+            listButton.Size = new Size(102, 32);
+            listButton.TabIndex = 0;
+            listButton.Text = "refresh list";
+            listButton.UseVisualStyleBackColor = false;
+            listButton.Click += OnListDistrosPressed;
             // 
             // groupBox1
             // 
-            this.groupBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.groupBox1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBox1.BorderSize = 2;
-            this.groupBox1.Controls.Add(this.distroList);
-            this.groupBox1.Controls.Add(this.listButton);
-            this.groupBox1.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
-            this.groupBox1.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox1.Location = new System.Drawing.Point(12, 28);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(396, 346);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Distros";
+            groupBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left;
+            groupBox1.BorderColor = Color.FromArgb(50, 50, 50);
+            groupBox1.BorderSize = 2;
+            groupBox1.Controls.Add(distroList);
+            groupBox1.Controls.Add(listButton);
+            groupBox1.CStyle = SimpleGroupBox.CustomStyle.SOLID;
+            groupBox1.ForeColor = Color.Silver;
+            groupBox1.Location = new Point(12, 28);
+            groupBox1.Name = "groupBox1";
+            groupBox1.Size = new Size(396, 346);
+            groupBox1.TabIndex = 1;
+            groupBox1.TabStop = false;
+            groupBox1.Text = "Distros";
             // 
             // distroList
             // 
-            this.distroList.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.distroList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this._colName,
-            this._colState,
-            this._colVersion});
-            this.distroList.ForeColor = System.Drawing.Color.White;
-            this.distroList.FullRowSelect = true;
-            this.distroList.Location = new System.Drawing.Point(15, 21);
-            this.distroList.MultiSelect = false;
-            this.distroList.Name = "distroList";
-            this.distroList.Size = new System.Drawing.Size(365, 280);
-            this.distroList.TabIndex = 17;
-            this.distroList.UseCompatibleStateImageBehavior = false;
-            this.distroList.View = System.Windows.Forms.View.Details;
-            this.distroList.SelectedIndexChanged += new System.EventHandler(this.OnDistroIndexChanged);
-            this.distroList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.OnDistroListDoubleClick);
+            distroList.BackColor = Color.FromArgb(50, 50, 50);
+            distroList.Columns.AddRange(new ColumnHeader[] { _colName, _colState, _colVersion });
+            distroList.ForeColor = Color.White;
+            distroList.FullRowSelect = true;
+            distroList.Location = new Point(15, 21);
+            distroList.MultiSelect = false;
+            distroList.Name = "distroList";
+            distroList.Size = new Size(365, 280);
+            distroList.TabIndex = 17;
+            distroList.UseCompatibleStateImageBehavior = false;
+            distroList.View = View.Details;
+            distroList.SelectedIndexChanged += OnDistroIndexChanged;
+            distroList.MouseDoubleClick += OnDistroListDoubleClick;
             // 
             // _colName
             // 
-            this._colName.Text = "Name";
-            this._colName.Width = 180;
+            _colName.Text = "Name";
+            _colName.Width = 180;
             // 
             // _colState
             // 
-            this._colState.Text = "State";
-            this._colState.Width = 120;
+            _colState.Text = "State";
+            _colState.Width = 120;
             // 
             // _colVersion
             // 
-            this._colVersion.Text = "Version";
+            _colVersion.Text = "Version";
             // 
             // outp
             // 
-            this.outp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.outp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(30)))), ((int)(((byte)(30)))), ((int)(((byte)(30)))));
-            this.outp.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.outp.ForeColor = System.Drawing.Color.Silver;
-            this.outp.Location = new System.Drawing.Point(12, 517);
-            this.outp.Name = "outp";
-            this.outp.Size = new System.Drawing.Size(767, 120);
-            this.outp.TabIndex = 2;
-            this.outp.Text = "";
+            outp.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            outp.BackColor = Color.FromArgb(30, 30, 30);
+            outp.BorderStyle = BorderStyle.None;
+            outp.ForeColor = Color.Silver;
+            outp.Location = new Point(12, 517);
+            outp.Name = "outp";
+            outp.Size = new Size(767, 120);
+            outp.TabIndex = 2;
+            outp.Text = "";
             // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.ForeColor = System.Drawing.Color.Silver;
-            this.button3.Location = new System.Drawing.Point(685, 643);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(94, 29);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "clear";
-            this.button3.UseVisualStyleBackColor = false;
-            this.button3.Click += new System.EventHandler(this.OnClearPressed);
+            button3.Anchor = AnchorStyles.Bottom | AnchorStyles.Right;
+            button3.BackColor = Color.FromArgb(20, 20, 20);
+            button3.FlatStyle = FlatStyle.Flat;
+            button3.ForeColor = Color.Silver;
+            button3.Location = new Point(685, 643);
+            button3.Name = "button3";
+            button3.Size = new Size(94, 29);
+            button3.TabIndex = 5;
+            button3.Text = "clear";
+            button3.UseVisualStyleBackColor = false;
+            button3.Click += OnClearPressed;
             // 
             // groupBox2
             // 
-            this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.groupBox2.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.groupBox2.BorderSize = 2;
-            this.groupBox2.Controls.Add(this.installLabel);
-            this.groupBox2.Controls.Add(this.label9);
-            this.groupBox2.Controls.Add(this.nameOutp);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.uidLabel);
-            this.groupBox2.Controls.Add(this.label8);
-            this.groupBox2.Controls.Add(this.versionLabel);
-            this.groupBox2.Controls.Add(this.label6);
-            this.groupBox2.Controls.Add(this.stateLabel);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.hashOutp);
-            this.groupBox2.Controls.Add(this.label2);
-            this.groupBox2.Controls.Add(this.pathOutp);
-            this.groupBox2.Controls.Add(this.label1);
-            this.groupBox2.CStyle = WSLMan.UI.SimpleGroupBox.CustomStyle.SOLID;
-            this.groupBox2.ForeColor = System.Drawing.Color.Silver;
-            this.groupBox2.Location = new System.Drawing.Point(12, 377);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(767, 131);
-            this.groupBox2.TabIndex = 6;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Info";
+            groupBox2.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            groupBox2.BorderColor = Color.FromArgb(50, 50, 50);
+            groupBox2.BorderSize = 2;
+            groupBox2.Controls.Add(installLabel);
+            groupBox2.Controls.Add(label9);
+            groupBox2.Controls.Add(nameOutp);
+            groupBox2.Controls.Add(label4);
+            groupBox2.Controls.Add(uidLabel);
+            groupBox2.Controls.Add(label8);
+            groupBox2.Controls.Add(versionLabel);
+            groupBox2.Controls.Add(label6);
+            groupBox2.Controls.Add(stateLabel);
+            groupBox2.Controls.Add(label3);
+            groupBox2.Controls.Add(hashOutp);
+            groupBox2.Controls.Add(label2);
+            groupBox2.Controls.Add(pathOutp);
+            groupBox2.Controls.Add(label1);
+            groupBox2.CStyle = SimpleGroupBox.CustomStyle.SOLID;
+            groupBox2.ForeColor = Color.Silver;
+            groupBox2.Location = new Point(12, 377);
+            groupBox2.Name = "groupBox2";
+            groupBox2.Size = new Size(407, 131);
+            groupBox2.TabIndex = 6;
+            groupBox2.TabStop = false;
+            groupBox2.Text = "Info";
             // 
             // installLabel
             // 
-            this.installLabel.AutoSize = true;
-            this.installLabel.ForeColor = System.Drawing.Color.Silver;
-            this.installLabel.Location = new System.Drawing.Point(338, 97);
-            this.installLabel.Name = "installLabel";
-            this.installLabel.Size = new System.Drawing.Size(63, 20);
-            this.installLabel.TabIndex = 13;
-            this.installLabel.Text = "Package";
+            installLabel.AutoSize = true;
+            installLabel.ForeColor = Color.Silver;
+            installLabel.Location = new Point(338, 97);
+            installLabel.Name = "installLabel";
+            installLabel.Size = new Size(63, 20);
+            installLabel.TabIndex = 13;
+            installLabel.Text = "Package";
             // 
             // label9
             // 
-            this.label9.AutoSize = true;
-            this.label9.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label9.Location = new System.Drawing.Point(292, 97);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 20);
-            this.label9.TabIndex = 12;
-            this.label9.Text = "Install";
+            label9.AutoSize = true;
+            label9.ForeColor = Color.SlateBlue;
+            label9.Location = new Point(292, 97);
+            label9.Name = "label9";
+            label9.Size = new Size(48, 20);
+            label9.TabIndex = 12;
+            label9.Text = "Install";
             // 
             // nameOutp
             // 
-            this.nameOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.nameOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nameOutp.ForeColor = System.Drawing.Color.Silver;
-            this.nameOutp.Location = new System.Drawing.Point(66, 28);
-            this.nameOutp.Name = "nameOutp";
-            this.nameOutp.Size = new System.Drawing.Size(133, 27);
-            this.nameOutp.TabIndex = 11;
+            nameOutp.BackColor = Color.FromArgb(50, 50, 50);
+            nameOutp.BorderStyle = BorderStyle.FixedSingle;
+            nameOutp.ForeColor = Color.Silver;
+            nameOutp.Location = new Point(66, 28);
+            nameOutp.Name = "nameOutp";
+            nameOutp.Size = new Size(133, 27);
+            nameOutp.TabIndex = 11;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label4.Location = new System.Drawing.Point(10, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(49, 20);
-            this.label4.TabIndex = 10;
-            this.label4.Text = "Name";
+            label4.AutoSize = true;
+            label4.ForeColor = Color.SlateBlue;
+            label4.Location = new Point(10, 31);
+            label4.Name = "label4";
+            label4.Size = new Size(49, 20);
+            label4.TabIndex = 10;
+            label4.Text = "Name";
             // 
             // uidLabel
             // 
-            this.uidLabel.AutoSize = true;
-            this.uidLabel.ForeColor = System.Drawing.Color.Silver;
-            this.uidLabel.Location = new System.Drawing.Point(251, 97);
-            this.uidLabel.Name = "uidLabel";
-            this.uidLabel.Size = new System.Drawing.Size(17, 20);
-            this.uidLabel.TabIndex = 9;
-            this.uidLabel.Text = "1";
+            uidLabel.AutoSize = true;
+            uidLabel.ForeColor = Color.Silver;
+            uidLabel.Location = new Point(251, 97);
+            uidLabel.Name = "uidLabel";
+            uidLabel.Size = new Size(17, 20);
+            uidLabel.TabIndex = 9;
+            uidLabel.Text = "1";
             // 
             // label8
             // 
-            this.label8.AutoSize = true;
-            this.label8.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label8.Location = new System.Drawing.Point(216, 97);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(32, 20);
-            this.label8.TabIndex = 8;
-            this.label8.Text = "Uid";
+            label8.AutoSize = true;
+            label8.ForeColor = Color.SlateBlue;
+            label8.Location = new Point(216, 97);
+            label8.Name = "label8";
+            label8.Size = new Size(32, 20);
+            label8.TabIndex = 8;
+            label8.Text = "Uid";
             // 
             // versionLabel
             // 
-            this.versionLabel.AutoSize = true;
-            this.versionLabel.ForeColor = System.Drawing.Color.Silver;
-            this.versionLabel.Location = new System.Drawing.Point(195, 97);
-            this.versionLabel.Name = "versionLabel";
-            this.versionLabel.Size = new System.Drawing.Size(17, 20);
-            this.versionLabel.TabIndex = 7;
-            this.versionLabel.Text = "1";
+            versionLabel.AutoSize = true;
+            versionLabel.ForeColor = Color.Silver;
+            versionLabel.Location = new Point(195, 97);
+            versionLabel.Name = "versionLabel";
+            versionLabel.Size = new Size(17, 20);
+            versionLabel.TabIndex = 7;
+            versionLabel.Text = "1";
             // 
             // label6
             // 
-            this.label6.AutoSize = true;
-            this.label6.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label6.Location = new System.Drawing.Point(136, 97);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(57, 20);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "Version";
+            label6.AutoSize = true;
+            label6.ForeColor = Color.SlateBlue;
+            label6.Location = new Point(136, 97);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 20);
+            label6.TabIndex = 6;
+            label6.Text = "Version";
             // 
             // stateLabel
             // 
-            this.stateLabel.AutoSize = true;
-            this.stateLabel.ForeColor = System.Drawing.Color.Silver;
-            this.stateLabel.Location = new System.Drawing.Point(62, 97);
-            this.stateLabel.Name = "stateLabel";
-            this.stateLabel.Size = new System.Drawing.Size(70, 20);
-            this.stateLabel.TabIndex = 5;
-            this.stateLabel.Text = "STOPPED";
+            stateLabel.AutoSize = true;
+            stateLabel.ForeColor = Color.Silver;
+            stateLabel.Location = new Point(62, 97);
+            stateLabel.Name = "stateLabel";
+            stateLabel.Size = new Size(70, 20);
+            stateLabel.TabIndex = 5;
+            stateLabel.Text = "STOPPED";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label3.Location = new System.Drawing.Point(10, 97);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(43, 20);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "State";
+            label3.AutoSize = true;
+            label3.ForeColor = Color.SlateBlue;
+            label3.Location = new Point(10, 97);
+            label3.Name = "label3";
+            label3.Size = new Size(43, 20);
+            label3.TabIndex = 4;
+            label3.Text = "State";
             // 
             // hashOutp
             // 
-            this.hashOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.hashOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.hashOutp.ForeColor = System.Drawing.Color.Silver;
-            this.hashOutp.Location = new System.Drawing.Point(253, 28);
-            this.hashOutp.Name = "hashOutp";
-            this.hashOutp.Size = new System.Drawing.Size(143, 27);
-            this.hashOutp.TabIndex = 3;
+            hashOutp.BackColor = Color.FromArgb(50, 50, 50);
+            hashOutp.BorderStyle = BorderStyle.FixedSingle;
+            hashOutp.ForeColor = Color.Silver;
+            hashOutp.Location = new Point(253, 28);
+            hashOutp.Name = "hashOutp";
+            hashOutp.Size = new Size(143, 27);
+            hashOutp.TabIndex = 3;
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label2.Location = new System.Drawing.Point(205, 31);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 20);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Hash";
+            label2.AutoSize = true;
+            label2.ForeColor = Color.SlateBlue;
+            label2.Location = new Point(205, 31);
+            label2.Name = "label2";
+            label2.Size = new Size(42, 20);
+            label2.TabIndex = 2;
+            label2.Text = "Hash";
             // 
             // pathOutp
             // 
-            this.pathOutp.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
-            this.pathOutp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pathOutp.ForeColor = System.Drawing.Color.Silver;
-            this.pathOutp.Location = new System.Drawing.Point(66, 64);
-            this.pathOutp.Name = "pathOutp";
-            this.pathOutp.Size = new System.Drawing.Size(330, 27);
-            this.pathOutp.TabIndex = 1;
+            pathOutp.BackColor = Color.FromArgb(50, 50, 50);
+            pathOutp.BorderStyle = BorderStyle.FixedSingle;
+            pathOutp.ForeColor = Color.Silver;
+            pathOutp.Location = new Point(66, 64);
+            pathOutp.Name = "pathOutp";
+            pathOutp.Size = new Size(330, 27);
+            pathOutp.TabIndex = 1;
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.ForeColor = System.Drawing.Color.SlateBlue;
-            this.label1.Location = new System.Drawing.Point(10, 67);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(37, 20);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Path";
+            label1.AutoSize = true;
+            label1.ForeColor = Color.SlateBlue;
+            label1.Location = new Point(10, 67);
+            label1.Name = "label1";
+            label1.Size = new Size(37, 20);
+            label1.TabIndex = 0;
+            label1.Text = "Path";
             // 
             // startButton
             // 
-            this.startButton.Enabled = false;
-            this.startButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.startButton.Image = global::WSLMan.Properties.Resources.play_button_med;
-            this.startButton.Location = new System.Drawing.Point(414, 114);
-            this.startButton.Name = "startButton";
-            this.startButton.Size = new System.Drawing.Size(40, 40);
-            this.startButton.TabIndex = 9;
-            this.startButton.UseVisualStyleBackColor = true;
-            this.startButton.Click += new System.EventHandler(this.OnStartPressed);
+            startButton.Enabled = false;
+            startButton.FlatStyle = FlatStyle.Flat;
+            startButton.Image = Properties.Resources.play_button_med;
+            startButton.Location = new Point(414, 114);
+            startButton.Name = "startButton";
+            startButton.Size = new Size(40, 40);
+            startButton.TabIndex = 9;
+            startButton.UseVisualStyleBackColor = true;
+            startButton.Click += OnStartPressed;
             // 
             // stopButton
             // 
-            this.stopButton.Enabled = false;
-            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.stopButton.Image = global::WSLMan.Properties.Resources.stop_button_med;
-            this.stopButton.Location = new System.Drawing.Point(611, 114);
-            this.stopButton.Name = "stopButton";
-            this.stopButton.Size = new System.Drawing.Size(40, 40);
-            this.stopButton.TabIndex = 10;
-            this.stopButton.UseVisualStyleBackColor = true;
-            this.stopButton.Click += new System.EventHandler(this.OnStopPressed);
+            stopButton.Enabled = false;
+            stopButton.FlatStyle = FlatStyle.Flat;
+            stopButton.Image = Properties.Resources.stop_button_med;
+            stopButton.Location = new Point(611, 114);
+            stopButton.Name = "stopButton";
+            stopButton.Size = new Size(40, 40);
+            stopButton.TabIndex = 10;
+            stopButton.UseVisualStyleBackColor = true;
+            stopButton.Click += OnStopPressed;
             // 
             // startLabel
             // 
-            this.startLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.startLabel.Enabled = false;
-            this.startLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.startLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.startLabel.Location = new System.Drawing.Point(460, 114);
-            this.startLabel.Name = "startLabel";
-            this.startLabel.Size = new System.Drawing.Size(96, 40);
-            this.startLabel.TabIndex = 11;
-            this.startLabel.Text = "Start distro";
-            this.startLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            startLabel.Cursor = Cursors.Hand;
+            startLabel.Enabled = false;
+            startLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            startLabel.ForeColor = Color.SlateBlue;
+            startLabel.Location = new Point(460, 114);
+            startLabel.Name = "startLabel";
+            startLabel.Size = new Size(96, 40);
+            startLabel.TabIndex = 11;
+            startLabel.Text = "Start distro";
+            startLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // stopLabel
             // 
-            this.stopLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.stopLabel.Enabled = false;
-            this.stopLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.stopLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.stopLabel.Location = new System.Drawing.Point(657, 114);
-            this.stopLabel.Name = "stopLabel";
-            this.stopLabel.Size = new System.Drawing.Size(94, 40);
-            this.stopLabel.TabIndex = 12;
-            this.stopLabel.Text = "Stop distro";
-            this.stopLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            stopLabel.Cursor = Cursors.Hand;
+            stopLabel.Enabled = false;
+            stopLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            stopLabel.ForeColor = Color.SlateBlue;
+            stopLabel.Location = new Point(657, 114);
+            stopLabel.Name = "stopLabel";
+            stopLabel.Size = new Size(94, 40);
+            stopLabel.TabIndex = 12;
+            stopLabel.Text = "Stop distro";
+            stopLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // editButton
             // 
-            this.editButton.Enabled = false;
-            this.editButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.editButton.Image = global::WSLMan.Properties.Resources.edit_button_med;
-            this.editButton.Location = new System.Drawing.Point(414, 334);
-            this.editButton.Name = "editButton";
-            this.editButton.Size = new System.Drawing.Size(40, 40);
-            this.editButton.TabIndex = 13;
-            this.editButton.UseVisualStyleBackColor = true;
-            this.editButton.Click += new System.EventHandler(this.OnEditPressed);
+            editButton.Enabled = false;
+            editButton.FlatStyle = FlatStyle.Flat;
+            editButton.Image = Properties.Resources.edit_button_med;
+            editButton.Location = new Point(414, 334);
+            editButton.Name = "editButton";
+            editButton.Size = new Size(40, 40);
+            editButton.TabIndex = 13;
+            editButton.UseVisualStyleBackColor = true;
+            editButton.Click += OnEditPressed;
             // 
             // editLabel
             // 
-            this.editLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.editLabel.Enabled = false;
-            this.editLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.editLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.editLabel.Location = new System.Drawing.Point(460, 334);
-            this.editLabel.Name = "editLabel";
-            this.editLabel.Size = new System.Drawing.Size(122, 40);
-            this.editLabel.TabIndex = 14;
-            this.editLabel.Text = "Edit distro ...";
-            this.editLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            editLabel.Cursor = Cursors.Hand;
+            editLabel.Enabled = false;
+            editLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            editLabel.ForeColor = Color.SlateBlue;
+            editLabel.Location = new Point(460, 334);
+            editLabel.Name = "editLabel";
+            editLabel.Size = new Size(122, 40);
+            editLabel.TabIndex = 14;
+            editLabel.Text = "Edit distro ...";
+            editLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // createNewLabel
             // 
-            this.createNewLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.createNewLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.createNewLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.createNewLabel.Location = new System.Drawing.Point(460, 189);
-            this.createNewLabel.Name = "createNewLabel";
-            this.createNewLabel.Size = new System.Drawing.Size(116, 40);
-            this.createNewLabel.TabIndex = 16;
-            this.createNewLabel.Text = "Create NEW";
-            this.createNewLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            createNewLabel.Cursor = Cursors.Hand;
+            createNewLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            createNewLabel.ForeColor = Color.SlateBlue;
+            createNewLabel.Location = new Point(460, 189);
+            createNewLabel.Name = "createNewLabel";
+            createNewLabel.Size = new Size(116, 40);
+            createNewLabel.TabIndex = 16;
+            createNewLabel.Text = "Create NEW";
+            createNewLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // createNewButton
             // 
-            this.createNewButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createNewButton.Image = global::WSLMan.Properties.Resources.add_button_med;
-            this.createNewButton.Location = new System.Drawing.Point(414, 189);
-            this.createNewButton.Name = "createNewButton";
-            this.createNewButton.Size = new System.Drawing.Size(40, 40);
-            this.createNewButton.TabIndex = 15;
-            this.createNewButton.UseVisualStyleBackColor = true;
-            this.createNewButton.Click += new System.EventHandler(this.OnCreateNewPressed);
+            createNewButton.FlatStyle = FlatStyle.Flat;
+            createNewButton.Image = Properties.Resources.add_button_med;
+            createNewButton.Location = new Point(414, 189);
+            createNewButton.Name = "createNewButton";
+            createNewButton.Size = new Size(40, 40);
+            createNewButton.TabIndex = 15;
+            createNewButton.UseVisualStyleBackColor = true;
+            createNewButton.Click += OnCreateNewPressed;
             // 
             // removeLabel
             // 
-            this.removeLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.removeLabel.Enabled = false;
-            this.removeLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.removeLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.removeLabel.Location = new System.Drawing.Point(460, 235);
-            this.removeLabel.Name = "removeLabel";
-            this.removeLabel.Size = new System.Drawing.Size(116, 40);
-            this.removeLabel.TabIndex = 18;
-            this.removeLabel.Text = "Remove distro";
-            this.removeLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            removeLabel.Cursor = Cursors.Hand;
+            removeLabel.Enabled = false;
+            removeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            removeLabel.ForeColor = Color.SlateBlue;
+            removeLabel.Location = new Point(460, 235);
+            removeLabel.Name = "removeLabel";
+            removeLabel.Size = new Size(116, 40);
+            removeLabel.TabIndex = 18;
+            removeLabel.Text = "Remove distro";
+            removeLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // removeButton
             // 
-            this.removeButton.Enabled = false;
-            this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.removeButton.Image = global::WSLMan.Properties.Resources.remove_button_med;
-            this.removeButton.Location = new System.Drawing.Point(414, 235);
-            this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(40, 40);
-            this.removeButton.TabIndex = 17;
-            this.removeButton.UseVisualStyleBackColor = true;
-            this.removeButton.Click += new System.EventHandler(this.OnRemovePressed);
+            removeButton.Enabled = false;
+            removeButton.FlatStyle = FlatStyle.Flat;
+            removeButton.Image = Properties.Resources.remove_button_med;
+            removeButton.Location = new Point(414, 235);
+            removeButton.Name = "removeButton";
+            removeButton.Size = new Size(40, 40);
+            removeButton.TabIndex = 17;
+            removeButton.UseVisualStyleBackColor = true;
+            removeButton.Click += OnRemovePressed;
             // 
             // openLocationLabel
             // 
-            this.openLocationLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.openLocationLabel.Enabled = false;
-            this.openLocationLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.openLocationLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.openLocationLabel.Location = new System.Drawing.Point(657, 334);
-            this.openLocationLabel.Name = "openLocationLabel";
-            this.openLocationLabel.Size = new System.Drawing.Size(122, 40);
-            this.openLocationLabel.TabIndex = 20;
-            this.openLocationLabel.Text = "Open Location";
-            this.openLocationLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            openLocationLabel.Cursor = Cursors.Hand;
+            openLocationLabel.Enabled = false;
+            openLocationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            openLocationLabel.ForeColor = Color.SlateBlue;
+            openLocationLabel.Location = new Point(657, 334);
+            openLocationLabel.Name = "openLocationLabel";
+            openLocationLabel.Size = new Size(122, 40);
+            openLocationLabel.TabIndex = 20;
+            openLocationLabel.Text = "Open Location";
+            openLocationLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // openLocationButton
             // 
-            this.openLocationButton.Enabled = false;
-            this.openLocationButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.openLocationButton.Image = global::WSLMan.Properties.Resources.folder_button_med;
-            this.openLocationButton.Location = new System.Drawing.Point(611, 334);
-            this.openLocationButton.Name = "openLocationButton";
-            this.openLocationButton.Size = new System.Drawing.Size(40, 40);
-            this.openLocationButton.TabIndex = 19;
-            this.openLocationButton.UseVisualStyleBackColor = true;
-            this.openLocationButton.Click += new System.EventHandler(this.OnOpenLocationPressed);
+            openLocationButton.Enabled = false;
+            openLocationButton.FlatStyle = FlatStyle.Flat;
+            openLocationButton.Image = Properties.Resources.folder_button_med;
+            openLocationButton.Location = new Point(611, 334);
+            openLocationButton.Name = "openLocationButton";
+            openLocationButton.Size = new Size(40, 40);
+            openLocationButton.TabIndex = 19;
+            openLocationButton.UseVisualStyleBackColor = true;
+            openLocationButton.Click += OnOpenLocationPressed;
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::WSLMan.Properties.Resources.flat_logo_small;
-            this.pictureBox1.Location = new System.Drawing.Point(423, 39);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(131, 60);
-            this.pictureBox1.TabIndex = 21;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.flat_logo_small;
+            pictureBox1.Location = new Point(423, 39);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 60);
+            pictureBox1.TabIndex = 21;
+            pictureBox1.TabStop = false;
             // 
             // appVersionLabel
             // 
-            this.appVersionLabel.AutoSize = true;
-            this.appVersionLabel.ForeColor = System.Drawing.Color.Silver;
-            this.appVersionLabel.Location = new System.Drawing.Point(682, 71);
-            this.appVersionLabel.Name = "appVersionLabel";
-            this.appVersionLabel.Size = new System.Drawing.Size(93, 20);
-            this.appVersionLabel.TabIndex = 12;
-            this.appVersionLabel.Text = "version: 0.0.0";
+            appVersionLabel.AutoSize = true;
+            appVersionLabel.ForeColor = Color.Silver;
+            appVersionLabel.Location = new Point(682, 71);
+            appVersionLabel.Name = "appVersionLabel";
+            appVersionLabel.Size = new Size(93, 20);
+            appVersionLabel.TabIndex = 12;
+            appVersionLabel.Text = "version: 0.0.0";
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(682, 46);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 20);
-            this.label7.TabIndex = 22;
-            this.label7.Text = "WSLMan";
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Silver;
+            label7.Location = new Point(682, 46);
+            label7.Name = "label7";
+            label7.Size = new Size(67, 20);
+            label7.TabIndex = 22;
+            label7.Text = "WSLMan";
             // 
             // menuStrip
             // 
-            this.menuStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
-            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.wSLToolStripMenuItem,
-            this.hElpToolStripMenuItem});
-            this.menuStrip.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(791, 28);
-            this.menuStrip.TabIndex = 23;
-            this.menuStrip.Text = "menuStrip1";
+            menuStrip.ImageScalingSize = new Size(20, 20);
+            menuStrip.Items.AddRange(new ToolStripItem[] { wSLToolStripMenuItem, hElpToolStripMenuItem });
+            menuStrip.Location = new Point(0, 0);
+            menuStrip.Name = "menuStrip";
+            menuStrip.Size = new Size(791, 28);
+            menuStrip.TabIndex = 23;
+            menuStrip.Text = "menuStrip1";
             // 
             // wSLToolStripMenuItem
             // 
-            this.wSLToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.shutdownToolStripMenuItem});
-            this.wSLToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.wSLToolStripMenuItem.Name = "wSLToolStripMenuItem";
-            this.wSLToolStripMenuItem.Size = new System.Drawing.Size(52, 24);
-            this.wSLToolStripMenuItem.Text = "WSL";
+            wSLToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { shutdownToolStripMenuItem });
+            wSLToolStripMenuItem.ForeColor = Color.FromArgb(140, 140, 140);
+            wSLToolStripMenuItem.Name = "wSLToolStripMenuItem";
+            wSLToolStripMenuItem.Size = new Size(52, 24);
+            wSLToolStripMenuItem.Text = "WSL";
             // 
             // shutdownToolStripMenuItem
             // 
-            this.shutdownToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            this.shutdownToolStripMenuItem.Size = new System.Drawing.Size(158, 26);
-            this.shutdownToolStripMenuItem.Text = "Shutdown";
-            this.shutdownToolStripMenuItem.Click += new System.EventHandler(this.OnMItemShutdownPressed);
+            shutdownToolStripMenuItem.ForeColor = Color.Silver;
+            shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
+            shutdownToolStripMenuItem.Size = new Size(158, 26);
+            shutdownToolStripMenuItem.Text = "Shutdown";
+            shutdownToolStripMenuItem.Click += OnMItemShutdownPressed;
             // 
             // hElpToolStripMenuItem
             // 
-            this.hElpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.githubToolStripMenuItem,
-            this.aboutToolStripMenuItem});
-            this.hElpToolStripMenuItem.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(140)))), ((int)(((byte)(140)))), ((int)(((byte)(140)))));
-            this.hElpToolStripMenuItem.Name = "hElpToolStripMenuItem";
-            this.hElpToolStripMenuItem.Size = new System.Drawing.Size(55, 24);
-            this.hElpToolStripMenuItem.Text = "Help";
+            hElpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { githubToolStripMenuItem, aboutToolStripMenuItem });
+            hElpToolStripMenuItem.ForeColor = Color.FromArgb(140, 140, 140);
+            hElpToolStripMenuItem.Name = "hElpToolStripMenuItem";
+            hElpToolStripMenuItem.Size = new Size(55, 24);
+            hElpToolStripMenuItem.Text = "Help";
             // 
             // githubToolStripMenuItem
             // 
-            this.githubToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.githubToolStripMenuItem.Name = "githubToolStripMenuItem";
-            this.githubToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.githubToolStripMenuItem.Text = "Github";
-            this.githubToolStripMenuItem.Click += new System.EventHandler(this.OnMItemGithubPressed);
+            githubToolStripMenuItem.ForeColor = Color.Silver;
+            githubToolStripMenuItem.Name = "githubToolStripMenuItem";
+            githubToolStripMenuItem.Size = new Size(136, 26);
+            githubToolStripMenuItem.Text = "Github";
+            githubToolStripMenuItem.Click += OnMItemGithubPressed;
             // 
             // aboutToolStripMenuItem
             // 
-            this.aboutToolStripMenuItem.ForeColor = System.Drawing.Color.Silver;
-            this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(136, 26);
-            this.aboutToolStripMenuItem.Text = "About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.OnMItemAboutPressed);
+            aboutToolStripMenuItem.ForeColor = Color.Silver;
+            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
+            aboutToolStripMenuItem.Size = new Size(136, 26);
+            aboutToolStripMenuItem.Text = "About";
+            aboutToolStripMenuItem.Click += OnMItemAboutPressed;
             // 
             // cloneLabel
             // 
-            this.cloneLabel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cloneLabel.Enabled = false;
-            this.cloneLabel.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cloneLabel.ForeColor = System.Drawing.Color.SlateBlue;
-            this.cloneLabel.Location = new System.Drawing.Point(657, 189);
-            this.cloneLabel.Name = "cloneLabel";
-            this.cloneLabel.Size = new System.Drawing.Size(116, 40);
-            this.cloneLabel.TabIndex = 25;
-            this.cloneLabel.Text = "Clone distro";
-            this.cloneLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            cloneLabel.Cursor = Cursors.Hand;
+            cloneLabel.Enabled = false;
+            cloneLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            cloneLabel.ForeColor = Color.SlateBlue;
+            cloneLabel.Location = new Point(657, 189);
+            cloneLabel.Name = "cloneLabel";
+            cloneLabel.Size = new Size(116, 40);
+            cloneLabel.TabIndex = 25;
+            cloneLabel.Text = "Clone distro";
+            cloneLabel.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // cloneButton
             // 
-            this.cloneButton.Enabled = false;
-            this.cloneButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cloneButton.Image = global::WSLMan.Properties.Resources.duplicate_button_med;
-            this.cloneButton.Location = new System.Drawing.Point(611, 189);
-            this.cloneButton.Name = "cloneButton";
-            this.cloneButton.Size = new System.Drawing.Size(40, 40);
-            this.cloneButton.TabIndex = 24;
-            this.cloneButton.UseVisualStyleBackColor = true;
-            this.cloneButton.Click += new System.EventHandler(this.OnClonePressed);
+            cloneButton.Enabled = false;
+            cloneButton.FlatStyle = FlatStyle.Flat;
+            cloneButton.Image = Properties.Resources.duplicate_button_med;
+            cloneButton.Location = new Point(611, 189);
+            cloneButton.Name = "cloneButton";
+            cloneButton.Size = new Size(40, 40);
+            cloneButton.TabIndex = 24;
+            cloneButton.UseVisualStyleBackColor = true;
+            cloneButton.Click += OnClonePressed;
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::WSLMan.Properties.Resources.hor_separator_line;
-            this.pictureBox2.Location = new System.Drawing.Point(423, 175);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(350, 2);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox2.TabIndex = 26;
-            this.pictureBox2.TabStop = false;
+            pictureBox2.Image = Properties.Resources.hor_separator_line;
+            pictureBox2.Location = new Point(423, 175);
+            pictureBox2.Name = "pictureBox2";
+            pictureBox2.Size = new Size(350, 2);
+            pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox2.TabIndex = 26;
+            pictureBox2.TabStop = false;
             // 
             // pictureBox3
             // 
-            this.pictureBox3.Image = global::WSLMan.Properties.Resources.hor_separator_line;
-            this.pictureBox3.Location = new System.Drawing.Point(423, 315);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(350, 2);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
-            this.pictureBox3.TabIndex = 27;
-            this.pictureBox3.TabStop = false;
+            pictureBox3.Image = Properties.Resources.hor_separator_line;
+            pictureBox3.Location = new Point(423, 315);
+            pictureBox3.Name = "pictureBox3";
+            pictureBox3.Size = new Size(350, 2);
+            pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
+            pictureBox3.TabIndex = 27;
+            pictureBox3.TabStop = false;
+            // 
+            // simpleGroupBox1
+            // 
+            simpleGroupBox1.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            simpleGroupBox1.BorderColor = Color.FromArgb(50, 50, 50);
+            simpleGroupBox1.BorderSize = 2;
+            simpleGroupBox1.Controls.Add(descriptionInput);
+            simpleGroupBox1.CStyle = SimpleGroupBox.CustomStyle.SOLID;
+            simpleGroupBox1.ForeColor = Color.Silver;
+            simpleGroupBox1.Location = new Point(425, 380);
+            simpleGroupBox1.Name = "simpleGroupBox1";
+            simpleGroupBox1.Size = new Size(354, 131);
+            simpleGroupBox1.TabIndex = 28;
+            simpleGroupBox1.TabStop = false;
+            simpleGroupBox1.Text = "Description";
+            // 
+            // descriptionInput
+            // 
+            descriptionInput.BackColor = Color.FromArgb(45, 45, 45);
+            descriptionInput.BorderStyle = BorderStyle.None;
+            descriptionInput.ForeColor = Color.FromArgb(140, 140, 140);
+            descriptionInput.Location = new Point(8, 25);
+            descriptionInput.Multiline = true;
+            descriptionInput.Name = "descriptionInput";
+            descriptionInput.Size = new Size(337, 99);
+            descriptionInput.TabIndex = 11;
+            descriptionInput.Text = "+ babacoin\r\nmein protocol\r\noka";
+            descriptionInput.TextChanged += OnDescriptionChanged;
             // 
             // App
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(791, 683);
-            this.Controls.Add(this.pictureBox3);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.cloneLabel);
-            this.Controls.Add(this.cloneButton);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.appVersionLabel);
-            this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.openLocationLabel);
-            this.Controls.Add(this.openLocationButton);
-            this.Controls.Add(this.removeLabel);
-            this.Controls.Add(this.removeButton);
-            this.Controls.Add(this.createNewLabel);
-            this.Controls.Add(this.createNewButton);
-            this.Controls.Add(this.editLabel);
-            this.Controls.Add(this.editButton);
-            this.Controls.Add(this.stopLabel);
-            this.Controls.Add(this.startLabel);
-            this.Controls.Add(this.stopButton);
-            this.Controls.Add(this.startButton);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.outp);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.menuStrip);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MainMenuStrip = this.menuStrip;
-            this.Name = "App";
-            this.Text = "WSLMan";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.menuStrip.ResumeLayout(false);
-            this.menuStrip.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(40, 40, 40);
+            ClientSize = new Size(791, 683);
+            Controls.Add(simpleGroupBox1);
+            Controls.Add(pictureBox3);
+            Controls.Add(pictureBox2);
+            Controls.Add(cloneLabel);
+            Controls.Add(cloneButton);
+            Controls.Add(label7);
+            Controls.Add(appVersionLabel);
+            Controls.Add(pictureBox1);
+            Controls.Add(openLocationLabel);
+            Controls.Add(openLocationButton);
+            Controls.Add(removeLabel);
+            Controls.Add(removeButton);
+            Controls.Add(createNewLabel);
+            Controls.Add(createNewButton);
+            Controls.Add(editLabel);
+            Controls.Add(editButton);
+            Controls.Add(stopLabel);
+            Controls.Add(startLabel);
+            Controls.Add(stopButton);
+            Controls.Add(startButton);
+            Controls.Add(groupBox2);
+            Controls.Add(button3);
+            Controls.Add(outp);
+            Controls.Add(groupBox1);
+            Controls.Add(menuStrip);
+            Icon = (Icon)resources.GetObject("$this.Icon");
+            MainMenuStrip = menuStrip;
+            Name = "App";
+            Text = "WSLMan";
+            groupBox1.ResumeLayout(false);
+            groupBox2.ResumeLayout(false);
+            groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            menuStrip.ResumeLayout(false);
+            menuStrip.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pictureBox2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox3).EndInit();
+            simpleGroupBox1.ResumeLayout(false);
+            simpleGroupBox1.PerformLayout();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -721,5 +743,7 @@ namespace WSLMan
         private PictureBox pictureBox3;
         private Label installLabel;
         private Label label9;
+        private SimpleGroupBox simpleGroupBox1;
+        private TextBox descriptionInput;
     }
 }
