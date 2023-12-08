@@ -95,8 +95,6 @@ namespace WSLMan.Distro
         {
             CheckRegDistro();
 
-            XConsole.Alert("save: " + ConfigPath);
-
             // SAVE - config
             string json = JsonSerializer.Serialize(_config);
             File.WriteAllText(ConfigPath, json);
