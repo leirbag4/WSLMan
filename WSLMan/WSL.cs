@@ -209,6 +209,15 @@ namespace WSLMan
             return result;
         }
 
+        public async Task<VersionCmdResult> GetVersion()
+        {
+            VersionCmd cmd = new VersionCmd();
+            var result = await cmd.GetVersion();
+            CheckCmd(cmd);
+
+            return result;
+        }
+
         public async Task<ShutdownCmdResult> Shutdown()
         {
             ShutdownCmd cmd = new ShutdownCmd();

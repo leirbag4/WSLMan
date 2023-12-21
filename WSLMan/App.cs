@@ -77,9 +77,17 @@ namespace WSLMan
             InitContextMenu();
 
             //createNewButton.PerformClick();
-            RefreshDistrosList();
+            //RefreshDistrosList();
+            CheckWSLInstallation();
 
             base.OnLoad(e);
+        }
+
+        private async void CheckWSLInstallation()
+        {
+            var info = await wsl.GetVersion();
+
+            Println(info.VersionInfo.ToString());
         }
 
         protected override void OnClosing(CancelEventArgs e)
