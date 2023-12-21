@@ -54,7 +54,18 @@ namespace WSLMan.Commands
             //proc.Start();
 
             proc.Complete += () => _OnComplete(tcs);
-            await Task.Run(() => proc.Start());
+            await Task.Run(() =>
+            {
+                try
+                {
+                    proc.Start();
+                }
+                catch (Exception e)
+                {
+                    CallError("WSL is not installed", e);
+                    _OnComplete(tcs);
+                }
+            });
 
             return await tcs.Task;
         }
@@ -120,6 +131,9 @@ namespace WSLMan.Commands
             ErrorInfo = ErrorInfo.Create(str, e);
             Error = true;
             PrintError(ErrorInfo);
+             
+            if (baseResult != null)
+                baseResult.SetError(ErrorInfo);
         }
 
         protected void Print(string str)

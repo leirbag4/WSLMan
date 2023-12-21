@@ -77,9 +77,10 @@ namespace WSLMan
             InitContextMenu();
 
             //createNewButton.PerformClick();
-            //RefreshDistrosList();
             CheckWSLInstallation();
 
+            RefreshDistrosList();
+            
             base.OnLoad(e);
         }
 
@@ -87,7 +88,11 @@ namespace WSLMan
         {
             var info = await wsl.GetVersion();
 
-            Println(info.VersionInfo.ToString());
+            if (info.Error)
+            {
+                InfoPanel.ShowMsg(this, "WSL is not installed", "Please install WSL2 in your system before using this software", Defines.InstallMsg, 300);
+            }
+
         }
 
         protected override void OnClosing(CancelEventArgs e)

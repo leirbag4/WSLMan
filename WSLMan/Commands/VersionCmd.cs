@@ -21,7 +21,7 @@ namespace WSLMan.Commands
 
         protected override void OnDataReceived(string data)
         {
-            //Println(data);
+            Println(data);
 
             string[] arr = data.Split(':');
             string prop, value;
@@ -57,7 +57,7 @@ namespace WSLMan.Commands
             VersionCmdResult versionCmdResult = (VersionCmdResult)result;
 
             versionCmdResult.VersionInfo = _version;
-
+            
             base.OnComplete(result);
         }
     }
