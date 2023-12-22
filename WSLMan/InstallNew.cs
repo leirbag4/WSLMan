@@ -110,6 +110,12 @@ namespace WSLMan
             outputPathOutp.Text =   SaveData.OutputVhdxDirPath;
             string path =           pathInput.Text.Trim();
 
+            if (path == "")
+            {
+                Warning("Input path for 'tar.gz' distros is empty");
+                return;
+            }
+
             if (!Directory.Exists(path))
             {
                 Alert("The path for the custom 'tar.gz' distros doesn't exist");
@@ -553,6 +559,11 @@ namespace WSLMan
         protected void Println(string str)
         {
             XConsole.Println(str);
+        }
+
+        protected void Warning(string str)
+        { 
+            XConsole.Warning(str);
         }
 
         protected void PrintError(string str)
