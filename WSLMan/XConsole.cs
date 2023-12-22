@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using WSLMan.Save;
 
 namespace WSLMan
 {
@@ -98,6 +99,12 @@ namespace WSLMan
             }
             else
                 _Println(str, color);
+        }
+
+        public static void Warning(String str)
+        {
+            if(SaveData.ShowWarnings)
+                Println(str, Color.Orange);
         }
 
         public static void PrintError(String str)

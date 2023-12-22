@@ -21,6 +21,9 @@ namespace WSLMan.Commands
 
         protected override void OnDataReceived(string data)
         {
+            if (Error)
+                return;
+
             Println(data);
 
             string[] arr = data.Split(':');
@@ -35,16 +38,23 @@ namespace WSLMan.Commands
             prop =  arr[0].ToLower().Trim();
             value = arr[1].Trim();
 
-            string res = prop switch
+            try
+            { 
+                string res = prop switch
+                {
+                    "wsl version" =>        _version.WSLVersion =        value,
+                    "kernel version" =>     _version.KernelVersion =     value,
+                    "wslg version" =>       _version.WSLgVersion =       value,
+                    "msrdc version" =>      _version.MSRDCVersion =      value,
+                    "direct3d version" =>   _version.Direct3DVersion =   value,
+                    "dxcore version" =>     _version.DXCoreVersion =     value,
+                    "windows version" =>    _version.WindowsVersion =    value
+                };
+            }
+            catch(Exception e)
             {
-                "wsl version" =>        _version.WSLVersion =        value,
-                "kernel version" =>     _version.KernelVersion =     value,
-                "wslg version" =>       _version.WSLgVersion =       value,
-                "msrdc version" =>      _version.MSRDCVersion =      value,
-                "direct3d version" =>   _version.Direct3DVersion =   value,
-                "dxcore version" =>     _version.DXCoreVersion =     value,
-                "windows version" =>    _version.WindowsVersion =    value
-            };
+                CallError("Can't prase --version command or WSL is an old version", e);
+            }
         }
 
         protected override void OnErrorDataReceived(string data)

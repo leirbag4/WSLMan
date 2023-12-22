@@ -81,6 +81,7 @@ namespace WSLMan
             pictureBox3 = new PictureBox();
             simpleGroupBox1 = new SimpleGroupBox();
             descriptionInput = new TextBox();
+            configToolStripMenuItem = new ToolStripMenuItem();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
@@ -96,9 +97,10 @@ namespace WSLMan
             listButton.BackColor = Color.FromArgb(20, 20, 20);
             listButton.FlatStyle = FlatStyle.Flat;
             listButton.ForeColor = Color.Silver;
-            listButton.Location = new Point(278, 307);
+            listButton.Location = new Point(243, 230);
+            listButton.Margin = new Padding(3, 2, 3, 2);
             listButton.Name = "listButton";
-            listButton.Size = new Size(102, 32);
+            listButton.Size = new Size(89, 24);
             listButton.TabIndex = 0;
             listButton.Text = "refresh list";
             listButton.UseVisualStyleBackColor = false;
@@ -113,9 +115,11 @@ namespace WSLMan
             groupBox1.Controls.Add(listButton);
             groupBox1.CStyle = SimpleGroupBox.CustomStyle.SOLID;
             groupBox1.ForeColor = Color.Silver;
-            groupBox1.Location = new Point(12, 28);
+            groupBox1.Location = new Point(10, 21);
+            groupBox1.Margin = new Padding(3, 2, 3, 2);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(396, 346);
+            groupBox1.Padding = new Padding(3, 2, 3, 2);
+            groupBox1.Size = new Size(346, 260);
             groupBox1.TabIndex = 1;
             groupBox1.TabStop = false;
             groupBox1.Text = "Distros";
@@ -126,10 +130,11 @@ namespace WSLMan
             distroList.Columns.AddRange(new ColumnHeader[] { _colName, _colState, _colVersion });
             distroList.ForeColor = Color.White;
             distroList.FullRowSelect = true;
-            distroList.Location = new Point(15, 21);
+            distroList.Location = new Point(13, 16);
+            distroList.Margin = new Padding(3, 2, 3, 2);
             distroList.MultiSelect = false;
             distroList.Name = "distroList";
-            distroList.Size = new Size(365, 280);
+            distroList.Size = new Size(320, 211);
             distroList.TabIndex = 17;
             distroList.UseCompatibleStateImageBehavior = false;
             distroList.View = View.Details;
@@ -156,9 +161,10 @@ namespace WSLMan
             outp.BackColor = Color.FromArgb(30, 30, 30);
             outp.BorderStyle = BorderStyle.None;
             outp.ForeColor = Color.Silver;
-            outp.Location = new Point(12, 517);
+            outp.Location = new Point(10, 388);
+            outp.Margin = new Padding(3, 2, 3, 2);
             outp.Name = "outp";
-            outp.Size = new Size(767, 120);
+            outp.Size = new Size(671, 90);
             outp.TabIndex = 2;
             outp.Text = "";
             // 
@@ -168,9 +174,10 @@ namespace WSLMan
             button3.BackColor = Color.FromArgb(20, 20, 20);
             button3.FlatStyle = FlatStyle.Flat;
             button3.ForeColor = Color.Silver;
-            button3.Location = new Point(685, 643);
+            button3.Location = new Point(599, 482);
+            button3.Margin = new Padding(3, 2, 3, 2);
             button3.Name = "button3";
-            button3.Size = new Size(94, 29);
+            button3.Size = new Size(82, 22);
             button3.TabIndex = 5;
             button3.Text = "clear";
             button3.UseVisualStyleBackColor = false;
@@ -197,9 +204,11 @@ namespace WSLMan
             groupBox2.Controls.Add(label1);
             groupBox2.CStyle = SimpleGroupBox.CustomStyle.SOLID;
             groupBox2.ForeColor = Color.Silver;
-            groupBox2.Location = new Point(12, 377);
+            groupBox2.Location = new Point(10, 283);
+            groupBox2.Margin = new Padding(3, 2, 3, 2);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(407, 131);
+            groupBox2.Padding = new Padding(3, 2, 3, 2);
+            groupBox2.Size = new Size(356, 98);
             groupBox2.TabIndex = 6;
             groupBox2.TabStop = false;
             groupBox2.Text = "Info";
@@ -208,9 +217,9 @@ namespace WSLMan
             // 
             installLabel.AutoSize = true;
             installLabel.ForeColor = Color.Silver;
-            installLabel.Location = new Point(338, 97);
+            installLabel.Location = new Point(296, 73);
             installLabel.Name = "installLabel";
-            installLabel.Size = new Size(63, 20);
+            installLabel.Size = new Size(51, 15);
             installLabel.TabIndex = 13;
             installLabel.Text = "Package";
             // 
@@ -218,9 +227,9 @@ namespace WSLMan
             // 
             label9.AutoSize = true;
             label9.ForeColor = Color.SlateBlue;
-            label9.Location = new Point(292, 97);
+            label9.Location = new Point(256, 73);
             label9.Name = "label9";
-            label9.Size = new Size(48, 20);
+            label9.Size = new Size(38, 15);
             label9.TabIndex = 12;
             label9.Text = "Install";
             // 
@@ -229,18 +238,19 @@ namespace WSLMan
             nameOutp.BackColor = Color.FromArgb(50, 50, 50);
             nameOutp.BorderStyle = BorderStyle.FixedSingle;
             nameOutp.ForeColor = Color.Silver;
-            nameOutp.Location = new Point(66, 28);
+            nameOutp.Location = new Point(58, 21);
+            nameOutp.Margin = new Padding(3, 2, 3, 2);
             nameOutp.Name = "nameOutp";
-            nameOutp.Size = new Size(133, 27);
+            nameOutp.Size = new Size(117, 23);
             nameOutp.TabIndex = 11;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.ForeColor = Color.SlateBlue;
-            label4.Location = new Point(10, 31);
+            label4.Location = new Point(9, 23);
             label4.Name = "label4";
-            label4.Size = new Size(49, 20);
+            label4.Size = new Size(39, 15);
             label4.TabIndex = 10;
             label4.Text = "Name";
             // 
@@ -248,9 +258,9 @@ namespace WSLMan
             // 
             uidLabel.AutoSize = true;
             uidLabel.ForeColor = Color.Silver;
-            uidLabel.Location = new Point(251, 97);
+            uidLabel.Location = new Point(220, 73);
             uidLabel.Name = "uidLabel";
-            uidLabel.Size = new Size(17, 20);
+            uidLabel.Size = new Size(13, 15);
             uidLabel.TabIndex = 9;
             uidLabel.Text = "1";
             // 
@@ -258,9 +268,9 @@ namespace WSLMan
             // 
             label8.AutoSize = true;
             label8.ForeColor = Color.SlateBlue;
-            label8.Location = new Point(216, 97);
+            label8.Location = new Point(189, 73);
             label8.Name = "label8";
-            label8.Size = new Size(32, 20);
+            label8.Size = new Size(25, 15);
             label8.TabIndex = 8;
             label8.Text = "Uid";
             // 
@@ -268,9 +278,9 @@ namespace WSLMan
             // 
             versionLabel.AutoSize = true;
             versionLabel.ForeColor = Color.Silver;
-            versionLabel.Location = new Point(195, 97);
+            versionLabel.Location = new Point(171, 73);
             versionLabel.Name = "versionLabel";
-            versionLabel.Size = new Size(17, 20);
+            versionLabel.Size = new Size(13, 15);
             versionLabel.TabIndex = 7;
             versionLabel.Text = "1";
             // 
@@ -278,9 +288,9 @@ namespace WSLMan
             // 
             label6.AutoSize = true;
             label6.ForeColor = Color.SlateBlue;
-            label6.Location = new Point(136, 97);
+            label6.Location = new Point(119, 73);
             label6.Name = "label6";
-            label6.Size = new Size(57, 20);
+            label6.Size = new Size(45, 15);
             label6.TabIndex = 6;
             label6.Text = "Version";
             // 
@@ -288,9 +298,9 @@ namespace WSLMan
             // 
             stateLabel.AutoSize = true;
             stateLabel.ForeColor = Color.Silver;
-            stateLabel.Location = new Point(62, 97);
+            stateLabel.Location = new Point(54, 73);
             stateLabel.Name = "stateLabel";
-            stateLabel.Size = new Size(70, 20);
+            stateLabel.Size = new Size(55, 15);
             stateLabel.TabIndex = 5;
             stateLabel.Text = "STOPPED";
             // 
@@ -298,9 +308,9 @@ namespace WSLMan
             // 
             label3.AutoSize = true;
             label3.ForeColor = Color.SlateBlue;
-            label3.Location = new Point(10, 97);
+            label3.Location = new Point(9, 73);
             label3.Name = "label3";
-            label3.Size = new Size(43, 20);
+            label3.Size = new Size(33, 15);
             label3.TabIndex = 4;
             label3.Text = "State";
             // 
@@ -309,18 +319,19 @@ namespace WSLMan
             hashOutp.BackColor = Color.FromArgb(50, 50, 50);
             hashOutp.BorderStyle = BorderStyle.FixedSingle;
             hashOutp.ForeColor = Color.Silver;
-            hashOutp.Location = new Point(253, 28);
+            hashOutp.Location = new Point(221, 21);
+            hashOutp.Margin = new Padding(3, 2, 3, 2);
             hashOutp.Name = "hashOutp";
-            hashOutp.Size = new Size(143, 27);
+            hashOutp.Size = new Size(125, 23);
             hashOutp.TabIndex = 3;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.ForeColor = Color.SlateBlue;
-            label2.Location = new Point(205, 31);
+            label2.Location = new Point(179, 23);
             label2.Name = "label2";
-            label2.Size = new Size(42, 20);
+            label2.Size = new Size(34, 15);
             label2.TabIndex = 2;
             label2.Text = "Hash";
             // 
@@ -329,18 +340,19 @@ namespace WSLMan
             pathOutp.BackColor = Color.FromArgb(50, 50, 50);
             pathOutp.BorderStyle = BorderStyle.FixedSingle;
             pathOutp.ForeColor = Color.Silver;
-            pathOutp.Location = new Point(66, 64);
+            pathOutp.Location = new Point(58, 48);
+            pathOutp.Margin = new Padding(3, 2, 3, 2);
             pathOutp.Name = "pathOutp";
-            pathOutp.Size = new Size(330, 27);
+            pathOutp.Size = new Size(289, 23);
             pathOutp.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.ForeColor = Color.SlateBlue;
-            label1.Location = new Point(10, 67);
+            label1.Location = new Point(9, 50);
             label1.Name = "label1";
-            label1.Size = new Size(37, 20);
+            label1.Size = new Size(31, 15);
             label1.TabIndex = 0;
             label1.Text = "Path";
             // 
@@ -349,9 +361,10 @@ namespace WSLMan
             startButton.Enabled = false;
             startButton.FlatStyle = FlatStyle.Flat;
             startButton.Image = Properties.Resources.play_button_med;
-            startButton.Location = new Point(414, 114);
+            startButton.Location = new Point(362, 86);
+            startButton.Margin = new Padding(3, 2, 3, 2);
             startButton.Name = "startButton";
-            startButton.Size = new Size(40, 40);
+            startButton.Size = new Size(35, 30);
             startButton.TabIndex = 9;
             startButton.UseVisualStyleBackColor = true;
             startButton.Click += OnStartPressed;
@@ -361,9 +374,10 @@ namespace WSLMan
             stopButton.Enabled = false;
             stopButton.FlatStyle = FlatStyle.Flat;
             stopButton.Image = Properties.Resources.stop_button_med;
-            stopButton.Location = new Point(611, 114);
+            stopButton.Location = new Point(535, 86);
+            stopButton.Margin = new Padding(3, 2, 3, 2);
             stopButton.Name = "stopButton";
-            stopButton.Size = new Size(40, 40);
+            stopButton.Size = new Size(35, 30);
             stopButton.TabIndex = 10;
             stopButton.UseVisualStyleBackColor = true;
             stopButton.Click += OnStopPressed;
@@ -374,9 +388,9 @@ namespace WSLMan
             startLabel.Enabled = false;
             startLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             startLabel.ForeColor = Color.SlateBlue;
-            startLabel.Location = new Point(460, 114);
+            startLabel.Location = new Point(402, 86);
             startLabel.Name = "startLabel";
-            startLabel.Size = new Size(96, 40);
+            startLabel.Size = new Size(84, 30);
             startLabel.TabIndex = 11;
             startLabel.Text = "Start distro";
             startLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -387,9 +401,9 @@ namespace WSLMan
             stopLabel.Enabled = false;
             stopLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             stopLabel.ForeColor = Color.SlateBlue;
-            stopLabel.Location = new Point(657, 114);
+            stopLabel.Location = new Point(575, 86);
             stopLabel.Name = "stopLabel";
-            stopLabel.Size = new Size(94, 40);
+            stopLabel.Size = new Size(82, 30);
             stopLabel.TabIndex = 12;
             stopLabel.Text = "Stop distro";
             stopLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -399,9 +413,10 @@ namespace WSLMan
             editButton.Enabled = false;
             editButton.FlatStyle = FlatStyle.Flat;
             editButton.Image = Properties.Resources.edit_button_med;
-            editButton.Location = new Point(414, 334);
+            editButton.Location = new Point(362, 250);
+            editButton.Margin = new Padding(3, 2, 3, 2);
             editButton.Name = "editButton";
-            editButton.Size = new Size(40, 40);
+            editButton.Size = new Size(35, 30);
             editButton.TabIndex = 13;
             editButton.UseVisualStyleBackColor = true;
             editButton.Click += OnEditPressed;
@@ -412,9 +427,9 @@ namespace WSLMan
             editLabel.Enabled = false;
             editLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             editLabel.ForeColor = Color.SlateBlue;
-            editLabel.Location = new Point(460, 334);
+            editLabel.Location = new Point(402, 250);
             editLabel.Name = "editLabel";
-            editLabel.Size = new Size(122, 40);
+            editLabel.Size = new Size(107, 30);
             editLabel.TabIndex = 14;
             editLabel.Text = "Edit distro ...";
             editLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -424,9 +439,9 @@ namespace WSLMan
             createNewLabel.Cursor = Cursors.Hand;
             createNewLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             createNewLabel.ForeColor = Color.SlateBlue;
-            createNewLabel.Location = new Point(460, 189);
+            createNewLabel.Location = new Point(402, 142);
             createNewLabel.Name = "createNewLabel";
-            createNewLabel.Size = new Size(116, 40);
+            createNewLabel.Size = new Size(102, 30);
             createNewLabel.TabIndex = 16;
             createNewLabel.Text = "Create NEW";
             createNewLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -435,9 +450,10 @@ namespace WSLMan
             // 
             createNewButton.FlatStyle = FlatStyle.Flat;
             createNewButton.Image = Properties.Resources.add_button_med;
-            createNewButton.Location = new Point(414, 189);
+            createNewButton.Location = new Point(362, 142);
+            createNewButton.Margin = new Padding(3, 2, 3, 2);
             createNewButton.Name = "createNewButton";
-            createNewButton.Size = new Size(40, 40);
+            createNewButton.Size = new Size(35, 30);
             createNewButton.TabIndex = 15;
             createNewButton.UseVisualStyleBackColor = true;
             createNewButton.Click += OnCreateNewPressed;
@@ -448,9 +464,9 @@ namespace WSLMan
             removeLabel.Enabled = false;
             removeLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             removeLabel.ForeColor = Color.SlateBlue;
-            removeLabel.Location = new Point(460, 235);
+            removeLabel.Location = new Point(402, 176);
             removeLabel.Name = "removeLabel";
-            removeLabel.Size = new Size(116, 40);
+            removeLabel.Size = new Size(102, 30);
             removeLabel.TabIndex = 18;
             removeLabel.Text = "Remove distro";
             removeLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -460,9 +476,10 @@ namespace WSLMan
             removeButton.Enabled = false;
             removeButton.FlatStyle = FlatStyle.Flat;
             removeButton.Image = Properties.Resources.remove_button_med;
-            removeButton.Location = new Point(414, 235);
+            removeButton.Location = new Point(362, 176);
+            removeButton.Margin = new Padding(3, 2, 3, 2);
             removeButton.Name = "removeButton";
-            removeButton.Size = new Size(40, 40);
+            removeButton.Size = new Size(35, 30);
             removeButton.TabIndex = 17;
             removeButton.UseVisualStyleBackColor = true;
             removeButton.Click += OnRemovePressed;
@@ -473,9 +490,9 @@ namespace WSLMan
             openLocationLabel.Enabled = false;
             openLocationLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             openLocationLabel.ForeColor = Color.SlateBlue;
-            openLocationLabel.Location = new Point(657, 334);
+            openLocationLabel.Location = new Point(575, 250);
             openLocationLabel.Name = "openLocationLabel";
-            openLocationLabel.Size = new Size(122, 40);
+            openLocationLabel.Size = new Size(107, 30);
             openLocationLabel.TabIndex = 20;
             openLocationLabel.Text = "Open Location";
             openLocationLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -485,9 +502,10 @@ namespace WSLMan
             openLocationButton.Enabled = false;
             openLocationButton.FlatStyle = FlatStyle.Flat;
             openLocationButton.Image = Properties.Resources.folder_button_med;
-            openLocationButton.Location = new Point(611, 334);
+            openLocationButton.Location = new Point(535, 250);
+            openLocationButton.Margin = new Padding(3, 2, 3, 2);
             openLocationButton.Name = "openLocationButton";
-            openLocationButton.Size = new Size(40, 40);
+            openLocationButton.Size = new Size(35, 30);
             openLocationButton.TabIndex = 19;
             openLocationButton.UseVisualStyleBackColor = true;
             openLocationButton.Click += OnOpenLocationPressed;
@@ -495,9 +513,10 @@ namespace WSLMan
             // pictureBox1
             // 
             pictureBox1.Image = Properties.Resources.flat_logo_small;
-            pictureBox1.Location = new Point(423, 39);
+            pictureBox1.Location = new Point(370, 29);
+            pictureBox1.Margin = new Padding(3, 2, 3, 2);
             pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(131, 60);
+            pictureBox1.Size = new Size(115, 45);
             pictureBox1.TabIndex = 21;
             pictureBox1.TabStop = false;
             // 
@@ -505,9 +524,9 @@ namespace WSLMan
             // 
             appVersionLabel.AutoSize = true;
             appVersionLabel.ForeColor = Color.Silver;
-            appVersionLabel.Location = new Point(682, 71);
+            appVersionLabel.Location = new Point(597, 53);
             appVersionLabel.Name = "appVersionLabel";
-            appVersionLabel.Size = new Size(93, 20);
+            appVersionLabel.Size = new Size(75, 15);
             appVersionLabel.TabIndex = 12;
             appVersionLabel.Text = "version: 0.0.0";
             // 
@@ -515,9 +534,9 @@ namespace WSLMan
             // 
             label7.AutoSize = true;
             label7.ForeColor = Color.Silver;
-            label7.Location = new Point(682, 46);
+            label7.Location = new Point(597, 34);
             label7.Name = "label7";
-            label7.Size = new Size(67, 20);
+            label7.Size = new Size(54, 15);
             label7.TabIndex = 22;
             label7.Text = "WSLMan";
             // 
@@ -527,23 +546,24 @@ namespace WSLMan
             menuStrip.Items.AddRange(new ToolStripItem[] { wSLToolStripMenuItem, hElpToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Size = new Size(791, 28);
+            menuStrip.Padding = new Padding(5, 2, 0, 2);
+            menuStrip.Size = new Size(692, 24);
             menuStrip.TabIndex = 23;
             menuStrip.Text = "menuStrip1";
             // 
             // wSLToolStripMenuItem
             // 
-            wSLToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { shutdownToolStripMenuItem });
+            wSLToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { shutdownToolStripMenuItem, configToolStripMenuItem });
             wSLToolStripMenuItem.ForeColor = Color.FromArgb(140, 140, 140);
             wSLToolStripMenuItem.Name = "wSLToolStripMenuItem";
-            wSLToolStripMenuItem.Size = new Size(52, 24);
+            wSLToolStripMenuItem.Size = new Size(42, 20);
             wSLToolStripMenuItem.Text = "WSL";
             // 
             // shutdownToolStripMenuItem
             // 
             shutdownToolStripMenuItem.ForeColor = Color.Silver;
             shutdownToolStripMenuItem.Name = "shutdownToolStripMenuItem";
-            shutdownToolStripMenuItem.Size = new Size(158, 26);
+            shutdownToolStripMenuItem.Size = new Size(180, 22);
             shutdownToolStripMenuItem.Text = "Shutdown";
             shutdownToolStripMenuItem.Click += OnMItemShutdownPressed;
             // 
@@ -552,14 +572,14 @@ namespace WSLMan
             hElpToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { githubToolStripMenuItem, aboutToolStripMenuItem });
             hElpToolStripMenuItem.ForeColor = Color.FromArgb(140, 140, 140);
             hElpToolStripMenuItem.Name = "hElpToolStripMenuItem";
-            hElpToolStripMenuItem.Size = new Size(55, 24);
+            hElpToolStripMenuItem.Size = new Size(44, 20);
             hElpToolStripMenuItem.Text = "Help";
             // 
             // githubToolStripMenuItem
             // 
             githubToolStripMenuItem.ForeColor = Color.Silver;
             githubToolStripMenuItem.Name = "githubToolStripMenuItem";
-            githubToolStripMenuItem.Size = new Size(136, 26);
+            githubToolStripMenuItem.Size = new Size(110, 22);
             githubToolStripMenuItem.Text = "Github";
             githubToolStripMenuItem.Click += OnMItemGithubPressed;
             // 
@@ -567,7 +587,7 @@ namespace WSLMan
             // 
             aboutToolStripMenuItem.ForeColor = Color.Silver;
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(136, 26);
+            aboutToolStripMenuItem.Size = new Size(110, 22);
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += OnMItemAboutPressed;
             // 
@@ -577,9 +597,9 @@ namespace WSLMan
             cloneLabel.Enabled = false;
             cloneLabel.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
             cloneLabel.ForeColor = Color.SlateBlue;
-            cloneLabel.Location = new Point(657, 189);
+            cloneLabel.Location = new Point(575, 142);
             cloneLabel.Name = "cloneLabel";
-            cloneLabel.Size = new Size(116, 40);
+            cloneLabel.Size = new Size(102, 30);
             cloneLabel.TabIndex = 25;
             cloneLabel.Text = "Clone distro";
             cloneLabel.TextAlign = ContentAlignment.MiddleLeft;
@@ -589,9 +609,10 @@ namespace WSLMan
             cloneButton.Enabled = false;
             cloneButton.FlatStyle = FlatStyle.Flat;
             cloneButton.Image = Properties.Resources.duplicate_button_med;
-            cloneButton.Location = new Point(611, 189);
+            cloneButton.Location = new Point(535, 142);
+            cloneButton.Margin = new Padding(3, 2, 3, 2);
             cloneButton.Name = "cloneButton";
-            cloneButton.Size = new Size(40, 40);
+            cloneButton.Size = new Size(35, 30);
             cloneButton.TabIndex = 24;
             cloneButton.UseVisualStyleBackColor = true;
             cloneButton.Click += OnClonePressed;
@@ -599,7 +620,8 @@ namespace WSLMan
             // pictureBox2
             // 
             pictureBox2.Image = Properties.Resources.hor_separator_line;
-            pictureBox2.Location = new Point(423, 175);
+            pictureBox2.Location = new Point(370, 131);
+            pictureBox2.Margin = new Padding(3, 2, 3, 2);
             pictureBox2.Name = "pictureBox2";
             pictureBox2.Size = new Size(350, 2);
             pictureBox2.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -609,7 +631,8 @@ namespace WSLMan
             // pictureBox3
             // 
             pictureBox3.Image = Properties.Resources.hor_separator_line;
-            pictureBox3.Location = new Point(423, 315);
+            pictureBox3.Location = new Point(370, 236);
+            pictureBox3.Margin = new Padding(3, 2, 3, 2);
             pictureBox3.Name = "pictureBox3";
             pictureBox3.Size = new Size(350, 2);
             pictureBox3.SizeMode = PictureBoxSizeMode.AutoSize;
@@ -624,9 +647,11 @@ namespace WSLMan
             simpleGroupBox1.Controls.Add(descriptionInput);
             simpleGroupBox1.CStyle = SimpleGroupBox.CustomStyle.SOLID;
             simpleGroupBox1.ForeColor = Color.Silver;
-            simpleGroupBox1.Location = new Point(425, 380);
+            simpleGroupBox1.Location = new Point(372, 285);
+            simpleGroupBox1.Margin = new Padding(3, 2, 3, 2);
             simpleGroupBox1.Name = "simpleGroupBox1";
-            simpleGroupBox1.Size = new Size(354, 131);
+            simpleGroupBox1.Padding = new Padding(3, 2, 3, 2);
+            simpleGroupBox1.Size = new Size(310, 98);
             simpleGroupBox1.TabIndex = 28;
             simpleGroupBox1.TabStop = false;
             simpleGroupBox1.Text = "Description";
@@ -636,20 +661,29 @@ namespace WSLMan
             descriptionInput.BackColor = Color.FromArgb(45, 45, 45);
             descriptionInput.BorderStyle = BorderStyle.None;
             descriptionInput.ForeColor = Color.FromArgb(140, 140, 140);
-            descriptionInput.Location = new Point(8, 25);
+            descriptionInput.Location = new Point(7, 19);
+            descriptionInput.Margin = new Padding(3, 2, 3, 2);
             descriptionInput.Multiline = true;
             descriptionInput.Name = "descriptionInput";
-            descriptionInput.Size = new Size(337, 99);
+            descriptionInput.Size = new Size(295, 74);
             descriptionInput.TabIndex = 11;
             descriptionInput.Text = "+ babacoin\r\nmein protocol\r\noka";
             descriptionInput.TextChanged += OnDescriptionChanged;
             // 
+            // configToolStripMenuItem
+            // 
+            configToolStripMenuItem.ForeColor = Color.Silver;
+            configToolStripMenuItem.Name = "configToolStripMenuItem";
+            configToolStripMenuItem.Size = new Size(180, 22);
+            configToolStripMenuItem.Text = "Config";
+            configToolStripMenuItem.Click += OnMItemConfigPressed;
+            // 
             // App
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(40, 40, 40);
-            ClientSize = new Size(791, 683);
+            ClientSize = new Size(692, 512);
             Controls.Add(simpleGroupBox1);
             Controls.Add(pictureBox3);
             Controls.Add(pictureBox2);
@@ -677,6 +711,7 @@ namespace WSLMan
             Controls.Add(menuStrip);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MainMenuStrip = menuStrip;
+            Margin = new Padding(3, 2, 3, 2);
             Name = "App";
             Text = "WSLMan";
             groupBox1.ResumeLayout(false);
@@ -745,5 +780,6 @@ namespace WSLMan
         private Label label9;
         private SimpleGroupBox simpleGroupBox1;
         private TextBox descriptionInput;
+        private ToolStripMenuItem configToolStripMenuItem;
     }
 }

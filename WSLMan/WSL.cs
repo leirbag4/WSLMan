@@ -209,7 +209,7 @@ namespace WSLMan
             return result;
         }
 
-        public async Task<VersionCmdResult> GetVersion()
+        public async Task<VersionCmdResult> GetVersion_DOESNT_WORK_ON_WIN10()
         {
             VersionCmd cmd = new VersionCmd();
             var result = await cmd.GetVersion();

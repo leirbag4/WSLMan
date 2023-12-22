@@ -50,6 +50,8 @@ namespace WSLMan
 
         protected override void OnLoad(EventArgs e)
         {
+            XConsole.SetOutput(outp);
+
             OsManager.Initialize();
             SaveData.Initialize();
             SelectDistro(null);
@@ -60,7 +62,6 @@ namespace WSLMan
             menuStrip.BackColor = Color.FromArgb(30, 30, 30);
             //menuStrip.ForeColor = Color.FromArgb(140, 140, 140);
 
-            XConsole.SetOutput(outp);
 
             wsl = new WSL();
 
@@ -76,24 +77,20 @@ namespace WSLMan
 
             InitContextMenu();
 
-            //createNewButton.PerformClick();
-            CheckWSLInstallation();
+            //CheckWSLInstallation();
 
             RefreshDistrosList();
-            
+
             base.OnLoad(e);
         }
 
-        private async void CheckWSLInstallation()
+        /*private async void CheckWSLInstallation()
         {
-            var info = await wsl.GetVersion();
+            var info = await wsl.GetVersion_DOESNT_WORK_ON_WIN10();
 
             if (info.Error)
-            {
                 InfoPanel.ShowMsg(this, "WSL is not installed", "Please install WSL2 in your system before using this software", Defines.InstallMsg, 300);
-            }
-
-        }
+        }*/
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -226,37 +223,37 @@ namespace WSLMan
 
             if (distro == null)
             {
-                nameOutp.Text =                 "";
-                hashOutp.Text =                 "";
-                pathOutp.Text =                 "";
-                stateLabel.Text =               "-";
-                versionLabel.Text =             "-";
-                uidLabel.Text =                 "-";
-                installLabel.Text =             "-";
-                descriptionInput.Text =         "-";
-                startButton.Enabled =           false;
-                stopButton.Enabled =            false;
-                editButton.Enabled =            false;
-                removeButton.Enabled =          false;
-                cloneButton.Enabled =           false;
-                openLocationButton.Enabled =    false;
+                nameOutp.Text = "";
+                hashOutp.Text = "";
+                pathOutp.Text = "";
+                stateLabel.Text = "-";
+                versionLabel.Text = "-";
+                uidLabel.Text = "-";
+                installLabel.Text = "-";
+                descriptionInput.Text = "-";
+                startButton.Enabled = false;
+                stopButton.Enabled = false;
+                editButton.Enabled = false;
+                removeButton.Enabled = false;
+                cloneButton.Enabled = false;
+                openLocationButton.Enabled = false;
             }
             else
             {
-                nameOutp.Text =                 distro.Name;
-                hashOutp.Text =                 distro.Hash;
-                pathOutp.Text =                 distro.Path;
-                stateLabel.Text =               distro.State.ToString();
-                versionLabel.Text =             distro.Version.ToString();
-                uidLabel.Text =                 distro.DefaultUid.ToString();
-                installLabel.Text =             distro.InstalledFromPackageOrStore == true ? "Package" : "Custom";
-                descriptionInput.Text =         distro.Config.Description;
-                startButton.Enabled =           true;
-                stopButton.Enabled =            true;
-                editButton.Enabled =            true;
-                removeButton.Enabled =          true;
-                cloneButton.Enabled =           true;
-                openLocationButton.Enabled =    true;
+                nameOutp.Text = distro.Name;
+                hashOutp.Text = distro.Hash;
+                pathOutp.Text = distro.Path;
+                stateLabel.Text = distro.State.ToString();
+                versionLabel.Text = distro.Version.ToString();
+                uidLabel.Text = distro.DefaultUid.ToString();
+                installLabel.Text = distro.InstalledFromPackageOrStore == true ? "Package" : "Custom";
+                descriptionInput.Text = distro.Config.Description;
+                startButton.Enabled = true;
+                stopButton.Enabled = true;
+                editButton.Enabled = true;
+                removeButton.Enabled = true;
+                cloneButton.Enabled = true;
+                openLocationButton.Enabled = true;
             }
 
             _enableDescriptionEvents = true;
@@ -278,8 +275,18 @@ namespace WSLMan
 
         private async Task RefreshDistrosList()
         {
-            List<DistroInfo> distros = (await wsl.ListDistrosAsync()).distros;
+            var result = await wsl.ListDistrosAsync();
+
+            if (result.Error)
+            {
+                InfoPanel.ShowMsg(this, "WSL is not installed", "Please install WSL2 in your system before using this software", Defines.InstallMsg, 300);
+                return;
+            }
+
+            List<DistroInfo> distros = result.distros;
             string lastSelDistroHash = "";
+
+
 
             if (CurrentDistro != null)
                 lastSelDistroHash = CurrentDistro.Hash;
@@ -484,6 +491,12 @@ namespace WSLMan
             await wsl.Shutdown();
         }
 
+        private void OnMItemConfigPressed(object sender, EventArgs e)
+        {
+            ConfigPanel panel = new ConfigPanel();
+            panel.ShowMe(this, wsl);
+        }
+
         private void OnMItemGithubPressed(object sender, EventArgs e)
         {
             try
@@ -566,5 +579,7 @@ namespace WSLMan
             CurrentDistro.Config.Description = descriptionInput.Text;
             CurrentDistro.Config.SetAsModified();
         }
+
+        
     }
 }

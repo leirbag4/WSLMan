@@ -27,6 +27,8 @@ namespace WSLMan.Save
         // The last 'tar.gz' file path used when browsing on a new creation
         public static string LastPackageFilePath { get { return saveData.last_package_file_path; } set { saveData.last_package_file_path = value; } }
 
+        // Show warnings on console or not
+        public static bool ShowWarnings { get { return saveData.show_warnings; } set { saveData.show_warnings = value; } }
 
 
         private static SaveData saveData = null;
@@ -38,6 +40,7 @@ namespace WSLMan.Save
         public string output_browse_single_vhdx_dir_path { get; set; } = "";
         public string custom_package_dir_path { get; set; } = "";
         public string last_package_file_path { get; set; } = "";
+        public bool show_warnings { get; set; } = false;
 
 
         public static void Initialize()
@@ -47,6 +50,13 @@ namespace WSLMan.Save
             try
             {
                 Load();
+
+                if (Version != Application.ProductVersion)
+                {
+                    Version = Application.ProductVersion;
+                    Save();
+                    XConsole.Println("* New App version found. File '" + FILENAME + "' updated");
+                }
             }
             catch (Exception e)
             {
@@ -67,7 +77,7 @@ namespace WSLMan.Save
             }
         }
 
-        private static void CreateNew()
+        public static void CreateNew()
         {
             saveData =                                      new SaveData();
             saveData.version =                              Application.ProductVersion;

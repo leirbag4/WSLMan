@@ -60,7 +60,7 @@ namespace WSLMan.Register
                                     }
                                     else
                                     {
-                                        CallError($"Can't find distro info at {subKeyName} in registry.");
+                                        Warning($"Can't find distro info for '{subKeyName}' at registry on '" + registryPath + "'");
                                     }
                                 }
                             }
@@ -91,6 +91,12 @@ namespace WSLMan.Register
             {
                 CallError("Can't parse distro from registry. Hash: " + hash);
             }
+        }
+
+        private static void Warning(string str)
+        {
+            _error = true;
+            XConsole.Warning(str);
         }
 
         private static void CallError(string str)
