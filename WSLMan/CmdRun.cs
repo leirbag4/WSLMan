@@ -52,7 +52,7 @@ namespace CommandLauncher
             Arguments =         arguments;
             _type =             type;
         }
-        public static bool EXTERNAL_TEST = false;
+
         public void Start()
         {
             ProcessStartInfo startInfo;
