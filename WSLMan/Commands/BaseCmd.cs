@@ -43,7 +43,7 @@ namespace WSLMan.Commands
             string arguments = command;
 
             if (param0 != "") arguments += " " + param0;
-            else if (param1 != "") arguments += " " + param1;
+            if (param1 != "") arguments += " " + param1;
 
             Println(program + " " + arguments);
 
