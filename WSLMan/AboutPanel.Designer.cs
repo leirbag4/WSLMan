@@ -28,99 +28,99 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label7 = new System.Windows.Forms.Label();
-            this.appVersionLabel = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.descriptionLabel = new System.Windows.Forms.Label();
-            this.closeButton = new System.Windows.Forms.Button();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.SuspendLayout();
+            label7 = new Label();
+            appVersionLabel = new Label();
+            pictureBox1 = new PictureBox();
+            descriptionLabel = new Label();
+            closeButton = new Button();
+            linkLabel1 = new LinkLabel();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            SuspendLayout();
             // 
             // label7
             // 
-            this.label7.AutoSize = true;
-            this.label7.ForeColor = System.Drawing.Color.Silver;
-            this.label7.Location = new System.Drawing.Point(346, 21);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 20);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "WSLMan";
+            label7.AutoSize = true;
+            label7.ForeColor = Color.Silver;
+            label7.Location = new Point(346, 21);
+            label7.Name = "label7";
+            label7.Size = new Size(67, 20);
+            label7.TabIndex = 25;
+            label7.Text = "WSLMan";
             // 
             // appVersionLabel
             // 
-            this.appVersionLabel.AutoSize = true;
-            this.appVersionLabel.ForeColor = System.Drawing.Color.Silver;
-            this.appVersionLabel.Location = new System.Drawing.Point(346, 46);
-            this.appVersionLabel.Name = "appVersionLabel";
-            this.appVersionLabel.Size = new System.Drawing.Size(93, 20);
-            this.appVersionLabel.TabIndex = 23;
-            this.appVersionLabel.Text = "version: 0.2.0";
+            appVersionLabel.AutoSize = true;
+            appVersionLabel.ForeColor = Color.Silver;
+            appVersionLabel.Location = new Point(346, 46);
+            appVersionLabel.Name = "appVersionLabel";
+            appVersionLabel.Size = new Size(93, 20);
+            appVersionLabel.TabIndex = 23;
+            appVersionLabel.Text = "version: 0.2.0";
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::WSLMan.Properties.Resources.flat_logo_small;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(131, 60);
-            this.pictureBox1.TabIndex = 24;
-            this.pictureBox1.TabStop = false;
+            pictureBox1.Image = Properties.Resources.flat_logo_small;
+            pictureBox1.Location = new Point(12, 12);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(131, 60);
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
+            pictureBox1.TabIndex = 24;
+            pictureBox1.TabStop = false;
             // 
             // descriptionLabel
             // 
-            this.descriptionLabel.ForeColor = System.Drawing.Color.Silver;
-            this.descriptionLabel.Location = new System.Drawing.Point(11, 86);
-            this.descriptionLabel.Name = "descriptionLabel";
-            this.descriptionLabel.Size = new System.Drawing.Size(434, 29);
-            this.descriptionLabel.TabIndex = 26;
-            this.descriptionLabel.Text = "WSL Manager     Copyright: develop by Leirbag4";
+            descriptionLabel.ForeColor = Color.Silver;
+            descriptionLabel.Location = new Point(11, 86);
+            descriptionLabel.Name = "descriptionLabel";
+            descriptionLabel.Size = new Size(434, 29);
+            descriptionLabel.TabIndex = 26;
+            descriptionLabel.Text = "WSL Manager     Copyright: develop by Leirbag4";
             // 
             // closeButton
             // 
-            this.closeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.closeButton.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(20)))), ((int)(((byte)(20)))));
-            this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.closeButton.ForeColor = System.Drawing.Color.Silver;
-            this.closeButton.Location = new System.Drawing.Point(178, 161);
-            this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(94, 29);
-            this.closeButton.TabIndex = 27;
-            this.closeButton.Text = "close";
-            this.closeButton.UseVisualStyleBackColor = false;
-            this.closeButton.Click += new System.EventHandler(this.OnClosePressed);
+            closeButton.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
+            closeButton.BackColor = Color.FromArgb(20, 20, 20);
+            closeButton.FlatStyle = FlatStyle.Flat;
+            closeButton.ForeColor = Color.Silver;
+            closeButton.Location = new Point(178, 161);
+            closeButton.Name = "closeButton";
+            closeButton.Size = new Size(94, 29);
+            closeButton.TabIndex = 27;
+            closeButton.Text = "close";
+            closeButton.UseVisualStyleBackColor = false;
+            closeButton.Click += OnClosePressed;
             // 
             // linkLabel1
             // 
-            this.linkLabel1.LinkColor = System.Drawing.Color.BlueViolet;
-            this.linkLabel1.Location = new System.Drawing.Point(11, 122);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(434, 25);
-            this.linkLabel1.TabIndex = 28;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "https://github.com/leirbag4/WSLMan";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.OnGithubLinkPressed);
+            linkLabel1.LinkColor = Color.BlueViolet;
+            linkLabel1.Location = new Point(11, 122);
+            linkLabel1.Name = "linkLabel1";
+            linkLabel1.Size = new Size(434, 25);
+            linkLabel1.TabIndex = 28;
+            linkLabel1.TabStop = true;
+            linkLabel1.Text = "https://github.com/leirbag4/WSLMan";
+            linkLabel1.TextAlign = ContentAlignment.TopCenter;
+            linkLabel1.LinkClicked += OnGithubLinkPressed;
             // 
             // AboutPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(40)))), ((int)(((byte)(40)))));
-            this.ClientSize = new System.Drawing.Size(457, 202);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.closeButton);
-            this.Controls.Add(this.descriptionLabel);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.appVersionLabel);
-            this.Controls.Add(this.pictureBox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "AboutPanel";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "AboutPanel";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.ResumeLayout(false);
-            this.PerformLayout();
-
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(40, 40, 40);
+            ClientSize = new Size(457, 202);
+            Controls.Add(linkLabel1);
+            Controls.Add(closeButton);
+            Controls.Add(descriptionLabel);
+            Controls.Add(label7);
+            Controls.Add(appVersionLabel);
+            Controls.Add(pictureBox1);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "AboutPanel";
+            StartPosition = FormStartPosition.CenterParent;
+            Text = "AboutPanel";
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion

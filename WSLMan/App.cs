@@ -13,6 +13,7 @@ using WSLMan.Properties;
 using WSLMan.Register;
 using WSLMan.Save;
 using WSLMan.UI;
+using WSLMan.Utils;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WSLMan
@@ -56,7 +57,7 @@ namespace WSLMan
             SaveData.Initialize();
             SelectDistro(null);
 
-            appVersionLabel.Text = "version: " + Application.ProductVersion;
+            appVersionLabel.Text = "version: " + VersionHelper.GetVersion();
 
             menuStrip.Renderer = new UI.Renderer.MenuStripRenderer();
             menuStrip.BackColor = Color.FromArgb(30, 30, 30);

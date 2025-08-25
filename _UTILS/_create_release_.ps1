@@ -1,0 +1,1 @@
+Compress-Archive -Path ".\WSLMan" -DestinationPath ".\WSLMan.zip"

@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using WSLMan.UI;
+using WSLMan.Utils;
 
 namespace WSLMan
 {
@@ -39,7 +40,7 @@ namespace WSLMan
 
         protected override void OnLoad(EventArgs e)
         {
-            appVersionLabel.Text = "version: " + Application.ProductVersion;
+            appVersionLabel.Text = "version: " + VersionHelper.GetVersion();
 
             base.OnLoad(e);
         }
